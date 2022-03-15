@@ -34,7 +34,7 @@
   </a>
 
   <p align="center">
-    Family Meal Kitchen is a catering business located in Florida, serving the South Florida and Treasure Coast regions. The website has the ability of accepting orders from chef Joe Longo Family Meal Size Pans custom Italian menu, as well as as features for Booking Parties, Chef's Tables and Cooking Classes. 
+    Family Meal Kitchen is a catering business located in Florida, serving the South Florida and Treasure Coast regions. The website can accept orders from chef Joe Longo's Italian-American Menu, as well as as features for Booking Catering Events, Chef's Tables and Cooking Classes. 
     <br />
     <a href="https://github.com/dlongodev/family-meal-kitchen"><strong>Explore the docs »</strong></a>
     <br />
