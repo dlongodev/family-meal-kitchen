@@ -30,13 +30,11 @@
 <br />
 <div align="center">
   <a href="https://github.com/dlongodev/family-meal-kitchen">
-    <img src="images/logo.png" alt="Logo" width="80" height="80">
+    <img src="images/logo.png" alt="Logo" width="150">
   </a>
 
-<h3 align="center">project_title</h3>
-
   <p align="center">
-    project_description
+    Family Meal Kitchen is a catering business located in Florida, serving the South Florida and Treasure Coast regions. The website has the ability of accepting orders from chef Joe Longo Family Meal Size Pans custom Italian menu, as well as as features for Booking Parties, Chef's Tables and Cooking Classes. 
     <br />
     <a href="https://github.com/dlongodev/family-meal-kitchen"><strong>Explore the docs »</strong></a>
     <br />
@@ -82,9 +80,8 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-[![Product Name Screen Shot][product-screenshot]](https://example.com)
-
-Here's a blank template to get started: To avoid retyping too much info. Do a search and replace with your text editor for the following: `github_username`, `repo_name`, `dlongodev`, `linkedin_username`, `email`, `email_client`, `project_title`, `project_description`
+[![branding][branding]](https://www.behance.net/gallery/135850573/Family-Meal-Kitchen)
+[![Product Name Screen Shot][product-screenshot]](https://familymealkitchen.com)
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
@@ -94,12 +91,15 @@ Here's a blank template to get started: To avoid retyping too much info. Do a se
 
 * [Next.js](https://nextjs.org/)
 * [React.js](https://reactjs.org/)
-* [Vue.js](https://vuejs.org/)
-* [Angular](https://angular.io/)
-* [Svelte](https://svelte.dev/)
-* [Laravel](https://laravel.com)
-* [Bootstrap](https://getbootstrap.com)
-* [JQuery](https://jquery.com)
+* [Styled-Components]()
+* [GSAP]() or [Framer-Motion]()
+* [MongoDB]()
+* [Mongoose]()
+* [SMS API]() -->researching
+* [Calendar]() -->researching
+* [Stripe]()-->Maybe, client wants to just email customer payment details
+* [Nodemailer]() or SendGrid -->researching
+
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
@@ -194,7 +194,7 @@ Distributed under the MIT License. See `LICENSE.txt` for more information.
 <!-- CONTACT -->
 ## Contact
 
-Your Name - [@dlongodev](https://twitter.com/dlongodev) - email@email_client.com
+Daniele Longo - [@dlongodev](https://twitter.com/dlongodev) - dlongodev@gmail.com.com
 
 Project Link: [https://github.com/dlongodev/family-meal-kitchen](https://github.com/dlongodev/family-meal-kitchen)
 
@@ -227,4 +227,5 @@ Project Link: [https://github.com/dlongodev/family-meal-kitchen](https://github.
 [license-url]: https://github.com/dlongodev/family-meal-kitchen/blob/master/LICENSE.txt
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
 [linkedin-url]: https://linkedin.com/in/danielealongo
-[product-screenshot]: images/screenshot.png
+[product-screenshot]: images/fmk-screenshot.png
+[branding]: images/fmk-website-mockup.jpg
