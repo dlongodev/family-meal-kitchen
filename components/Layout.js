@@ -4,11 +4,11 @@ import NavBar from './NavBar'
 
 const Layout = ({ children }) => {
     return (
-        <>
+        <div style={{ margin: "0 auto", maxWidth: "1300px" }}>
             <NavBar />
             {children}
             <Footer />
-        </>
+        </div>
     )
 }
 
