@@ -1,7 +1,91 @@
 .container {
-    
 }
 
 .logo{
+    width: 100%;
     padding: 1rem;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.toggle {
+    position: fixed;
+    top: 15px;
+    left: 15px;
+    width: 50px;
+    height: 50px;
+    background-color: var(--brand-200);
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+}
+.toggle:hover{
+    background-color: var(--brand-main);
+}
+
+.toggle::before{
+    content: "";
+    position: absolute;
+    width: 25px;
+    height: 2px;
+    background-color: var(--light-100);
+    transform: translateY(-5px);
+    transition: 0.2s;
+}
+.toggle::after{
+    content: "";
+    position: absolute;
+    width: 25px;
+    height: 2px;
+    background-color: var(--light-100);
+    transform: translateY(5px);
+    transition: 0.2s;
+}
+.toggle.active{
+    background-color: var(--brand-main);
+}
+.toggle.active::before {
+    transform: translateY(0) rotate(45deg);
+}
+.toggle.active::after {
+    transform: translateY(0) rotate(-45deg);
+}
+
+.sidebar {
+    position: fixed;
+    top: 0;
+    left:-20rem;
+    width: 20rem;
+    height: 100vh;
+    background-color: var(--brand-main-90);
+    transition: 0.5s;
+    text-align: left;
+    z-index: 1000;
+    backdrop-filter: blur(2px)
+}
+.sidebar.active {
+    left: 0;
+}
+
+.sidebar ul {
+    position: relative;
+    margin: 100px 0 0 0;
+padding-inline-start: 0;
+}
+
+.sidebar ul li {
+    list-style: none;
+    display: inline-block;
+    width: 100%;
+    padding: 20px 30px;
+}
+.sidebar ul li:hover {
+    background: var(--brand-500);
+
+}
+.sidebar ul li a {
+    color: var(--light-100);
+    letter-spacing: 2px;
 }
