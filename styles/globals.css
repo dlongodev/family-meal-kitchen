@@ -3,7 +3,7 @@
 
 :root {
 --brand-main: hsl(84, 97%, 24%);
---brand-200: hsl(84, 30%, 74%);
+--brand-200: hsl(83, 29%, 88%);
 --brand-300: hsl(84, 36%, 65%);
 --brand-400: hsl(84, 41%, 44%);
 --brand-500: hsl(84, 100%, 20%);
@@ -11,6 +11,7 @@
 --brand-text: hsl(84, 26%, 15%);
 --light-100: hsl(30, 58%, 95%);
 --light-200: hsl(30, 77%, 91%);
+--light-300: hsl(30, 52%, 85%);
 --brand-main-50: hsla(84, 97%, 24%, 0.5);
 --brand-main-80: hsla(84, 97%, 24%, 0.8);
 --brand-main-90: hsla(84, 97%, 24%, 0.9);
@@ -27,6 +28,7 @@ body {
   margin: 0;
   font-family: 'Montserrat', Helvetica Neue, sans-serif;
   background-color: var(--light-100);
+  color: var(--brand-text);
 }
 
 a {
@@ -36,4 +38,12 @@ a {
 
 * {
   box-sizing: border-box;
+}
+
+h1 {
+  line-height: 1.3em;
+}
+
+.mt-2{
+  margin-top: 2rem
 }

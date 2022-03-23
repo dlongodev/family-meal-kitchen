@@ -1,10 +1,11 @@
 import Image from "next/image"
 import styles from "../styles/Navbar.module.css"
 import { useRef, useState, useEffect } from "react"
-import logo from "../public/img/logo.png";
-import cart from "../public/img/cart-shopping-solid.svg";
+import { useRouter } from "next/router";
 
 const NavBar = () => {
+  const router = useRouter();
+
   const [isActive, setActive] = useState(false);
   const toggleRef = useRef(null);
 
@@ -64,21 +65,38 @@ const NavBar = () => {
               <a href="#">Contact</a>
             </li>
             <li>
-              <a href="#">Place an Order</a>
+              <a href="#" className={styles.btn_outlined}>
+                Place an Order
+              </a>
             </li>
           </ul>
         </div>
-        <div className={styles.logo}>
-          <Image
-            src={logo}
-            layout="fill"
-            objectFit="scale-down"
-            quality={100}
-            alt="Family Meal Kithchen Logo"
-          />
-        </div>
+        {router.asPath === "/" ? (
+          <div className={styles.logo}>
+            <Image
+              src="/img/logo.png"
+              width="200px"
+              height="186px"
+              alt="Family Meal Kithchen Logo"
+            />
+          </div>
+        ) : (
+          <div className={styles.logo}>
+            <Image
+              src="/img/logo.png"
+              width="100px"
+              height="93px"
+              alt="Family Meal Kithchen Logo"
+            />
+          </div>
+        )}
         <div className={styles.cart}>
-          <Image src={cart} alt="" width="30px" height="30px" />
+          <Image
+            src="/img/cart-shopping-solid.svg"
+            alt=""
+            width="30px"
+            height="30px"
+          />
           <div className={styles.counter}>7</div>
         </div>
       </nav>
