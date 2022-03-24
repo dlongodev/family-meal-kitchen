@@ -2,6 +2,8 @@ import Image from "next/image"
 import styles from "../styles/Navbar.module.css"
 import { useRef, useState, useEffect } from "react"
 import { useRouter } from "next/router";
+import Link from "next/link";
+import { ButtonOutlined } from "../styles/Button.styled";
 
 const NavBar = () => {
   const router = useRouter();
@@ -29,7 +31,13 @@ const NavBar = () => {
 
   return (
     <>
-      <nav className={styles.container}>
+      <nav
+        className={
+          router?.asPath === "/"
+            ? styles.container
+            : `${styles.container} ${styles.shadow}`
+        }
+      >
         <div
           ref={toggleRef}
           aria-controls="sidebar"
@@ -50,24 +58,36 @@ const NavBar = () => {
         >
           <ul>
             <li>
-              <a href="#">Home</a>
+              <Link href="/">
+                <a>Home</a>
+              </Link>
+            </li>
+
+            <li>
+              <Link href="/about">
+                <a>About</a>
+              </Link>
+            </li>
+
+            <li>
+              <Link href="/menu">
+                <a>Menu</a>
+              </Link>
             </li>
             <li>
-              <a href="#">About</a>
+              <Link href="/services">
+                <a>Services</a>
+              </Link>
             </li>
             <li>
-              <a href="#">Menu</a>
+              <Link href="/contact">
+                <a>Contact</a>
+              </Link>
             </li>
             <li>
-              <a href="#">Services</a>
-            </li>
-            <li>
-              <a href="#">Contact</a>
-            </li>
-            <li>
-              <a href="#" className={styles.btn_outlined}>
-                Place an Order
-              </a>
+              <Link href="/menu">
+                <a className={styles.btn_outlined}>Place an Order</a>
+              </Link>
             </li>
           </ul>
         </div>

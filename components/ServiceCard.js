@@ -14,7 +14,7 @@ border-bottom: 5px solid var(--brand-main);
 
 const ServiceCard = (props) => {
     return (
-        <Wrapper mqFlex="column" m="1rem" >
+        <Wrapper mqFlex="column" m="1rem" shadow="var(--shadow2)" >
             <UnderlineTitle>{props.title}</UnderlineTitle>
             <Image src={props.image} width="263px" height="175px" alt='' />
             <Link href={props.href} passHref>

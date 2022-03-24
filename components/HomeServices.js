@@ -23,7 +23,7 @@ const HomeServices = () => {
     ]
 
     return (
-        <Wrapper bg="var(--brand-main)" w="100%" p="2rem 0" >
+        <Wrapper bg="var(--brand-main)" w="100%" p="2rem 0" m="3rem 0 0 0" >
             {services.map((service, i) => (
                 <div key={i}>
                     < ServiceCard title={service.title} href={service.href} image={service.image} />

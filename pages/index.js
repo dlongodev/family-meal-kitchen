@@ -3,6 +3,7 @@ import Image from 'next/image'
 import Featured from '../components/Featured'
 import HomeServices from '../components/HomeServices'
 import HomeSubSection from '../components/HomeSubSection'
+import PanHeader from '../components/PanHeader'
 import styles from '../styles/Home.module.css'
 
 export default function Home() {
@@ -16,6 +17,7 @@ export default function Home() {
       <Featured />
       <HomeSubSection />
       <HomeServices />
+      <PanHeader />
       <br />
       <br />
       <br />

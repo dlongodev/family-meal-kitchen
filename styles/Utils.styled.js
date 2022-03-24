@@ -9,6 +9,8 @@ display: flex;
 flex-direction: ${({ flex }) => flex || "column"};
 justify-content: center;
 align-items: center;
+box-shadow: ${({ shadow }) => shadow};
+z-index: 2;
 @media screen and (min-width: 800px) {
     flex-direction: ${({ mqFlex }) => mqFlex || "row"}
 }
@@ -24,8 +26,8 @@ text-align: ${({ align }) => align || "center"};
 export const Paragraph = styled.p`
 font-weight: 300;
 line-height: 2rem;
-margin: 2rem;
-text-align: justify;
+margin: ${({ m }) => m || "1rem auto"};
+text-align: ${({ align }) => align || "justify"};
 
 span {
     color: var(--brand-main);

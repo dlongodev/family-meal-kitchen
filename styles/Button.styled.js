@@ -14,6 +14,7 @@ font-size:${({ fs }) => fs || "0.9rem"};
 font-weight: 700;
 padding: ${({ p }) => p || "0.8rem 1.5em"};
 margin: ${({ m }) => m || "0.3rem"};
+cursor: pointer;
 &:hover {
     background-color: ${({ bghover }) => bghover || 'var(--brand-500)'};
 }
@@ -34,6 +35,7 @@ font-size:${({ fs }) => fs || "0.9rem"};
 font-weight: 700;
 padding: ${({ p }) => p || "0.8rem 1.5em"};
 margin: ${({ m }) => m || "0rem"};
+cursor: pointer;
 &:hover {
     border: 2px solid var(--brand-main);
     border-color: ${({ bcolorhover }) => bcolorhover} ;

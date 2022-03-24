@@ -5,7 +5,9 @@
   position: relative;
   background-color: var(--light-200);
 }
-
+.shadow{
+  box-shadow: var(--shadow1);
+}
 .logo {
   position:static;
   padding: 0.5rem;
@@ -41,10 +43,10 @@
   /* position: fixed;
   top: 15px;
   left: 15px; */
-  margin: 15px;
+  margin: 25px 15px;
   width: 50px;
   height: 50px;
-  background-color: var(--brand-200);
+  background-color: var(--brand-300);
   cursor: pointer;
   display: flex;
   justify-content: center;
@@ -112,6 +114,7 @@
   display: inline-block;
   width: 100%;
   padding: 20px 30px;
+  cursor: pointer;
 }
 .sidebar ul li:last-child{
   margin-top: 1rem;
