@@ -1,5 +1,4 @@
 import Head from 'next/head'
-import Image from 'next/image'
 import Featured from '../components/Featured'
 import HomeServices from '../components/HomeServices'
 import HomeSubSection from '../components/HomeSubSection'
@@ -18,13 +17,6 @@ export default function Home() {
       <HomeSubSection />
       <HomeServices />
       <PanHeader />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
     </div>
   )
 }

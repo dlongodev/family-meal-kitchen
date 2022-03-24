@@ -33,8 +33,6 @@ const PanHeader = () => {
         "/img/pan_wings-balsamico.png",
         "/img/pan_caesar-salad.png"
     ]
-
-
     return (
         <div style={{ position: "relative" }}>
             <PanContainer>
@@ -48,7 +46,6 @@ const PanHeader = () => {
                 <TitleText>Order by the Pan Menu</TitleText>
                 <Paragraph align="center" m="0">One Pan Feeds 6 to 8 People. <br />
                     Chef Joe has counteless other dishes and ethnic cuisines and we will make any special request!
-
                 </Paragraph>
                 <Link href={"/menu"} passHref><ButtonSolid m="2rem 0">See Our Menu</ButtonSolid></Link>
             </Wrapper>

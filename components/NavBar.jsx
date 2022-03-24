@@ -1,29 +1,13 @@
 import Image from "next/image"
 import styles from "../styles/Navbar.module.css"
-import { useRef, useState, useEffect } from "react"
+import { useState } from "react";
 import { useRouter } from "next/router";
 import Link from "next/link";
-import { ButtonOutlined } from "../styles/Button.styled";
 
 const NavBar = () => {
   const router = useRouter();
 
   const [isActive, setActive] = useState(false);
-  const toggleRef = useRef(null);
-
-  useEffect(() => {
-    const handleClickOutside = (e) => {
-      if (toggleRef.current && !toggleRef.current.contains(e.target)) {
-        e.preventDefault();
-        e.stopPropagation();
-        setActive(false);
-      }
-    };
-    document.addEventListener("click", handleClickOutside, true);
-    return () => {
-      document.removeEventListener("click", handleClickOutside, true);
-    };
-  }, []);
 
   const handleToggle = () => {
     setActive(!isActive);
@@ -39,7 +23,6 @@ const NavBar = () => {
         }
       >
         <div
-          ref={toggleRef}
           aria-controls="sidebar"
           id="toggle"
           className={
