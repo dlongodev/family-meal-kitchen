@@ -21,7 +21,7 @@
   margin: 15px 5px 0 5px;
   padding: 1rem;
   position: relative;
-  
+  cursor: pointer;
 }
 .counter {
   color: var(--brand-main);

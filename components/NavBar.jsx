@@ -96,8 +96,17 @@ const NavBar = () => {
           </div>
         )}
         <div className={styles.cart}>
-          <Image src="/img/icon-cart.svg" alt="" width="30px" height="30px" />
-          <div className={styles.counter}>7</div>
+          <Link href="/cart">
+            <a>
+              <Image
+                src="/img/icon-cart.svg"
+                alt=""
+                width="30px"
+                height="30px"
+              />
+              <div className={styles.counter}>7</div>
+            </a>
+          </Link>
         </div>
       </nav>
     </>

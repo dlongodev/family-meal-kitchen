@@ -12,9 +12,11 @@
 --light-100: hsl(30, 58%, 95%);
 --light-200: hsl(30, 77%, 91%);
 --light-300: hsl(30, 52%, 85%);
+--light-20: hsla(30, 77%, 91%, 0.4);
 --brand-main-50: hsla(84, 97%, 24%, 0.5);
 --brand-main-80: hsla(84, 97%, 24%, 0.8);
 --brand-main-90: hsla(84, 97%, 24%, 0.9);
+--warning: hsl(36, 94%, 42%);
 
 --text-size-0: 0.5rem;
 --text-size-1: 0.85rem;
