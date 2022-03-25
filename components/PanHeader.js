@@ -1,42 +1,16 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import React from 'react'
-import styled from 'styled-components'
 import { ButtonSolid } from '../styles/Button.styled'
-import { Paragraph, TitleText, Wrapper } from '../styles/Utils.styled'
-
-const PanContainer = styled.div`
-display: flex;
-overflow-x: hidden;
-justify-content: center;
-position: absolute;
-top: -18vh;
-right: 0;
-left: 0;
-margin: 0 auto;
-width: 100%;
-z-index: 1;
-
-`
-const Pans = styled.div`
-position: relative;
-height: 306px;
-width: 250px;
-margin: 0.3rem;
-`
+import { Paragraph, TitleText, Wrapper, PanContainer, Pans } from '../styles/Utils.styled'
+import { panImages } from '../data/images'
 
 const PanHeader = () => {
 
-    const images = [
-        "/img/pan_chicken-francese.png",
-        "/img/pan_chicken-parm.png",
-        "/img/pan_wings-balsamico.png",
-        "/img/pan_caesar-salad.png"
-    ]
     return (
         <div style={{ position: "relative" }}>
             <PanContainer>
-                {images.map((img, i) => (
+                {panImages.map((img, i) => (
                     <Pans key={i}>
                         <Image src={img} layout="fill" objectFit="scale-down" alt='' />
                     </Pans>

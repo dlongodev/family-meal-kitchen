@@ -41,12 +41,6 @@ const NavBar = () => {
         >
           <ul>
             <li>
-              <Link href="/">
-                <a>Home</a>
-              </Link>
-            </li>
-
-            <li>
               <Link href="/about">
                 <a>About</a>
               </Link>
@@ -76,30 +70,33 @@ const NavBar = () => {
         </div>
         {router.asPath === "/" ? (
           <div className={styles.logo}>
-            <Image
-              src="/img/logo.png"
-              width="200px"
-              height="186px"
-              alt="Family Meal Kithchen Logo"
-            />
+            <Link href="/">
+              <a>
+                <Image
+                  src="/img/logo.png"
+                  width="200px"
+                  height="186px"
+                  alt="Family Meal Kithchen Logo"
+                />
+              </a>
+            </Link>
           </div>
         ) : (
           <div className={styles.logo}>
-            <Image
-              src="/img/logo.png"
-              width="100px"
-              height="93px"
-              alt="Family Meal Kithchen Logo"
-            />
+            <Link href="/">
+              <a>
+                <Image
+                  src="/img/logo.png"
+                  width="100px"
+                  height="93px"
+                  alt="Family Meal Kithchen Logo"
+                />
+              </a>
+            </Link>
           </div>
         )}
         <div className={styles.cart}>
-          <Image
-            src="/img/cart-shopping-solid.svg"
-            alt=""
-            width="30px"
-            height="30px"
-          />
+          <Image src="/img/icon-cart.svg" alt="" width="30px" height="30px" />
           <div className={styles.counter}>7</div>
         </div>
       </nav>

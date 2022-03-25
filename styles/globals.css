@@ -6,7 +6,7 @@
 --brand-200: hsl(83, 29%, 88%);
 --brand-300: hsl(84, 36%, 65%);
 --brand-400: hsl(84, 41%, 44%);
---brand-500: hsl(84, 100%, 20%);
+--brand-500: hsl(84, 100%, 18%);
 --brand-dark: hsl(84, 100%, 14%);
 --brand-text: hsl(84, 26%, 15%);
 --light-100: hsl(30, 58%, 95%);
@@ -32,6 +32,7 @@
 
 html,
 body {
+  height: 100%;
   padding: 0;
   margin: 0;
   font-family: 'Montserrat', Helvetica Neue, sans-serif;

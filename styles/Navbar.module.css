@@ -115,6 +115,7 @@
   width: 100%;
   padding: 20px 30px;
   cursor: pointer;
+  letter-spacing: 2px;
 }
 .sidebar ul li:last-child{
   margin-top: 1rem;
@@ -124,10 +125,10 @@
 }
 .sidebar ul li:last-child{
   background-color: transparent;
+  letter-spacing: 0px;
 }
 .sidebar ul li a {
   color: var(--light-100);
-  letter-spacing: 2px;
 }
 
 .btn_outlined {
@@ -139,8 +140,8 @@ text-align: center;
 background-color: var(--brand-main);
 color: var(--light-200);
 font-size:0.8rem;
-font-weight: 700;
 padding: 0.8rem 1.5em;
+text-transform: uppercase;
 }
 .btn_outlined:hover{
   background-color: var(--brand-500);
@@ -166,6 +167,7 @@ padding: 0.8rem 1.5em;
     background-color: transparent;
     width: 10rem;
     font-size: 0.7rem;
+
   }
   .btn_outlined:hover{
   background-color: var(--light-300);
@@ -184,6 +186,8 @@ padding: 0.8rem 1.5em;
     background-color: transparent;
     backdrop-filter: blur(0);
     font-size: 0.7rem;
+    font-weight: 400;
+    text-transform: uppercase;
   }
 
   .sidebar ul {
@@ -192,7 +196,7 @@ padding: 0.8rem 1.5em;
     padding-inline-start: 0;
     padding: 0;
     margin: 0;
-    width:95%;
+    width: min(35rem, 95%);
   }
 
   .sidebar ul li {
@@ -203,9 +207,12 @@ padding: 0.8rem 1.5em;
     margin: 0;
     height: 100%;
     text-align: center;
+
   }
 .sidebar ul li:last-child{
   margin-top: 0;
+  margin-left: 10px;
+
 }
   .sidebar ul li:hover {
     background-color: transparent;
