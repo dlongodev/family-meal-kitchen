@@ -42,14 +42,17 @@ body {
   color: var(--brand-text);
 }
 
+* {
+  box-sizing: border-box;
+}
+*:focus{
+    outline: 2px solid var(--brand-300);
+}
 a {
   color: inherit;
   text-decoration: none;
 }
 
-* {
-  box-sizing: border-box;
-}
 
 h1 {
   line-height: 1.3em;

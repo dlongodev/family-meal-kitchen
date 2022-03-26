@@ -5,16 +5,16 @@ import { menuItems } from '../data/menu-data'
 import { panImages } from '../data/images'
 import MenuItemCard from '../components/MenuItemCard'
 import { Grid, MenuTitle } from '../styles/menu.styled'
+import axios from 'axios'
 
-const menu = () => {
-
+const menu = ({ menuList }) => {
 
     return (
         <>
             <Wrapper mqFlex="column" >
                 <TitleText>Order by the Pan Menu </TitleText>
                 <Paragraph align="center" m="0" >One Pan Feeds 6 to 8 People. <br />
-                    Chef Joe has counteless other dishes and ethnic cuisines and we will make any special request! Orders will only be accepted with 24hour prior to delivery day. <br />Please call us for any special request at <span>754-264-6268</span>
+                    Chef Joe has counteless other dishes and ethnic cuisines and we will make any special request! Orders will only be accepted 24hour prior to delivery day. <br />Please call us for any special request at <span>754-264-6268</span>
                 </Paragraph>
             </Wrapper>
             <div style={{ position: "relative" }}>
@@ -29,16 +29,16 @@ const menu = () => {
                     <Grid>
                         <div>
                             <MenuTitle>Poultry</MenuTitle>
-                            {menuItems.map((item, i) => (
+                            {menuList.map((item) => (
                                 item.category === "poultry"
-                                    ? < MenuItemCard title={item.title} key={i} desc={item.desc} price={item.price} /> : null
+                                    ? < MenuItemCard title={item.title} key={item._id} desc={item.desc} price={item.price} /> : null
                             ))}
                         </div>
                         <div>
                             <MenuTitle>Beef & Pork</MenuTitle>
-                            {menuItems.map((item, i) => (
+                            {menuList.map((item) => (
                                 item.category === "beef"
-                                    ? < MenuItemCard title={item.title} key={i} desc={item.desc} price={item.price} /> : null
+                                    ? < MenuItemCard title={item.title} key={item._id} desc={item.desc} price={item.price} /> : null
                             ))}
                         </div>
                     </Grid>
@@ -51,3 +51,12 @@ const menu = () => {
 }
 
 export default menu
+
+export const getServerSideProps = async () => {
+    const res = await axios.get("http://localhost:3000/api/menu")
+    return {
+        props: {
+            menuList: res.data,
+        },
+    }
+}

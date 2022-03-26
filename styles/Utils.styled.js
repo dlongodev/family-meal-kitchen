@@ -8,7 +8,7 @@ margin: ${({ m }) => m || "1rem auto"};
 display: flex;
 flex-direction: ${({ flex }) => flex || "column"};
 justify-content: ${({ justify }) => justify || "center"};
-align-items: center;
+align-items: ${({ align }) => align || "center"};
 box-shadow: ${({ shadow }) => shadow};
 z-index: 2;
 @media screen and (min-width: 800px) {

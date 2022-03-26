@@ -47,8 +47,6 @@ align-items: center;
 margin: 0;
 align-items: center;
 justify-content: flex-end;
-// add condition for added to cart
-/* color: var(--warning) */
 `
 export const Quantity = styled.input`
 font-size: 1rem;

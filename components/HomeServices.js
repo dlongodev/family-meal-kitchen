@@ -16,7 +16,7 @@ const HomeServices = () => {
             href: "/services"
         },
         {
-            title: "Meal Planning",
+            title: "Daily Delivery",
             image: "/img/catering.jpg",
             href: "/services"
         }

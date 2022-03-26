@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react'
-import { MenuItemContainer, ItemTitle, ItemPrice, ItemDesc, Cart, Quantity, CartBtnAdd, CartBtnSub } from '../styles/MenuItemCard.styled'
+import { MenuItemContainer, ItemTitle, ItemPrice, ItemDesc, Cart, Quantity, CartBtnAdd } from '../styles/MenuItemCard.styled'
 import { BsFillCartPlusFill, BsFillCartDashFill } from "react-icons/bs"
 import { AiOutlinePlus } from "react-icons/ai"
+import axios from 'axios'
 
 
-const MenuItemCard = ({ title, desc, price }) => {
+const MenuItemCard = ({ title, desc, price, menuItem }) => {
     const [itemAdded, setItemAdded] = useState(false)
     const [qty, setQty] = useState(0)
 
@@ -39,3 +40,12 @@ const MenuItemCard = ({ title, desc, price }) => {
 }
 
 export default MenuItemCard
+
+export const getServerSideProps = async ({ params }) => {
+    const res = await axios.get(`http://localhost:3000/api/menu/${params.id}`)
+    return {
+        props: {
+            menuItem: res.data,
+        },
+    }
+}
