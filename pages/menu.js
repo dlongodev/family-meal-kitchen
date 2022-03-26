@@ -1,7 +1,5 @@
 import Image from 'next/image'
-
 import { Paragraph, TitleText, Wrapper, PanContainer, Pans } from '../styles/Utils.styled'
-import { menuItems } from '../data/menu-data'
 import { panImages } from '../data/images'
 import MenuItemCard from '../components/MenuItemCard'
 import { Grid, MenuTitle } from '../styles/menu.styled'
@@ -31,14 +29,14 @@ const menu = ({ menuList }) => {
                             <MenuTitle>Poultry</MenuTitle>
                             {menuList.map((item) => (
                                 item.category === "poultry"
-                                    ? < MenuItemCard title={item.title} key={item._id} desc={item.desc} price={item.price} /> : null
+                                    ? < MenuItemCard menuItem={item} key={item._id} /> : null
                             ))}
                         </div>
                         <div>
                             <MenuTitle>Beef & Pork</MenuTitle>
                             {menuList.map((item) => (
                                 item.category === "beef"
-                                    ? < MenuItemCard title={item.title} key={item._id} desc={item.desc} price={item.price} /> : null
+                                    ? < MenuItemCard menuItem={item} key={item._id} /> : null
                             ))}
                         </div>
                     </Grid>

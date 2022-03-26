@@ -89,12 +89,5 @@ export const menuItems = [
         price: 50,
         desc: "Italian Style Crepes Filled with Seasoned Ricotta, Topped with San Marzano, Locatelli, Mozzarella and Baked till Golden"
 
-    },
-    // {
-    //     category: "pasta",
-    //     title: "",
-    //     price: 45,
-    //     desc: ""
-
-    // },
+    }
 ]
