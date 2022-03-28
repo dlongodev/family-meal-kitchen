@@ -3,8 +3,10 @@ import styles from "../styles/Navbar.module.css"
 import { useState } from "react";
 import { useRouter } from "next/router";
 import Link from "next/link";
+import { useSelector } from "react-redux";
 
 const NavBar = () => {
+  const quantity = useSelector((state) => state.cart.quantity);
   const router = useRouter();
 
   const [isActive, setActive] = useState(false);
@@ -104,7 +106,7 @@ const NavBar = () => {
                 width="30px"
                 height="30px"
               />
-              <div className={styles.counter}>7</div>
+              <div className={styles.counter}>{quantity}</div>
             </a>
           </Link>
         </div>

@@ -6,8 +6,31 @@ import {
   SectionContainer,
 } from "../styles/cart.styled";
 import { Paragraph, TitleText, Wrapper } from "../styles/Utils.styled";
+import { useDispatch, useSelector } from "react-redux";
+import { useState } from "react";
+import axios from "axios";
+import { useRouter } from "next/router";
+import { reset } from "../redux/cartSlice";
+import OrderDetail from "../components/OrderDetail";
 
-const cart = () => {
+const Cart = () => {
+  const [checkout, setCheckout] = useState(false);
+  const router = useRouter();
+  const dispatch = useDispatch();
+  const cart = useSelector((state) => state.cart);
+
+  const createOrder = async (data) => {
+    try {
+      const res = await axios.post("http://localhost:3000/api/orders", data);
+      if (res.status === 201) {
+        dispatch(reset());
+        await router.push(`http://localhost:3000/orders/${res.data._id}`);
+      }
+    } catch (err) {
+      console.log("Error with CreateOrder function", err);
+    }
+  };
+
   return (
     <>
       <Wrapper mqFlex="column">
@@ -26,11 +49,13 @@ const cart = () => {
                 <th>Quantity</th>
                 <th>Total</th>
               </tr>
-              <tr>
-                <td>Chicken Parmesan</td>
-                <td>1</td>
-                <td>45.00</td>
-              </tr>
+              {cart?.menuItems.map((item, i) => (
+                <tr key={i}>
+                  <td>{item.title}</td>
+                  <td>{item.quantity}</td>
+                  <td>${item.price * item.quantity}</td>
+                </tr>
+              ))}
             </tbody>
           </CartTable>
         </Wrapper>
@@ -52,23 +77,29 @@ const cart = () => {
               Cart Total
             </TitleText>
             <CartTotalText>
-              <strong>Subtotal:</strong> $90.00
+              <strong>Subtotal:</strong> ${cart.total}
             </CartTotalText>
             <CartTotalText>
-              <strong>Total Items:</strong> 4
+              <strong>Delivery Fee:</strong> N/A
             </CartTotalText>
             <CartTotalText>
-              <strong>Delivery:</strong> TBD
-            </CartTotalText>
-            <CartTotalText>
-              <strong>Total:</strong> 90.00
+              <strong>Total:</strong> ${cart.total}
             </CartTotalText>
           </CartTotalWrapper>
-          <CartTotalBtn>Checkout Now!</CartTotalBtn>
+          <CartTotalBtn onClick={() => setCheckout(true)}>
+            Checkout Now!
+          </CartTotalBtn>
         </Wrapper>
+        {checkout && (
+          <OrderDetail
+            total={cart.total}
+            createOrder={createOrder}
+            setCheckout={setCheckout}
+          />
+        )}
       </SectionContainer>
     </>
   );
 };
 
-export default cart;
+export default Cart;

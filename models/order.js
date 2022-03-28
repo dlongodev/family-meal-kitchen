@@ -9,24 +9,27 @@ const OrderSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    total: {
-        type: Number,
+    cityStateZip: {
+        type: String,
         required: true
     },
-    orderId: {
-        type: Number,
+    phone: {
+        type: String,
         required: true
     },
     deliveryDate: {
-        type: Date,
+        type: String,
         required: true,
     },
-    method: {
-        type: Number,
-        required: true
-    }
+    deliveryTime: {
+        type: String,
+        required: true,
+    },
+    total: Number,
+    method: String,
+    instructions: String
 
 }, { timestamps: true })
 
-export default mongoose.model("Order", OrderSchema)
+export default mongoose.models.Order || mongoose.model("Order", OrderSchema)
 
