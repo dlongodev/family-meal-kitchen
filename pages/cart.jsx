@@ -7,10 +7,29 @@ import {
 } from "../styles/cart.styled";
 import { Paragraph, TitleText, Wrapper } from "../styles/Utils.styled";
 import { useDispatch, useSelector } from "react-redux";
+import { useState } from "react";
+import axios from "axios";
+import { useRouter } from "next/router";
+import { reset } from "../redux/cartSlice";
+import OrderDetail from "../components/OrderDetail";
 
-const cart = () => {
+const Cart = () => {
+  const [checkout, setCheckout] = useState(false);
+  const router = useRouter();
   const dispatch = useDispatch();
   const cart = useSelector((state) => state.cart);
+
+  const createOrder = async (data) => {
+    try {
+      const res = await axios.post("http://localhost:3000/api/orders", data);
+      if (res.status === 201) {
+        dispatch(reset());
+        await router.push(`http://localhost:3000/orders/${res.data._id}`);
+      }
+    } catch (err) {
+      console.log("Error with CreateOrder function", err);
+    }
+  };
 
   return (
     <>
@@ -30,11 +49,11 @@ const cart = () => {
                 <th>Quantity</th>
                 <th>Total</th>
               </tr>
-              {cart.menuItems.map((item, i) => (
+              {cart?.menuItems.map((item, i) => (
                 <tr key={i}>
                   <td>{item.title}</td>
                   <td>{item.quantity}</td>
-                  <td>{item.price * item.quantity}</td>
+                  <td>${item.price * item.quantity}</td>
                 </tr>
               ))}
             </tbody>
@@ -67,11 +86,20 @@ const cart = () => {
               <strong>Total:</strong> ${cart.total}
             </CartTotalText>
           </CartTotalWrapper>
-          <CartTotalBtn>Checkout Now!</CartTotalBtn>
+          <CartTotalBtn onClick={() => setCheckout(true)}>
+            Checkout Now!
+          </CartTotalBtn>
         </Wrapper>
+        {checkout && (
+          <OrderDetail
+            total={cart.total}
+            createOrder={createOrder}
+            setCheckout={setCheckout}
+          />
+        )}
       </SectionContainer>
     </>
   );
 };
 
-export default cart;
+export default Cart;

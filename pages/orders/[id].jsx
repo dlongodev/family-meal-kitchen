@@ -1,3 +1,4 @@
+import axios from "axios";
 import React from "react";
 import {
   DeliveryInfo,
@@ -9,7 +10,7 @@ import {
 } from "../../styles/orders.styled";
 import { Paragraph, TitleText, Wrapper } from "../../styles/Utils.styled";
 
-const Order = () => {
+const Order = ({ order }) => {
   return (
     <>
       <div>
@@ -26,10 +27,10 @@ const Order = () => {
                 <th>Total</th>
               </tr>
               <tr>
-                <td>12055</td>
-                <td>John Doe</td>
-                <td>123 Main Street, Hobe Sound, FL</td>
-                <td>$90.00</td>
+                <td>1234</td>
+                <td>{order.customer}</td>
+                <td>{order.address}</td>
+                <td>${order.total}</td>
               </tr>
             </tbody>
           </OrderTable>
@@ -38,7 +39,9 @@ const Order = () => {
               Your delivery is confirmed for:
             </Paragraph>
             <Paragraph align="center">
-              <span>03/30/2022 at 6pm EST</span>
+              <span>
+                {order.deliveryDate} at {order.deliveryTime}
+              </span>
             </Paragraph>
             <Paragraph align="center">
               If you have any questions, call or text us at
@@ -64,16 +67,13 @@ const Order = () => {
               Cart Total
             </TitleText>
             <OrderTotalText>
-              <strong>Subtotal:</strong> $90.00
-            </OrderTotalText>
-            <OrderTotalText>
-              <strong>Total Items:</strong> 4
+              <strong>Subtotal:</strong> ${order.total}
             </OrderTotalText>
             <OrderTotalText>
               <strong>Delivery:</strong> FREE
             </OrderTotalText>
             <OrderTotalText>
-              <strong>Total:</strong> 90.00
+              <strong>Total:</strong> ${order.total}
             </OrderTotalText>
           </OrderTotalWrapper>
           <OrderCompleted disabled>Order Sent!</OrderCompleted>
@@ -81,6 +81,13 @@ const Order = () => {
       </OrderSectionContainer>
     </>
   );
+};
+
+export const getServerSideProps = async ({ params }) => {
+  const res = await axios.get(`http://localhost:3000/api/orders/${params.id}`);
+  return {
+    props: { order: res.data },
+  };
 };
 
 export default Order;

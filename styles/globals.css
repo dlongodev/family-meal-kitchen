@@ -46,7 +46,7 @@ body {
   box-sizing: border-box;
 }
 *:focus{
-    outline: 2px solid var(--brand-300);
+    outline-color: var(--brand-300);
 }
 a {
   color: inherit;
