@@ -16,6 +16,9 @@ const handler = async (req, res) => {
     }
     if (method === "POST") {
         try {
+            //find how many orders
+            // increment order records in MongoDB to add
+            // take the body and append OderID with new value
             const order = await Order.create(req.body);
             console.log("FROM API: new order was created")
             res.status(201).json(order);

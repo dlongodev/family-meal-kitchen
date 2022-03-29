@@ -27,7 +27,7 @@ const Order = ({ order }) => {
                 <th>Total</th>
               </tr>
               <tr>
-                <td>1234</td>
+                <td>{order._id}</td>
                 <td>{order.customer}</td>
                 <td>{order.address}</td>
                 <td>${order.total}</td>

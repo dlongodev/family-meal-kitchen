@@ -29,14 +29,14 @@ const menu = ({ menuList }) => {
                             <MenuTitle>Poultry</MenuTitle>
                             {menuList.map((item) => (
                                 item.category === "poultry"
-                                    ? < MenuItemCard menuItem={item} key={item._id} /> : null
+                                && < MenuItemCard menuItem={item} key={item._id} />
                             ))}
                         </div>
                         <div>
                             <MenuTitle>Beef & Pork</MenuTitle>
                             {menuList.map((item) => (
                                 item.category === "beef"
-                                    ? < MenuItemCard menuItem={item} key={item._id} /> : null
+                                && < MenuItemCard menuItem={item} key={item._id} />
                             ))}
                         </div>
                     </Grid>
