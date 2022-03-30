@@ -21,13 +21,11 @@ const Order = ({ order }) => {
           <OrderTable>
             <tbody>
               <tr>
-                <th>Order ID</th>
                 <th>Customer</th>
                 <th>Address</th>
                 <th>Total</th>
               </tr>
               <tr>
-                <td>{order._id}</td>
                 <td>{order.customer}</td>
                 <td>{order.address}</td>
                 <td>${order.total}</td>

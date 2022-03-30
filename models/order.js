@@ -27,7 +27,11 @@ const OrderSchema = new mongoose.Schema({
     },
     total: Number,
     method: String,
-    instructions: String
+    instructions: String,
+    done: {
+        type: Boolean,
+        default: false
+    }
 
 }, { timestamps: true })
 
