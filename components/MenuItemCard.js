@@ -51,12 +51,3 @@ const MenuItemCard = ({ menuItem }) => {
 }
 
 export default MenuItemCard
-
-// export const getServerSideProps = async ({ params }) => {
-//     const res = await axios.get(`http://localhost:3000/api/menu/${params.id}`)
-//     return {
-//         props: {
-//             menuItem: res.data,
-//         },
-//     }
-// }

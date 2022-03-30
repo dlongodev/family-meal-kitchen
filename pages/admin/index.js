@@ -25,8 +25,8 @@ const Admin = ({ orders, menu }) => {
 
 export const getServerSideProps = async () => {
     const [menuRes, orderRes] = await Promise.all([
-        axios.get("http://localhost:3000/api/menu"),
-        axios.get("http://localhost:3000/api/orders")
+        axios.get(`${process.env.APP_DOMAIN}/api/menu`),
+        axios.get(`${process.env.APP_DOMAIN}/api/orders`)
     ]);
     return {
         props: {
