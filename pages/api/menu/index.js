@@ -10,7 +10,7 @@ export default async function handler(req, res) {
             const menuItems = await Menu.find()
             res.status(200).json(menuItems)
         } catch {
-            console.log("Errog getting menu data")
+            console.log("Error getting menu data")
             res.status(500).json(err)
         }
     }
