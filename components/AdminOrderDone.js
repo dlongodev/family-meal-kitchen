@@ -66,22 +66,20 @@ const AdminOrder = ({ orders }) => {
                         <th>Address</th>
                         <th>Total</th>
                         <th>Pay Method</th>
-                        <th>Instructions</th>
                         <th>Delivery Date</th>
                         <th>Time</th>
                         <th>Done</th>
                     </tr>
-                    {orders.map(order => (
-                        order.done ??
-                        <tr key={order._id}>
-                            <td>{order.customer}</td>
-                            <td>{order.address}
-                                <br />{order.cityStateZip}</td>
-                            <td>${order.total}</td>
-                            <td>{order.method}</td>
-                            <td>{order.instructions}</td>
-                            <td>{order.deliveryDate}</td>
-                            <td>{order.deliveryTime}</td>
+                    {orders?.map(order => (
+                        order.done &&
+                        <tr key={orders._id}>
+                            <td>{orders.customer}</td>
+                            <td>{orders.address}
+                                <br />{orders.cityStateZip}</td>
+                            <td>${orders.total}</td>
+                            <td>{orders.method}</td>
+                            <td>{orders.deliveryDate}</td>
+                            <td>{orders.deliveryTime}</td>
                             <td><ButtonIcon><ImCheckmark /></ButtonIcon></td>
                         </tr>
                     ))}

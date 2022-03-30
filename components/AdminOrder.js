@@ -71,7 +71,7 @@ const AdminOrder = ({ orders }) => {
                         <th>Time</th>
                         <th>Done</th>
                     </tr>
-                    {orders.map(order => (
+                    {orders?.map(order => (
                         order.done === false ?
                             <tr key={order._id}>
                                 <td>{order.customer}</td>
@@ -83,7 +83,11 @@ const AdminOrder = ({ orders }) => {
                                 <td>{order.deliveryDate}</td>
                                 <td>{order.deliveryTime}</td>
                                 <td><ButtonIcon><MdOutlineTimelapse /></ButtonIcon></td>
-                            </tr> : null
+                            </tr> : (
+                                <tr>
+                                    <td>No Pending Orders</td>
+                                </tr>
+                            )
                     ))}
                 </tbody>
             </Table>

@@ -3,6 +3,7 @@ import Link from "next/link"
 import { withRouter } from "next/router"
 import { PanelBody, Tab, TabBody, TabContainer, TabHead } from "../styles/Admin.styled"
 import AdminOrder from "./AdminOrder.js"
+import AdminOrderDone from "./AdminOrderDone"
 
 // tutorial: https://medium.com/backticks-tildes/creating-a-tabs-component-with-next-js-9c88bdc0e29e
 
@@ -35,14 +36,14 @@ const Tabs = ({ router, orders, menu, handleOrderDone }) => {
                     </Tab>
                 </TabHead>
                 <TabBody>
-                    {isTabOne &&
-                        <AdminOrder orders={orders} handleOrderDone={handleOrderDone} />}
-                    {isTabTwo && <React.Fragment>This is tab two content</React.Fragment>}
+                    {isTabOne && <AdminOrder orders={orders} handleOrderDone={handleOrderDone} />}
+                    {isTabTwo && <AdminOrderDone orders={orders} />}
                     {isTabThree &&
                         <React.Fragment>
-                            {menu.map(item => (
+                            {/* {menu.map(item => (
                                 item.title
-                            ))}
+                            ))} */}
+                            tab 3
                         </React.Fragment>}
                 </TabBody>
             </TabContainer>
