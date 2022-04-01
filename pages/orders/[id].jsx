@@ -21,13 +21,11 @@ const Order = ({ order }) => {
           <OrderTable>
             <tbody>
               <tr>
-                <th>Order ID</th>
                 <th>Customer</th>
                 <th>Address</th>
                 <th>Total</th>
               </tr>
               <tr>
-                <td>{order._id}</td>
                 <td>{order.customer}</td>
                 <td>{order.address}</td>
                 <td>${order.total}</td>
@@ -84,7 +82,9 @@ const Order = ({ order }) => {
 };
 
 export const getServerSideProps = async ({ params }) => {
-  const res = await axios.get(`http://localhost:3000/api/orders/${params.id}`);
+  const res = await axios.get(
+    `${process.env.BASE_URL}/api/orders/${params.id}`
+  );
   return {
     props: { order: res.data },
   };

@@ -18,8 +18,13 @@ const cartSlice = createSlice({
             state.quantity = 0;
             state.total = 0;
         },
+        removeMenuItem: (state, action) => {
+            state.menuItems.pop(action.payload);
+            state.quantity -= 1;
+            state.total -= action.payload.price * action.payload.quantity;
+        },
     },
 });
 
-export const { addMenuItem, reset } = cartSlice.actions;
+export const { addMenuItem, reset, removeMenuItem } = cartSlice.actions;
 export default cartSlice.reducer;

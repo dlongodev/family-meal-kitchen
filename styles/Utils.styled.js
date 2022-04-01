@@ -59,3 +59,12 @@ height: 306px;
 width: 250px;
 margin: 0.3rem;
 `
+
+export const FlexDiv = styled.div`
+width: 100%;
+display: flex;
+flex-direction: ${({ flex }) => flex || "row"};
+justify-content: ${({ justify }) => justify || "center"};
+align-items: ${({ align }) => align || "center"};
+flex-basis: content;
+`

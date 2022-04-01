@@ -1,8 +1,5 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { MenuItemContainer, ItemTitle, ItemPrice, ItemDesc, Cart, Quantity, CartBtnAdd } from '../styles/MenuItemCard.styled'
-import { BsFillCartPlusFill, BsFillCartDashFill } from "react-icons/bs"
-import { AiOutlinePlus } from "react-icons/ai"
-import axios from 'axios'
 import { useDispatch } from 'react-redux'
 import { addMenuItem } from '../redux/cartSlice'
 
@@ -17,23 +14,8 @@ const MenuItemCard = ({ menuItem }) => {
     }
 
     const handleQuantity = (e) => {
-        setQuantity(e.target.value)
+        setQuantity(parseInt(e.target.value))
     }
-
-    // const handleAddquantity = () => {
-    //     setQty(qty + 1)
-    // }
-    // const handleSubQty = () => {
-    //     if (qty > 0) {
-    //         setQty(qty - 1)
-    //     }
-    // }
-
-    // useEffect(() => {
-    //     if (qty > 0) {
-    //         setItemAdded(true)
-    //     }
-    // }, [qty])
 
     return (
         <MenuItemContainer tabIndex={0}>
@@ -51,12 +33,3 @@ const MenuItemCard = ({ menuItem }) => {
 }
 
 export default MenuItemCard
-
-// export const getServerSideProps = async ({ params }) => {
-//     const res = await axios.get(`http://localhost:3000/api/menu/${params.id}`)
-//     return {
-//         props: {
-//             menuItem: res.data,
-//         },
-//     }
-// }

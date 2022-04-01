@@ -10,4 +10,8 @@ module.exports = {
     // ssr and displayName are configured by default
     styledComponents: true,
   },
+  reactStrictMode: true,
+  env: {
+    BASE_URL: process.env.BASE_URL,
+  },
 }

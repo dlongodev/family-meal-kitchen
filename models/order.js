@@ -13,6 +13,10 @@ const OrderSchema = new mongoose.Schema({
         type: String,
         required: true
     },
+    email: {
+        type: String,
+        required: true
+    },
     phone: {
         type: String,
         required: true
@@ -27,7 +31,11 @@ const OrderSchema = new mongoose.Schema({
     },
     total: Number,
     method: String,
-    instructions: String
+    instructions: String,
+    done: {
+        type: Boolean,
+        default: false
+    }
 
 }, { timestamps: true })
 
