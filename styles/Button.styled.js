@@ -35,6 +35,7 @@ font-size:${({ fs }) => fs || "0.9rem"};
 font-weight: 700;
 padding: ${({ p }) => p || "0.8rem 1.5em"};
 margin: ${({ m }) => m || "0rem"};
+flex-basis: fit-content;
 cursor: pointer;
 &:hover {
     border: 2px solid var(--brand-main);

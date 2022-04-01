@@ -1,9 +1,10 @@
 import axios from 'axios'
+import Link from 'next/link'
 import { useRouter } from 'next/router'
 import React, { useState } from 'react'
-import { ButtonSolid } from '../../styles/Button.styled'
-import { ModalTitle, OrderForm, OrderInput, OrderInputLabel, OrderTextArea, RadioChoices } from '../../styles/OrderDetail.styled'
-import { Wrapper } from '../../styles/Utils.styled'
+import { BtnLinkOutlined, ButtonSolid } from '../../styles/Button.styled'
+import { OrderForm, OrderInput, OrderInputLabel, OrderTextArea, RadioChoices } from '../../styles/OrderDetail.styled'
+import { FlexDiv, TitleText, Wrapper } from '../../styles/Utils.styled'
 
 const Add = ({ menuItem }) => {
     const router = useRouter();
@@ -26,7 +27,7 @@ const Add = ({ menuItem }) => {
 
     return (
         <Wrapper mqFlex="column">
-            <ModalTitle>Add New Menu Item</ModalTitle>
+            <TitleText>Add New Menu Item</TitleText>
             <OrderForm onSubmit={handleSubmit}>
                 <OrderInputLabel htmlFor='title'>Title:</OrderInputLabel>
                 <OrderInput required id='title' name='title' type="text" onChange={(e) => setFormData({ ...formData, title: e.target.value })} />
@@ -65,7 +66,12 @@ const Add = ({ menuItem }) => {
                         <OrderInputLabel htmlFor='quart'>Dressing or Sauces by the Quart</OrderInputLabel>
                     </div>
                 </RadioChoices>
-                <ButtonSolid m="1rem 0 0 0" type='submit'>Add Menu Item</ButtonSolid>
+                <FlexDiv justify="space-between">
+                    <ButtonSolid m="0" type='submit'>Add Menu Item</ButtonSolid>
+                    <Link href="/admin?tab=3" passHref>
+                        <BtnLinkOutlined>Back to Admin Panel</BtnLinkOutlined>
+                    </Link>
+                </FlexDiv>
             </OrderForm>
         </Wrapper>
 

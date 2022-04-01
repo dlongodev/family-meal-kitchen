@@ -3,6 +3,7 @@ import { FaEdit, FaTrashAlt } from "react-icons/fa"
 import axios from "axios"
 import { useState } from "react"
 import Link from "next/link"
+import { BtnLinkSolid } from "../styles/Button.styled"
 
 const Table = styled.table`
 width: 100%;
@@ -82,6 +83,9 @@ const AdminMenu = ({ menu }) => {
 
     return (
         <>
+            <Link href="/admin/add" passHref>
+                <BtnLinkSolid>Add Menu Item</BtnLinkSolid>
+            </Link>
             <Table>
                 <tbody>
                     <tr>

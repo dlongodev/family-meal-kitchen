@@ -60,7 +60,7 @@ padding: 0.5rem;
 border-radius: 0.3rem;
 border: 1px solid var(--brand-dark);
 margin-bottom: 1rem;
-background-color: transparent;
+background-color: hsla(0, 100%, 100%, 0.5);
 ::placeholder {
     opacity: 0.7;
 }
@@ -71,7 +71,7 @@ padding: 0.5rem;
 border-radius: 0.3rem;
 border: 1px solid var(--brand-dark);
 margin-bottom: 1rem;
-background-color: transparent;
+background-color: hsla(0, 100%, 100%, 0.5);;
 ::placeholder {
     opacity: 0.7;
 }
@@ -102,6 +102,7 @@ display: grid;
 grid-template-columns: repeat(4, 1fr);
 border-radius: 0.3rem;
 border: 1px solid var(--brand-dark);
+background-color: hsla(0, 100%, 100%, 0.5);
 margin-bottom: 1rem;
 
 div{
