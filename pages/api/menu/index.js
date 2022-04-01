@@ -1,5 +1,5 @@
 import dbConnect from "../../../util/mongo"
-import Menu from "../../../models/menu"
+import Menu from "../../../models/Menu"
 
 export default async function handler(req, res) {
     const { method, cookies } = req

@@ -1,5 +1,5 @@
 import dbConnect from "../../../util/mongo.js"
-import Order from "../../../models/order.js"
+import Order from "../../../models/Order"
 
 export default async function handler(req, res) {
     const { method, query: { id }, cookies } = req
