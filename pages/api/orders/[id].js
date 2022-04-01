@@ -17,7 +17,7 @@ export default async function handler(req, res) {
         }
     }
     if (method === "PUT") {
-        if (!token || token !== process.env.token) {
+        if (!token || token !== process.env.TOKEN) {
             return res.status(401).json("You are not authenticated!")
         }
         try {
