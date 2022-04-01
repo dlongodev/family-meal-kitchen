@@ -2,7 +2,9 @@ import dbConnect from "../../../util/mongo"
 import Order from "../../../models/order"
 
 export default async function handler(req, res) {
-    const { method, query: { id } } = req
+    const { method, query: { id }, cookies } = req
+    const token = cookies.token
+
     await dbConnect()
 
     if (method === "GET") {
@@ -15,6 +17,9 @@ export default async function handler(req, res) {
         }
     }
     if (method === "PUT") {
+        if (!token || token !== process.env.token) {
+            return res.status(401).json("You are not authenticated!")
+        }
         try {
             const orderToUpdate = await Order.findByIdAndUpdate(id, req.body, { new: true })
             res.status(201).json(orderToUpdate)

@@ -33,7 +33,7 @@ const Login = () => {
 
     return (
         <Wrapper w="30rem" p="3rem 1rem 5rem 1rem" mqFlex="column">
-            <TitleText>Admin Login</TitleText>
+            <TitleText>Admin Dashboard</TitleText>
             <OrderForm onSubmit={handleSubmit} >
                 <OrderInputLabel htmlFor='username'>Username:</OrderInputLabel>
                 <OrderInput required id='username' name='username' type="text" onChange={(e) => setUsername(e.target.value)} />
