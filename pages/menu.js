@@ -5,7 +5,7 @@ import MenuItemCard from '../components/MenuItemCard'
 import { Grid, MenuTitle } from '../styles/menu.styled'
 import axios from 'axios'
 
-const menu = ({ menuList }) => {
+const Menu = ({ menuList }) => {
 
     return (
         <>
@@ -48,7 +48,7 @@ const menu = ({ menuList }) => {
     )
 }
 
-export default menu
+export default Menu
 
 export const getServerSideProps = async () => {
     const res = await axios.get(`${process.env.BASE_URL}/api/menu`)
