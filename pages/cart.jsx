@@ -10,7 +10,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useState } from "react";
 import axios from "axios";
 import { useRouter } from "next/router";
-import { reset } from "../redux/cartSlice";
+import { reset, removeMenuItem } from "../redux/cartSlice";
 import OrderDetail from "../components/OrderDetail";
 
 const Cart = () => {
@@ -18,16 +18,15 @@ const Cart = () => {
   const router = useRouter();
   const dispatch = useDispatch();
   const cart = useSelector((state) => state.cart);
+  const quantity = useSelector((state) => state.quantity);
+  const totalPrice = useSelector((state) => state.total);
 
   const createOrder = async (data) => {
     try {
-      const res = await axios.post(
-        `${process.env.APP_DOMAIN}/api/orders`,
-        data
-      );
+      const res = await axios.post(`${process.env.BASE_URL}/api/orders`, data);
       if (res.status === 201) {
         dispatch(reset());
-        await router.push(`${process.env.APP_DOMAIN}/orders/${res.data._id}`);
+        await router.push(`${process.env.BASE_URL}/orders/${res.data._id}`);
       }
     } catch (err) {
       console.log("Error with CreateOrder function", err);
@@ -51,12 +50,24 @@ const Cart = () => {
                 <th>Menu Items</th>
                 <th>Quantity</th>
                 <th>Total</th>
+                <th>Remove</th>
               </tr>
               {cart?.menuItems.map((item, i) => (
                 <tr key={i}>
                   <td>{item.title}</td>
                   <td>{item.quantity}</td>
                   <td>${item.price * item.quantity}</td>
+                  <td>
+                    <button
+                      onClick={() =>
+                        dispatch(
+                          removeMenuItem({ ...item, quantity, totalPrice })
+                        )
+                      }
+                    >
+                      delete
+                    </button>
+                  </td>
                 </tr>
               ))}
             </tbody>

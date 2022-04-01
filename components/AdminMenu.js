@@ -1,5 +1,7 @@
 import styled from "styled-components"
 import { FaEdit, FaTrashAlt } from "react-icons/fa"
+import axios from "axios"
+import { useState } from "react"
 
 const Table = styled.table`
 width: 100%;
@@ -64,7 +66,16 @@ border-radius: 0.5rem;
 
 
 const AdminMenu = ({ menu }) => {
-    const handleDelete = () => { }
+    const [menuList, setMenuList] = useState(menu)
+
+    const handleDelete = async (id) => {
+        try {
+            const res = await axios.delete(`${process.env.BASE_URL}/api/menu/${id}`)
+            setMenuList(menuList.filter(item => item._id !== id))
+        } catch (err) {
+            console.log(err)
+        }
+    }
 
     const handleEdit = () => { }
 
@@ -80,14 +91,14 @@ const AdminMenu = ({ menu }) => {
                         <th>Category</th>
                         <th>Delete</th>
                     </tr>
-                    {menu?.map(item => (
+                    {menuList?.map(item => (
                         <tr key={item._id}>
                             <td><ButtonIcon onClick={handleEdit}><FaEdit /></ButtonIcon></td>
                             <td>{item.title}</td>
                             <td>{item.desc}</td>
                             <td>${item.price}</td>
                             <td>{item.category}</td>
-                            <td><ButtonDelete onClick={handleDelete}><FaTrashAlt /></ButtonDelete></td>
+                            <td><ButtonDelete onClick={() => handleDelete(item._id)}><FaTrashAlt /></ButtonDelete></td>
                         </tr>
                     ))}
                 </tbody>

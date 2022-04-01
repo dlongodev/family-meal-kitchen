@@ -10,25 +10,29 @@ export default async function handler(req, res) {
             const menuItem = await Menu.findById(id)
             res.status(200).json(menuItem)
         } catch {
-            console.log("Errog getting menu data")
+            console.log("Error getting menu data")
             res.status(500).json(err)
         }
     }
     if (method === "PUT") {
         try {
-
+            const menuItem = await Menu.findByIdAndUpdate(id, req.body, {
+                new: true,
+            })
+            res.status(200).json(menuItem)
 
         } catch (err) {
-            console.log("")
+            console.log("Error Editing Menu Item")
             res.status(500).json(err)
         }
     }
 
     if (method === "DELETE") {
         try {
-
+            await Menu.findByIdAndDelete(id);
+            res.status(200).json("The Menu has been deleted!");
         } catch {
-            console.log("")
+            console.log("Error deleting Menu Item")
             res.status(500).json(err)
         }
     }

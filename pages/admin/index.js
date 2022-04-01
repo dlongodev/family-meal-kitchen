@@ -5,28 +5,19 @@ import axios from "axios"
 import { useState } from "react"
 
 const Admin = ({ orders, menu }) => {
-    const [orderDone, setOrderDone] = useState(false)
-
-    const handleOrderDone = () => {
-        // edit backend Order done from false to true
-        setOrderDone(true)
-    }
-
-
-
     return (
         <>
             <TitleText m="2rem 0 0 0">Admin Panel</TitleText>
             <Paragraph align="center" m="0">Welcome, Chef Joe Longo</Paragraph>
-            <Tabs orders={orders} menu={menu} handleOrderDone={handleOrderDone} />
+            <Tabs orders={orders} menu={menu} />
         </>
     )
 }
 
 export const getServerSideProps = async () => {
     const [menuRes, orderRes] = await Promise.all([
-        axios.get(`${process.env.APP_DOMAIN}/api/menu`),
-        axios.get(`${process.env.APP_DOMAIN}/api/orders`)
+        axios.get(`${process.env.BASE_URL}/api/menu`),
+        axios.get(`${process.env.BASE_URL}/api/orders`)
     ]);
     return {
         props: {

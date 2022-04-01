@@ -19,7 +19,7 @@ backdrop-filter: blur(2px);
 
 export const ModalWrapper = styled.div`
 position: relative;
-width: min(35rem, 90%);
+width: min(55rem, 90%);
 background-color: white;
 border-radius: 0.8rem;
 padding: 2rem;
@@ -60,6 +60,7 @@ padding: 0.5rem;
 border-radius: 0.3rem;
 border: 1px solid var(--brand-dark);
 margin-bottom: 1rem;
+background-color: transparent;
 ::placeholder {
     opacity: 0.7;
 }
@@ -70,6 +71,7 @@ padding: 0.5rem;
 border-radius: 0.3rem;
 border: 1px solid var(--brand-dark);
 margin-bottom: 1rem;
+background-color: transparent;
 ::placeholder {
     opacity: 0.7;
 }
@@ -82,7 +84,7 @@ font-size: 0.9rem;
 
 export const FormGroup = styled.div`
 display: flex;
-
+flex-direction: column;
 fieldset {
     display: flex;
     flex-direction: column;
@@ -90,12 +92,14 @@ fieldset {
     border: none;
     padding: 0;
 }
-
+@media screen and (min-width: 600px){
+    flex-direction: row;
+}
 `
 export const RadioChoices = styled.fieldset`
 width: 100%;
 display: grid;
-grid-template-columns: repeat(3, 1fr);
+grid-template-columns: repeat(4, 1fr);
 border-radius: 0.3rem;
 border: 1px solid var(--brand-dark);
 margin-bottom: 1rem;

@@ -10,18 +10,19 @@ export default async function handler(req, res) {
             const order = await Order.findById(id)
             res.status(200).json(order)
         } catch {
-            console.log("Errog getting order")
+            console.log("Error getting order")
             res.status(500).json(err)
         }
     }
-    // if (method === "PUT") {
-    //     try {
-
-    //     } catch {
-    //         console.log("Errog editing order")
-    //         res.status(500).json(err)
-    //     }
-    // }
+    if (method === "PUT") {
+        try {
+            const orderToUpdate = await Order.findByIdAndUpdate(id, req.body, { new: true })
+            res.status(201).json(orderToUpdate)
+        } catch {
+            console.log("Error editing order")
+            res.status(500).json(err)
+        }
+    }
     // if (method === "DELETE") {
     //     try {
 

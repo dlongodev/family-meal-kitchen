@@ -1,6 +1,7 @@
 import styled from "styled-components"
-import { ImCheckmark } from 'react-icons/im'
 import { MdOutlineTimelapse } from 'react-icons/md'
+import { useState } from "react"
+import axios from "axios"
 
 
 const Table = styled.table`
@@ -57,10 +58,25 @@ cursor: pointer;
 `
 
 const AdminOrder = ({ orders }) => {
+    const [orderList, setOrderList] = useState(orders)
+    const [orderDone, setOrderDone] = useState(null)
+
+    const handleOrderDone = async (id) => {
+        try {
+            await axios.put(`${process.env.BASE_URL}/api/orders/${id}`, {
+                done: true
+            })
+            setOrderList(orderList.filter(order => order._id !== id))
+        } catch (err) {
+            console.log(err)
+        }
+    }
+
+
     return (
         <>
             <Table>
-                <tbody>
+                <thead>
                     <tr>
                         <th>Customer</th>
                         <th>Address</th>
@@ -71,9 +87,11 @@ const AdminOrder = ({ orders }) => {
                         <th>Time</th>
                         <th>Done</th>
                     </tr>
-                    {orders?.map(order => (
-                        order.done === false ?
-                            <tr key={order._id}>
+                </thead>
+                {orderList?.map(order => (
+                    order.done === false &&
+                    <tbody key={order._id} >
+                        <tr>
                                 <td>{order.customer}</td>
                                 <td>{order.address}
                                     <br />{order.cityStateZip}</td>
@@ -82,14 +100,10 @@ const AdminOrder = ({ orders }) => {
                                 <td>{order.instructions}</td>
                                 <td>{order.deliveryDate}</td>
                                 <td>{order.deliveryTime}</td>
-                                <td><ButtonIcon><MdOutlineTimelapse /></ButtonIcon></td>
-                            </tr> : (
-                                <tr>
-                                    <td>No Pending Orders</td>
-                                </tr>
-                            )
-                    ))}
+                                <td><ButtonIcon onClick={() => handleOrderDone(order._id)}><MdOutlineTimelapse /></ButtonIcon></td>
+                            </tr> 
                 </tbody>
+                ))}
             </Table>
         </>
     )
