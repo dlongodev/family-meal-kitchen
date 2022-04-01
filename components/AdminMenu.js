@@ -2,6 +2,7 @@ import styled from "styled-components"
 import { FaEdit, FaTrashAlt } from "react-icons/fa"
 import axios from "axios"
 import { useState } from "react"
+import Link from "next/link"
 
 const Table = styled.table`
 width: 100%;
@@ -47,7 +48,7 @@ td:last-child{
 
 }
 `
-const ButtonIcon = styled.button`
+const ButtonIcon = styled.a`
 border: none;
 padding: 0.675rem 0.5rem 0.5rem 0.675rem;
 background-color: var(--brand-400);
@@ -93,7 +94,9 @@ const AdminMenu = ({ menu }) => {
                     </tr>
                     {menuList?.map(item => (
                         <tr key={item._id}>
-                            <td><ButtonIcon onClick={handleEdit}><FaEdit /></ButtonIcon></td>
+                            <td><Link href={`/admin/${item._id}`} passHref>
+                                <ButtonIcon><FaEdit /></ButtonIcon>
+                            </Link></td>
                             <td>{item.title}</td>
                             <td>{item.desc}</td>
                             <td>${item.price}</td>

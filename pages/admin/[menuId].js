@@ -1,11 +1,12 @@
 import axios from 'axios'
+import { useRouter } from 'next/router'
 import React, { useState } from 'react'
-import { GrClose } from 'react-icons/gr'
 import { ButtonSolid } from '../../styles/Button.styled'
-import { CloseBtn, FormGroup, ModalContainer, ModalTitle, ModalWrapper, OrderForm, OrderInput, OrderInputLabel, OrderTextArea, RadioChoices } from '../../styles/OrderDetail.styled'
-import { Paragraph, Wrapper } from '../../styles/Utils.styled'
+import { ModalTitle, OrderForm, OrderInput, OrderInputLabel, OrderTextArea, RadioChoices } from '../../styles/OrderDetail.styled'
+import { Wrapper } from '../../styles/Utils.styled'
 
 const AdminMenuEdit = ({ menuItem }) => {
+    const router = useRouter();
 
     const [formData, setFormData] = useState({
         title: menuItem.title,
@@ -14,11 +15,15 @@ const AdminMenuEdit = ({ menuItem }) => {
         category: menuItem.category
     })
 
-    const handleSubmit = (e) => {
-        // e.preventDefault()
-        // createOrder(formData)
+    const handleSubmit = async (e) => {
+        e.preventDefault()
+        try {
+            await axios.put(`${process.env.BASE_URL}/api/menu/${menuItem._id}`, formData);
+            router.push("/admin?tab=3");
+        } catch (err) {
+            console.log("Error Updating Menu Item", err);
+        }
     }
-
 
     return (
 
@@ -34,31 +39,31 @@ const AdminMenuEdit = ({ menuItem }) => {
                 <RadioChoices>
                     <legend>Category:</legend>
                     <div>
-                        <OrderInput id='poultry' type="radio" name="method" value="poultry" checked={"poultry" === formData.category} onChange={(e) => setFormData({ ...formData, method: e.target.value })} />
+                        <OrderInput id='poultry' type="radio" name="category" value="poultry" checked={"poultry" === formData.category} onChange={(e) => setFormData({ ...formData, category: e.target.value })} />
                         <OrderInputLabel htmlFor='poultry'>Poultry</OrderInputLabel>
                     </div>
                     <div>
-                        <OrderInput id='beef' type="radio" name="method" value="beef" checked={"beef" === formData.category} onChange={(e) => setFormData({ ...formData, method: e.target.value })} />
+                        <OrderInput id='beef' type="radio" name="category" value="beef" checked={"beef" === formData.category} onChange={(e) => setFormData({ ...formData, category: e.target.value })} />
                         <OrderInputLabel htmlFor='beef'>Beef & Pork</OrderInputLabel>
                     </div>
                     <div>
-                        <OrderInput id='pasta' type="radio" name="method" value="pasta" checked={"pasta" === formData.category} onChange={(e) => setFormData({ ...formData, method: e.target.value })} />
+                        <OrderInput id='pasta' type="radio" name="category" value="pasta" checked={"pasta" === formData.category} onChange={(e) => setFormData({ ...formData, category: e.target.value })} />
                         <OrderInputLabel htmlFor='pasta'>Pasta & More</OrderInputLabel>
                     </div>
                     <div>
-                        <OrderInput id='shrimp' type="radio" name="method" value="shrimp" checked={"shrimp" === formData.category} onChange={(e) => setFormData({ ...formData, method: e.target.value })} />
+                        <OrderInput id='shrimp' type="radio" name="category" value="shrimp" checked={"shrimp" === formData.category} onChange={(e) => setFormData({ ...formData, category: e.target.value })} />
                         <OrderInputLabel htmlFor='shrimp'>Shrimp Our Way</OrderInputLabel>
                     </div>
                     <div>
-                        <OrderInput id='salad' type="radio" name="method" value="salad" checked={"salad" === formData.category} onChange={(e) => setFormData({ ...formData, method: e.target.value })} />
+                        <OrderInput id='salad' type="radio" name="category" value="salad" checked={"salad" === formData.category} onChange={(e) => setFormData({ ...formData, category: e.target.value })} />
                         <OrderInputLabel htmlFor='salad'>Simple Salads</OrderInputLabel>
                     </div>
                     <div>
-                        <OrderInput id='sides' type="radio" name="method" value="sides" checked={"sides" === formData.category} onChange={(e) => setFormData({ ...formData, method: e.target.value })} />
+                        <OrderInput id='sides' type="radio" name="category" value="sides" checked={"sides" === formData.category} onChange={(e) => setFormData({ ...formData, category: e.target.value })} />
                         <OrderInputLabel htmlFor='sides'>Family Size Sides</OrderInputLabel>
                     </div>
                     <div>
-                        <OrderInput id='quart' type="radio" name="method" value="quart" checked={"quart" === formData.category} onChange={(e) => setFormData({ ...formData, method: e.target.value })} />
+                        <OrderInput id='quart' type="radio" name="category" value="quart" checked={"quart" === formData.category} onChange={(e) => setFormData({ ...formData, category: e.target.value })} />
                         <OrderInputLabel htmlFor='quart'>Dressing or Sauces by the Quart</OrderInputLabel>
                     </div>
                 </RadioChoices>
