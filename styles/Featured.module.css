@@ -4,6 +4,8 @@
     border: 1px solid var(--light-200);
     text-align: center;
     color: var(--brand-text);
+    position: relative;
+    height: 60vh;
 }
 
 .shadow
@@ -19,15 +21,14 @@
     margin: 1rem 2rem
 }
 
-.photos{
-    display: flex;
-    overflow-x: hidden;
-    justify-content: center;
-}
+
 
 .photo {
-    position: relative;
-    height: 245px;
-    width: 200px;
-    margin: 0.3rem
+    position: absolute;
+    bottom:0;
+    left:0;
+    height: 500px;
+    width: 1025px;
+    margin: 0;
+    z-index: 1;
 }
