@@ -1,29 +1,30 @@
 import Image from 'next/image'
-import { Paragraph, TitleText, Wrapper, PanContainer, Pans } from '../styles/Utils.styled'
-import { panImages } from '../data/images'
+import { Paragraph, TitleText, Wrapper, PanContainer } from '../styles/Utils.styled'
 import MenuItemCard from '../components/MenuItemCard'
 import { Grid, MenuTitle } from '../styles/menu.styled'
 import axios from 'axios'
+// import { useState } from 'react'
 
 const Menu = ({ menuList }) => {
+    // const [category, setCategory] = useState({
+    //     poultry: "Poultry",
+    //     beef: "Beef & Pork"
+
+    // })
 
     return (
         <>
             <Wrapper mqFlex="column" >
                 <TitleText>Order by the Pan Menu </TitleText>
-                <Paragraph align="center" m="0" >One Pan Feeds 6 to 8 People. <br />
-                    Chef Joe has counteless other dishes and ethnic cuisines and we will make any special request! Orders will only be accepted 24hour prior to delivery day. <br />Please call us for any special request at <span>754-264-6268</span>
+                <Paragraph align="center" m="0" >One Pan Feeds 6 to 8 People.
+                    Chef Joe has counteless other dishes and ethnic cuisines and we will make any special request! Orders will only be accepted 24hour prior to delivery day. Please call us for any special request at <span>754-264-6268</span>
                 </Paragraph>
             </Wrapper>
             <div style={{ position: "relative" }}>
                 <PanContainer>
-                    {panImages.map((img, i) => (
-                        <Pans key={i}>
-                            <Image src={img} layout="fill" objectFit="scale-down" alt='' />
-                        </Pans>
-                    ))}
+                    <Image src="/img/pans-header.png" width={1000} height={200} alt='' />
                 </PanContainer>
-                <Wrapper bg="var(--light-100)" mqFlex="column" w="100%" m="20vh 0 0 0" style={{ zIndex: 2, position: "relative", boxShadow: "var(--shadowTop)" }}>
+                <Wrapper bg="var(--light-100)" mqFlex="column" w="100%" m="0" style={{ zIndex: 2, position: "relative", boxShadow: "var(--shadowTop)" }}>
                     <Grid>
                         <div>
                             <MenuTitle>Poultry</MenuTitle>
@@ -40,8 +41,6 @@ const Menu = ({ menuList }) => {
                             ))}
                         </div>
                     </Grid>
-
-
                 </Wrapper>
             </div>
         </>
