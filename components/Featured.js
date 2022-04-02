@@ -15,19 +15,16 @@ const Featured = () => {
 
     return (
         <header className={`${styles.header} ${styles.shadow}`}>
+            <div className={styles.photos}>
+                <Image className={styles.photo} src="/img/hdr-img_mobile.png" layout="fill" objectFit="cover" alt='' />
+
+            </div>
             <h1 style={{ marginTop: "3rem" }}>Family Style Italian <br /> American Cooking</h1>
             <h2>Now booking Chef’s  Tables, Corporate Events and Consultations</h2>
             <div className={styles.btn_wrapper} >
                 <Link href="/contact" passHref>
-                    <ButtonSolid m="2rem 0">Plan Your Event</ButtonSolid>
+                    <ButtonSolid m="2rem 0" w="inherit">Plan Your Event</ButtonSolid>
                 </Link>
-            </div>
-            <div className={styles.photos}>
-                {images.map((img, i) => (
-                    <div className={styles.photo} key={i}>
-                        <Image className={styles.photo} src={img} layout="fill" objectFit="scale-down" alt='' />
-                    </div>
-                ))}
             </div>
         </header>
     )
