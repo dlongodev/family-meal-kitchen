@@ -44,19 +44,14 @@ export const PanContainer = styled.div`
 display: flex;
 overflow-x: hidden;
 justify-content: center;
-position: absolute;
-top: -18vh;
-right: 0;
-left: 0;
+position: relative;
 margin: 0 auto;
-width: 100%;
 z-index: 1;
-
 `
 export const Pans = styled.div`
 position: relative;
-height: 306px;
-width: 250px;
+height: 200px;
+width: 1000px;
 margin: 0.3rem;
 `
 
