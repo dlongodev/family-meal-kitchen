@@ -3,7 +3,6 @@ import Link from 'next/link'
 import React from 'react'
 import { ButtonSolid } from '../styles/Button.styled'
 import { Paragraph, TitleText, Wrapper, PanContainer, Pans } from '../styles/Utils.styled'
-import { panImages } from '../data/images'
 
 const PanHeader = () => {
 

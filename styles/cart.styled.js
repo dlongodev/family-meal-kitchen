@@ -1,14 +1,25 @@
 import styled from "styled-components";
 
 export const SectionContainer = styled.section`
-margin: 2rem;
+display: flex;
+flex-direction: column;
+padding: 2rem;
+background-color: white;
+border-radius: 1rem;
+width: min(55rem, 90%);
+margin: 2rem auto;
+justify-content: center;
+align-items: flex-start;
+position: relative;
+box-shadow: var(--shadow1);
+/* margin: 2rem;
 margin-bottom: 3rem;
 display: grid;
 grid-template-columns: 65% 35%;
 gap: 1rem;
 @media screen and (max-width: 800px) {
     grid-template-columns: 1fr;
-}
+} */
 `
 
 export const CartTable = styled.table`
@@ -34,20 +45,18 @@ td:first-child{
 }
 `
 export const CartTotalText = styled.p`
-color: var(--light-100);
-margin-bottom: 0.5rem;
-font-weight: 300;
-
-strong{
-    font-weight: 700;
-    margin-right: 5px;
-}
+font-weight: 700;
 `
+
 export const CartTotalWrapper = styled.div`
 margin: 0 auto;
+width: min(30rem, 90%);
+display: flex;
+justify-content: space-between;
+border-top: 1px solid var(--brand-main);
 `
 export const CartTotalBtn = styled.button`
-background-color: var(--light-100);
+background-color: transparent;
 color: var(--brand-main);
 padding: 1em 3em;
 border: 2px solid var(--brand-500);
@@ -59,9 +68,9 @@ letter-spacing: 1px;
 cursor: pointer;
 
 &:hover{
-    color: var(--warning);
-    background-color: var(--light-200);
-    border: 2px solid var(--warning)
+    color: var(--light-100);
+    background-color: var(--brand-main);
+    border: 2px solid var(--brand-main)
 }
 
 &:disabled{
@@ -70,4 +79,23 @@ cursor: pointer;
     border: 2px solid var(--warning);
     cursor: not-allowed;
 }
+`
+export const GridTable = styled.div`
+display: grid;
+grid-template-columns: 3fr 1fr 1fr 0.5fr;
+gap: 0.5rem;
+width: min(30rem, 90%);
+margin: 0 auto;
+padding: 2rem 0 1rem 0;
+
+div:first-child{
+    font-weight: 700;
+}
+@media screen and (max-width: 600px) {
+    grid-template-columns: repeat(3, 1fr);
+    div:first-child {
+        grid-column: span 4;
+    }
+}
+
 `

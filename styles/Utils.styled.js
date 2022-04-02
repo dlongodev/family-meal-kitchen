@@ -20,7 +20,7 @@ export const TitleText = styled.h2`
 color: ${({ color }) => color || 'var(--brand-main)'};
 font-size:${({ fs }) => fs || "1.8rem"};
 margin: ${({ m }) => m || "2rem"};
-font-weight: 700;
+font-weight: ${({ fw }) => fw || "700"};
 text-align: ${({ align }) => align || "center"};
 @media screen and (min-width: 800px) {
     flex-direction: ${({ mqFlex }) => mqFlex || "row"};
@@ -62,4 +62,10 @@ flex-direction: ${({ flex }) => flex || "row"};
 justify-content: ${({ justify }) => justify || "center"};
 align-items: ${({ align }) => align || "center"};
 flex-basis: content;
+margin:0.5rem;
+@media screen and (max-width: 800px) {
+    flex-direction: ${({ mqFlex }) => mqFlex || "column"};
+    justify-content: ${({ mqJustify }) => mqJustify || "center"};align-items: ${({ mqAlign }) => mqAlign || "center"};
+}
+
 `

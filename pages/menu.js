@@ -1,11 +1,16 @@
 import Image from 'next/image'
-import { Paragraph, TitleText, Wrapper, PanContainer, Pans } from '../styles/Utils.styled'
-import { panImages } from '../data/images'
+import { Paragraph, TitleText, Wrapper, PanContainer } from '../styles/Utils.styled'
 import MenuItemCard from '../components/MenuItemCard'
 import { Grid, MenuTitle } from '../styles/menu.styled'
 import axios from 'axios'
+// import { useState } from 'react'
 
 const Menu = ({ menuList }) => {
+    // const [category, setCategory] = useState({
+    //     poultry: "Poultry",
+    //     beef: "Beef & Pork"
+
+    // })
 
     return (
         <>
@@ -36,8 +41,6 @@ const Menu = ({ menuList }) => {
                             ))}
                         </div>
                     </Grid>
-
-
                 </Wrapper>
             </div>
         </>

@@ -15,6 +15,7 @@ font-weight: 700;
 padding: ${({ p }) => p || "0.8rem 1.5em"};
 margin: ${({ m }) => m || "0.3rem"};
 cursor: pointer;
+flex-basis: fit-content;
 &:hover {
     background-color: ${({ bghover }) => bghover || 'var(--brand-500)'};
 }
@@ -53,6 +54,8 @@ border-radius: 0.5rem;
 border: 0;
 align-items: center;
 text-align: center;
+border: 2px solid var(--brand-main);
+width:${({ w }) => w || "10rem"};
 background-color: ${({ bg }) => bg || 'var(--brand-main)'};
 color: ${({ color }) => color || 'var(--light-100)'};
 font-size:${({ fs }) => fs || "0.9rem"};
@@ -60,6 +63,7 @@ font-weight: 700;
 padding: ${({ p }) => p || "0.8rem 1.5em"};
 margin: ${({ m }) => m || "0.3rem"};
 cursor: pointer;
+flex-basis: fit-content;
 &:hover {
     background-color: ${({ bghover }) => bghover || 'var(--brand-500)'};
 }

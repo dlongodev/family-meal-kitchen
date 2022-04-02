@@ -3,23 +3,41 @@ import {
   CartTotalBtn,
   CartTotalText,
   CartTotalWrapper,
+  GridTable,
   SectionContainer,
 } from "../styles/cart.styled";
-import { Paragraph, TitleText, Wrapper } from "../styles/Utils.styled";
+import styled from "styled-components";
+import { FlexDiv, Paragraph, TitleText, Wrapper } from "../styles/Utils.styled";
 import { useDispatch, useSelector } from "react-redux";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
 import { useRouter } from "next/router";
 import { reset, removeMenuItem } from "../redux/cartSlice";
 import OrderDetail from "../components/OrderDetail";
+import Link from "next/link";
+import { BtnLinkOutlined } from "../styles/Button.styled";
+
+const ButtonDelete = styled.button`
+  border: none;
+  padding: 0.5rem;
+  background-color: var(--warning);
+  color: white;
+  cursor: pointer;
+  border-radius: 0.5rem;
+`;
 
 const Cart = () => {
   const [checkout, setCheckout] = useState(false);
+  const [cartEmpty, setCartEmpty] = useState(false);
   const router = useRouter();
   const dispatch = useDispatch();
   const cart = useSelector((state) => state.cart);
   const quantity = useSelector((state) => state.quantity);
   const totalPrice = useSelector((state) => state.total);
+
+  useEffect(() => {
+    if (cart.total === 0) setCartEmpty(true);
+  }, [cart]);
 
   const createOrder = async (data) => {
     try {
@@ -36,29 +54,42 @@ const Cart = () => {
   return (
     <>
       <Wrapper mqFlex="column">
-        <TitleText>Cart</TitleText>
-        <Paragraph align="center" m="0">
-          Orders will only be accepted 24hour prior to delivery day. <br />
-          Please call us for any special request at <span>754-264-6268</span>
+        <Paragraph align="center" m="2rem 1rem 0 1rem">
+          Orders will only be accepted 24hour prior to delivery day. Please call
+          us for any special request at <span>754-264-6268</span>
         </Paragraph>
       </Wrapper>
       <SectionContainer>
-        <Wrapper w="100%" m="0" mqFlex="column" justify="flex-start">
-          <CartTable>
-            <tbody>
-              <tr>
-                <th>Menu Items</th>
-                <th>Quantity</th>
-                <th>Total</th>
-                <th>Remove</th>
-              </tr>
-              {cart?.menuItems.map((item, i) => (
-                <tr key={i}>
-                  <td>{item.title}</td>
-                  <td>{item.quantity}</td>
-                  <td>${item.price * item.quantity}</td>
-                  <td>
-                    <button
+        {checkout ? (
+          <OrderDetail
+            total={cart.total}
+            createOrder={createOrder}
+            setCheckout={setCheckout}
+          />
+        ) : (
+          <FlexDiv flex="column">
+            {cartEmpty ? (
+              <FlexDiv flex="column">
+                <TitleText m="1rem" fw="300">
+                  Your Cart is Empty
+                </TitleText>
+                <Link href="/menu" passHref>
+                  <BtnLinkOutlined m="1rem 0 0 0" w="15rem">
+                    Add Items to Cart
+                  </BtnLinkOutlined>
+                </Link>
+              </FlexDiv>
+            ) : (
+              <FlexDiv flex="column">
+                <TitleText m="1rem" fw="300">
+                  Your Order
+                </TitleText>
+                {cart?.menuItems.map((item, i) => (
+                  <GridTable key={i}>
+                    <div>{item.title}</div>
+                    <div>qty. {item.quantity}</div>
+                    <div>${item.price * item.quantity}</div>
+                    <ButtonDelete
                       onClick={() =>
                         dispatch(
                           removeMenuItem({ ...item, quantity, totalPrice })
@@ -66,50 +97,20 @@ const Cart = () => {
                       }
                     >
                       delete
-                    </button>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </CartTable>
-        </Wrapper>
-        <Wrapper
-          w="100%"
-          mqFlex="column"
-          bg="var(--brand-main)"
-          m="0"
-          // align="flex-start"
-          shadow="var(--shadow2)"
-        >
-          <CartTotalWrapper>
-            <TitleText
-              color="var(--light-100)"
-              m="1rem 0"
-              align="left"
-              mqAlign="left"
-            >
-              Cart Total
-            </TitleText>
-            <CartTotalText>
-              <strong>Subtotal:</strong> ${cart.total}
-            </CartTotalText>
-            <CartTotalText>
-              <strong>Delivery Fee:</strong> N/A
-            </CartTotalText>
-            <CartTotalText>
-              <strong>Total:</strong> ${cart.total}
-            </CartTotalText>
-          </CartTotalWrapper>
-          <CartTotalBtn onClick={() => setCheckout(true)}>
-            Checkout Now!
-          </CartTotalBtn>
-        </Wrapper>
-        {checkout && (
-          <OrderDetail
-            total={cart.total}
-            createOrder={createOrder}
-            setCheckout={setCheckout}
-          />
+                    </ButtonDelete>
+                  </GridTable>
+                ))}
+                <CartTotalWrapper>
+                  <CartTotalText>Total:</CartTotalText>
+                  <CartTotalText>${cart.total}</CartTotalText>
+                </CartTotalWrapper>
+
+                <CartTotalBtn onClick={() => setCheckout(true)}>
+                  Checkout Now!
+                </CartTotalBtn>
+              </FlexDiv>
+            )}
+          </FlexDiv>
         )}
       </SectionContainer>
     </>

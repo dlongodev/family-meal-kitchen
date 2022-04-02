@@ -45,6 +45,7 @@ text-align: center;
 color: var(--brand-main);
 font-size: 1.3rem;
 font-weight: 300;
+margin: 0 0 1rem 0;
 `
 export const OrderForm = styled.form`
 display: flex;

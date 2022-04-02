@@ -1,9 +1,10 @@
 import React from 'react'
 import { useState } from 'react'
-import { ButtonSolid } from '../styles/Button.styled'
+import { BtnLinkOutlined, ButtonSolid } from '../styles/Button.styled'
 import { CloseBtn, FormGroup, ModalContainer, ModalTitle, ModalWrapper, OrderForm, OrderInput, OrderInputLabel, OrderTextArea, RadioChoices } from '../styles/OrderDetail.styled'
 import { GrClose } from 'react-icons/gr'
-import { Paragraph } from '../styles/Utils.styled'
+import { FlexDiv, Paragraph } from '../styles/Utils.styled'
+import Link from 'next/link'
 
 const OrderDetail = ({ total, createOrder, setCheckout }) => {
   const [formData, setFormData] = useState({
@@ -25,11 +26,8 @@ const OrderDetail = ({ total, createOrder, setCheckout }) => {
   }
 
   return (
-    <ModalContainer>
-      <ModalWrapper>
-        <CloseBtn onClick={() => setCheckout(false)}>
-          <GrClose />
-        </CloseBtn>
+    <>
+      <FlexDiv flex="column" m="0">
         <ModalTitle>
           Contact & Delivery Details
         </ModalTitle>
@@ -84,11 +82,15 @@ const OrderDetail = ({ total, createOrder, setCheckout }) => {
           </RadioChoices>
           <OrderInputLabel htmlFor='instructions'>Special Instructions:</OrderInputLabel>
           <OrderTextArea rows={4} id='instructions' name='instructions' placeholder='Add any special instructions here' type="text" onChange={(e) => setFormData({ ...formData, instructions: e.target.value })} />
-          <ButtonSolid m="1rem 0 0 0" type='submit'>Submit</ButtonSolid>
+          <FlexDiv justify='space-between'>
+            <ButtonSolid m="1rem 0 0 0" w="inherit" type='submit'>Place Order</ButtonSolid>
+            <Link href="/menu" passHref>
+              <BtnLinkOutlined m="1rem 0 0 0" w="inherit">Add More Items</BtnLinkOutlined>
+            </Link>
+          </FlexDiv>
         </OrderForm>
-
-      </ModalWrapper>
-    </ModalContainer>
+      </FlexDiv>
+    </>
   )
 }
 
