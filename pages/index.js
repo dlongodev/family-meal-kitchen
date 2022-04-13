@@ -9,7 +9,7 @@ export default function Home() {
     <>
       <Head>
         <title>Family Meal Kitchen</title>
-        <meta name="description" content="Family Style Italian American Cooking" />
+        <meta name="description" content="Family Style Italian American Cooking" />       
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Featured />
