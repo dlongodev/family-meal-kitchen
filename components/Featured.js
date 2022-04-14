@@ -19,11 +19,11 @@ const Featured = () => {
                 <Image className={styles.photo} src="/img/hdr-img_mobile.png" layout="fill" objectFit="cover" alt='' />
 
             </div>
-            <h1 style={{ marginTop: "3rem" }}>Family Style Italian <br /> American Cooking</h1>
+            <h1>Family Style Italian <br /> American Cooking</h1>
             <h2>Now booking Chef’s  Tables, Corporate Events and Consultations</h2>
             <div className={styles.btn_wrapper} >
                 <Link href="/contact" passHref>
-                    <ButtonSolid m="2rem 0" w="inherit">Plan Your Event</ButtonSolid>
+                    <ButtonSolid m="1rem 0" w="inherit">Plan Your Event</ButtonSolid>
                 </Link>
             </div>
         </header>

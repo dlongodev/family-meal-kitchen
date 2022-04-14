@@ -16,7 +16,7 @@ const ServiceCard = (props) => {
     return (
         <Wrapper mqFlex="column" m="1rem" shadow="var(--shadow2)" >
             <UnderlineTitle>{props.title}</UnderlineTitle>
-            <Image src={props.image} width="263px" height="175px" alt='' />
+            <Image src={props.image} width="700px" height="350px" alt='' />
             <Link href={props.href} passHref>
                 <ButtonOutlined m="2rem 0 1rem 0" >LEARN MORE</ButtonOutlined>
             </Link>

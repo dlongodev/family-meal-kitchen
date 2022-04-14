@@ -1,35 +1,28 @@
 import React from 'react'
+import { services } from '../data/services-data'
+import styled from 'styled-components'
 import { Wrapper } from '../styles/Utils.styled'
 import ServiceCard from './ServiceCard'
 
+const Section = styled.section`
+background-color: var(--brand-main);
+width: 100%;
+margin: 3rem auto;
+
+`
 
 const HomeServices = () => {
-    const services = [
-        {
-            title: "Catering",
-            image: "/img/catering.jpg",
-            href: "/services"
-        },
-        {
-            title: "Chef's Table",
-            image: "/img/catering.jpg",
-            href: "/services"
-        },
-        {
-            title: "Daily Delivery",
-            image: "/img/catering.jpg",
-            href: "/services"
-        }
-    ]
 
     return (
-        <Wrapper bg="var(--brand-main)" w="100%" p="2rem 0" m="3rem 0" >
-            {services.map((service, i) => (
-                <div key={i}>
-                    < ServiceCard title={service.title} href={service.href} image={service.image} />
-                </div>
-            ))}
-        </Wrapper>
+        <Section >
+            <Wrapper bg="transparent" p="2rem 0" w="60rem" >
+                {services?.map((service, i) => (
+                    <div key={i}>
+                        < ServiceCard title={service.title} href={service.href} image={service.image} />
+                    </div>
+                ))}
+            </Wrapper>
+        </Section>
     )
 }
 
