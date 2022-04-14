@@ -76,8 +76,8 @@ const NavBar = () => {
               <a>
                 <Image
                   src="/img/logo.png"
-                  width="200px"
-                  height="186px"
+                  width="160px"
+                  height="160px"
                   alt="Family Meal Kithchen Logo"
                 />
               </a>
@@ -89,8 +89,8 @@ const NavBar = () => {
               <a>
                 <Image
                   src="/img/logo.png"
-                  width="100px"
-                  height="93px"
+                  width="95px"
+                  height="95px"
                   alt="Family Meal Kithchen Logo"
                 />
               </a>
