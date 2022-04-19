@@ -1,13 +1,7 @@
 import axios from "axios";
 import React from "react";
 import { SectionContainer } from "../../styles/cart.styled";
-import {
-  OrderCompleted,
-  OrderSectionContainer,
-  OrderTable,
-  OrderTotalText,
-  OrderTotalWrapper,
-} from "../../styles/orders.styled";
+
 import {
   FlexDiv,
   Paragraph,

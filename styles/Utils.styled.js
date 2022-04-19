@@ -62,7 +62,7 @@ flex-direction: ${({ flex }) => flex || "row"};
 justify-content: ${({ justify }) => justify || "center"};
 align-items: ${({ align }) => align || "center"};
 flex-basis: content;
-margin:0.5rem;
+margin:${({ m }) => m || "0.5rem"};
 @media screen and (max-width: 800px) {
     flex-direction: ${({ mqFlex }) => mqFlex || "column"};
     justify-content: ${({ mqJustify }) => mqJustify || "center"};align-items: ${({ mqAlign }) => mqAlign || "center"};
