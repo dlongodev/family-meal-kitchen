@@ -55,6 +55,7 @@ fieldset {
 }
 @media screen and (min-width: 600px){
     flex-direction: row;
+    gap: 1rem
 }
 `
 export const RadioChoices = styled.fieldset`

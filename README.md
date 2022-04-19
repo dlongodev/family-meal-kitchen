@@ -66,8 +66,8 @@
         <li><a href="#installation">Installation</a></li>
       </ul>
     </li>
-    <li><a href="#usage">Usage</a></li>
-    <li><a href="#roadmap">Roadmap</a></li>
+    <!-- <li><a href="#usage">Usage</a></li> -->
+    <!-- <li><a href="#roadmap">Roadmap</a></li> -->
     <li><a href="#contributing">Contributing</a></li>
     <li><a href="#license">License</a></li>
     <li><a href="#contact">Contact</a></li>
@@ -130,9 +130,13 @@ This is an example of how to list things you need to use the software and how to
    ```sh
    npm install
    ```
-4. Enter your API in `config.js`
+4. Enter your Setup in `.env`
    ```js
-   const API_KEY = 'ENTER YOUR API';
+    MONGO_URL=MongoDB-server-link-or-local-database
+    BASE_URL=http://localhost:3000
+    ADMIN_USERNAME=AdminUser1
+    ADMIN_PASSWORD=AdminPassword
+    TOKEN=Create-A-Random-Token-Here
    ```
 
 <p align="right">(<a href="#top">back to top</a>)</p>
@@ -140,23 +144,23 @@ This is an example of how to list things you need to use the software and how to
 
 
 <!-- USAGE EXAMPLES -->
-## Usage
+<!-- ## Usage
 
 Use this space to show useful examples of how a project can be used. Additional screenshots, code examples and demos work well in this space. You may also link to more resources.
 
 _For more examples, please refer to the [Documentation](https://example.com)_
 
-<p align="right">(<a href="#top">back to top</a>)</p>
+<p align="right">(<a href="#top">back to top</a>)</p> -->
 
 
 
 <!-- ROADMAP -->
-## Roadmap
+<!-- ## Roadmap
 
 - [] Feature 1
 - [] Feature 2
 - [] Feature 3
-    - [] Nested Feature
+    - [] Nested Feature -->
 
 See the [open issues](https://github.com/dlongodev/family-meal-kitchen/issues) for a full list of proposed features (and known issues).
 
@@ -205,9 +209,10 @@ Project Link: [https://github.com/dlongodev/family-meal-kitchen](https://github.
 <!-- ACKNOWLEDGMENTS -->
 ## Acknowledgments
 
-* []()
-* []()
-* []()
+* [General Assembly](https://generalassemb.ly/)
+* Billie Heidelberg - SEI Lead
+* Matt Keane - Instructional Associate
+* Paresh Sharma - Instructional Associate
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
