@@ -1,12 +1,12 @@
 import React from 'react'
 import styled from 'styled-components'
-import { FlexDiv, Paragraph, TitleText, Wrapper } from '../styles/Utils.styled'
-import { FormGroup, Form, Input, InputLabel, TextArea, RadioChoices } from '../styles/Form.styled'
-import { BtnLinkOutlined, ButtonSolid } from '../styles/Button.styled'
-import Link from 'next/link'
 import axios from 'axios'
+import { FlexDiv, Paragraph, TitleText } from "../../styles/Utils.styled"
+import { Form, FormGroup, Input, InputLabel, TextArea } from '../../styles/Form.styled'
+import { ButtonSolid } from '../../styles/Button.styled'
+import { useRouter } from 'next/router'
 
-const H1 = styled.h1`
+export const H1 = styled.h1`
 color: var(--brand-main);
 margin-top: 3rem;
 font-size: 2rem;
@@ -27,23 +27,27 @@ position: relative;
 box-shadow: var(--shadow1);
 `
 
-const handleSubmit = async (e) => {
-    e.preventDefault()
-    const formData = {}
-    Array.from(e.currentTarget.elements).forEach(field => {
-        if (!field.name) return
-        formData[field.name] = field.value
-    })
-    await axios.post('api/contact', formData)
-}
 
 const Contact = () => {
+    const router = useRouter();
+
+    const handleSubmit = async (e) => {
+        e.preventDefault()
+        const formData = {}
+        Array.from(e.currentTarget.elements).forEach(field => {
+            if (!field.name) return
+            formData[field.name] = field.value
+        })
+        await axios.post('api/contact', formData)
+        await router.push(`${process.env.BASE_URL}/contact/thank-you`)
+    }
+
     return (
         <>
-                <H1>Contact Us</H1>
+            <H1>Contact Us</H1>
             <SectionContainer flex="column" m="0">
                 <TitleText color='var(--brand-text)' m='0' fw='300' fs="1.5rem">Request a Quote or More Information</TitleText>
-                <Paragraph align="center">We’d love to hear from you! Family Meal Kitchen is here to answer any questions that you may have or to begin planning your next event. Please contact us using the form below for catering, private events, or any general inquiries and we will get back to you within 24 hours. <br /> Feel free to give us a call at <span>754-264-6268</span> or email at <span><a href="mailto:chefjoe@familymealkitchen.com">chefjoe@familymealkitchen.com</a></span></Paragraph>
+                <Paragraph align="center">We’d love to hear from you! Family Meal Kitchen is here to answer any questions that you may have or to begin planning your next event. Please contact us using the form below for catering, private events, or any general inquiries. <br /> Feel free to give us a call at <span>754-264-6268</span> or email at <span><a href="mailto:chefjoe@familymealkitchen.com">chefjoe@familymealkitchen.com</a></span></Paragraph>
                 <Form onSubmit={handleSubmit}>
                     <InputLabel htmlFor='customer'>Name: </InputLabel>
                     <Input required id='customer' name='customer' placeholder='John Doe' type="text" />
@@ -77,8 +81,8 @@ const Contact = () => {
                             <Input required id='guestCount' name='guestCount' type="text" />
                         </fieldset>
                     </FormGroup>
-                    <InputLabel htmlFor='instructions'>Tell us about your event:</InputLabel>
-                    <TextArea rows={5} id='instructions' name='instructions' placeholder='Any special details you would like to share about your event' type="text" />
+                    <InputLabel htmlFor='about'>Tell us about your event:</InputLabel>
+                    <TextArea rows={5} id='about' name='about' placeholder='Any special details you would like to share about your event' type="text" />
                     <FlexDiv justify='flex-start' m="0">
                         <ButtonSolid m="1rem 0 0 0" w="inherit" type='submit'>Submit Form</ButtonSolid>
                     </FlexDiv>
