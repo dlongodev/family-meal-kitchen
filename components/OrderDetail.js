@@ -68,15 +68,15 @@ const OrderDetail = ({ total, createOrder, setCheckout }) => {
           <RadioChoices>
             <legend>Payment Method Choice:</legend>
             <div>
-              <Input id='zelle' type="radio" name="method" value="zelle" onChange={(e) => setFormData({ ...formData, method: e.target.value })} />
+              <Input id='zelle' type="radio" name="method" value="Zelle" onChange={(e) => setFormData({ ...formData, method: e.target.value })} />
               <InputLabel htmlFor='zelle'>Zelle</InputLabel>
             </div>
             <div>
-              <Input id='venmo' type="radio" name="method" value="venmo" onChange={(e) => setFormData({ ...formData, method: e.target.value })} />
+              <Input id='venmo' type="radio" name="method" value="Venmo" onChange={(e) => setFormData({ ...formData, method: e.target.value })} />
               <InputLabel htmlFor='venmo'>Venmo</InputLabel>
             </div>
             <div>
-              <Input id='cash' type="radio" name="method" value="cash" onChange={(e) => setFormData({ ...formData, method: e.target.value })} />
+              <Input id='cash' type="radio" name="method" value="Cash" onChange={(e) => setFormData({ ...formData, method: e.target.value })} />
               <InputLabel htmlFor='cash'>Cash</InputLabel>
             </div>
           </RadioChoices>

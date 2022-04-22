@@ -42,7 +42,7 @@ const handler = async (req, res) => {
                 subject: `You have a new order from ${order.customer}`,
                 html: message
             }
-            await mail.send(data)
+            // await mail.send(data)
             // --------------------------------
 
             console.log("FROM API: new order was created")
