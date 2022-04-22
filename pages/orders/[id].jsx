@@ -1,7 +1,6 @@
 import axios from "axios";
 import React from "react";
 import styled from "styled-components";
-import Moment from "react-moment";
 import moment from "moment";
 
 import { SectionContainer } from "../../styles/cart.styled";
@@ -56,7 +55,8 @@ const Order = ({ order }) => {
               <ParagraphText>
                 To complete your payment of <span>${order.total}</span> using
                 Zelle, enter <span>chefjoe@familymealkitchen.com</span> or{" "}
-                <span>754-264-6268</span> in the recipient field.
+                <span>754-264-6268</span> in the recipient field in your bank
+                app.
               </ParagraphText>
             ) : null}
             <ParagraphText>
