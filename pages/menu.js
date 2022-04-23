@@ -1,17 +1,11 @@
 import Image from 'next/image'
 import { Paragraph, TitleText, Wrapper, PanContainer } from '../styles/Utils.styled'
-import MenuItemCard from '../components/MenuItemCard'
-import { Grid, GridSection, MenuTitle } from '../styles/menu.styled'
+import { GridSection } from '../styles/menu.styled'
 import axios from 'axios'
 import MenuSection from '../components/MenuSection'
-// import { useState } from 'react'
+
 
 const Menu = ({ menuList, categories }) => {
-    // const [category, setCategory] = useState({
-    //     poultry: "Poultry",
-    //     beef: "Beef & Pork"
-
-    // })
 
     return (
         <>
@@ -30,23 +24,6 @@ const Menu = ({ menuList, categories }) => {
                             <MenuSection key={category._id} menuList={menuList} category={category} />
                         ))}
                     </GridSection>
-
-                    {/* <Grid>
-                        <div>
-                            <MenuTitle>Poultry</MenuTitle>
-                            {menuList.map((item) => (
-                                item.category === "poultry"
-                                && < MenuItemCard menuItem={item} key={item._id} />
-                            ))}
-                        </div>
-                        <div>
-                            <MenuTitle>Beef & Pork</MenuTitle>
-                            {menuList.map((item) => (
-                                item.category === "beef"
-                                && < MenuItemCard menuItem={item} key={item._id} />
-                            ))}
-                        </div>
-                    </Grid> */}
                 </Wrapper>
             </div>
         </>

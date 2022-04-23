@@ -17,9 +17,9 @@ export default async function handler(req, res) {
         }
     }
     if (method === "POST") {
-        // if (!token || token !== process.env.TOKEN) {
-        //     return res.status(401).json("You are not authenticated!")
-        // }
+        if (!token || token !== process.env.TOKEN) {
+            return res.status(401).json("You are not authenticated!")
+        }
         try {
             const categoryItem = await Category.create(req.body)
             console.log("category item created")

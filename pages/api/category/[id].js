@@ -16,9 +16,9 @@ export default async function handler(req, res) {
         }
     }
     if (method === "PUT") {
-        // if (!token || token !== process.env.TOKEN) {
-        //     return res.status(401).json("You are not authenticated!")
-        // }
+        if (!token || token !== process.env.TOKEN) {
+            return res.status(401).json("You are not authenticated!")
+        }
         try {
             const categoryItem = await Category.findByIdAndUpdate(id, req.body, {
                 new: true,
@@ -32,9 +32,9 @@ export default async function handler(req, res) {
     }
 
     if (method === "DELETE") {
-        // if (!token || token !== process.env.TOKEN) {
-        //     return res.status(401).json("You are not authenticated!")
-        // }
+        if (!token || token !== process.env.TOKEN) {
+            return res.status(401).json("You are not authenticated!")
+        }
         try {
             await Category.findByIdAndDelete(id);
             res.status(200).json("The Category has been deleted!");
