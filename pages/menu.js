@@ -1,11 +1,12 @@
 import Image from 'next/image'
 import { Paragraph, TitleText, Wrapper, PanContainer } from '../styles/Utils.styled'
 import MenuItemCard from '../components/MenuItemCard'
-import { Grid, MenuTitle } from '../styles/menu.styled'
+import { Grid, GridSection, MenuTitle } from '../styles/menu.styled'
 import axios from 'axios'
+import MenuSection from '../components/MenuSection'
 // import { useState } from 'react'
 
-const Menu = ({ menuList }) => {
+const Menu = ({ menuList, categories }) => {
     // const [category, setCategory] = useState({
     //     poultry: "Poultry",
     //     beef: "Beef & Pork"
@@ -24,7 +25,13 @@ const Menu = ({ menuList }) => {
                     <Image src="/img/pans-header.png" width={1000} height={200} alt='' />
                 </PanContainer>
                 <Wrapper bg="var(--light-100)" mqFlex="column" w="100%" m="0" style={{ zIndex: 2, position: "relative", boxShadow: "var(--shadowTop)" }}>
-                    <Grid>
+                    <GridSection>
+                        {categories?.map(category => (
+                            <MenuSection key={category._id} menuList={menuList} category={category} />
+                        ))}
+                    </GridSection>
+
+                    {/* <Grid>
                         <div>
                             <MenuTitle>Poultry</MenuTitle>
                             {menuList.map((item) => (
@@ -39,7 +46,7 @@ const Menu = ({ menuList }) => {
                                 && < MenuItemCard menuItem={item} key={item._id} />
                             ))}
                         </div>
-                    </Grid>
+                    </Grid> */}
                 </Wrapper>
             </div>
         </>
@@ -49,10 +56,14 @@ const Menu = ({ menuList }) => {
 export default Menu
 
 export const getStaticProps = async () => {
-    const res = await axios.get(`${process.env.BASE_URL}/api/menu`)
+    const [menuRes, catRes] = await Promise.all([
+        axios.get(`${process.env.BASE_URL}/api/menu`),
+        axios.get(`${process.env.BASE_URL}/api/category`)
+    ]);
     return {
         props: {
-            menuList: res.data,
+            menuList: menuRes.data,
+            categories: catRes.data,
         },
-    }
+    };
 }

@@ -7,6 +7,7 @@ padding: 0.5rem;
 transition: all 0.2s ease-in-out;
 margin-bottom: 1rem;
 
+
 &:hover, &:focus {
     box-shadow: var(--shadow0);
     transform: scale(1.02);
