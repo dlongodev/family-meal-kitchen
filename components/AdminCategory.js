@@ -69,6 +69,7 @@ border-radius: 0.5rem;
 
 const AdminCategory = ({ categories }) => {
     const [categoryList, setCategoryList] = useState(categories)
+    console.log(categoryList)
 
     const handleDelete = async (id) => {
         try {
@@ -78,8 +79,6 @@ const AdminCategory = ({ categories }) => {
             console.log(err)
         }
     }
-
-    const handleEdit = () => { }
 
     return (
         <>
@@ -95,7 +94,7 @@ const AdminCategory = ({ categories }) => {
                         <th>Order</th>
                         <th>Delete</th>
                     </tr>
-                    {categories?.map(item => (
+                    {categoryList?.map(item => (
                         <tr key={item._id}>
                             <td><Link href={`/admin/category/${item._id}`} passHref>
                                 <ButtonIcon><FaEdit /></ButtonIcon>
@@ -113,12 +112,3 @@ const AdminCategory = ({ categories }) => {
 }
 
 export default AdminCategory
-
-// export const getStaticProps = async () => {
-//     const res = await axios.get(`${process.env.BASE_URL}/api/category`)
-//     return {
-//         props: {
-//             categories: res.data,
-//         },
-//     }
-// }

@@ -79,8 +79,6 @@ const AdminMenu = ({ menu }) => {
         }
     }
 
-    const handleEdit = () => { }
-
     return (
         <>
             <Link href="/admin/add" passHref>

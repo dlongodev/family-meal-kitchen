@@ -58,7 +58,7 @@ const Add = ({ categoryList }) => {
 
 export default Add
 
-export const getStaticProps = async () => {
+export const getServerSideProps = async () => {
     const res = await axios.get(`${process.env.BASE_URL}/api/category`)
     return {
         props: {
