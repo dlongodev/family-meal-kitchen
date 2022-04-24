@@ -32,7 +32,7 @@ const Menu = ({ menuList, categories }) => {
 
 export default Menu
 
-export const getStaticProps = async () => {
+export const getServerSideProps = async () => {
     const [menuRes, catRes] = await Promise.all([
         axios.get(`${process.env.BASE_URL}/api/menu`),
         axios.get(`${process.env.BASE_URL}/api/category`)
