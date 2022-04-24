@@ -37,6 +37,12 @@ export const getStaticProps = async () => {
         axios.get(`${process.env.BASE_URL}/api/menu`),
         axios.get(`${process.env.BASE_URL}/api/category`)
     ]);
+    if (!menuRes || !catRes) {
+        return {
+            notFound: true
+        }
+    }
+
     return {
         props: {
             menuList: menuRes.data,
