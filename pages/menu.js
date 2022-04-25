@@ -2,7 +2,6 @@ import Image from 'next/image'
 import { Paragraph, TitleText, Wrapper, PanContainer } from '../styles/Utils.styled'
 import { Grid, GridSection, MenuTitle } from '../styles/menu.styled'
 import axios from 'axios'
-import MenuSection from '../components/MenuSection'
 import MenuItemCard from '../components/MenuItemCard'
 
 
@@ -28,7 +27,8 @@ const Menu = ({ menuList, categories }) => {
                             <Grid>
                                 {menuList?.map((item) => (
                                     item.category === category.slug
-                                    && < MenuItemCard menuItem={item} key={item._id} />
+                                        ? < MenuItemCard menuItem={item} key={item._id} />
+                                        : null
                                 ))}
                             </Grid>
                         </GridSection>
@@ -41,11 +41,11 @@ const Menu = ({ menuList, categories }) => {
 
 export default Menu
 
-export const getServerSideProps = async () => {
-    const catRes = await axios.get(`${process.env.BASE_URL}/api/category`)
-    const menuRes = await axios.get(`${process.env.BASE_URL}/api/menu`)
-
-
+export const getStaticProps = async () => {
+    const [menuRes, catRes] = await Promise.all([
+        axios.get(`${process.env.BASE_URL}/api/menu`),
+        axios.get(`${process.env.BASE_URL}/api/category`)
+    ]);
     return {
         props: {
             menuList: menuRes.data,
