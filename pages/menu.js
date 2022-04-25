@@ -1,8 +1,9 @@
 import Image from 'next/image'
 import { Paragraph, TitleText, Wrapper, PanContainer } from '../styles/Utils.styled'
-import { GridSection } from '../styles/menu.styled'
+import { Grid, GridSection, MenuTitle } from '../styles/menu.styled'
 import axios from 'axios'
 import MenuSection from '../components/MenuSection'
+import MenuItemCard from '../components/MenuItemCard'
 
 
 const Menu = ({ menuList, categories }) => {
@@ -19,7 +20,19 @@ const Menu = ({ menuList, categories }) => {
                     <Image src="/img/pans-header.png" width={1000} height={200} alt='' />
                 </PanContainer>
                 <Wrapper bg="var(--light-100)" mqFlex="column" w="100%" m="0" style={{ zIndex: 2, position: "relative", boxShadow: "var(--shadowTop)" }}>
-                    <MenuSection menuList={menuList} categories={categories} />
+                    {categories?.map(category => (
+                        <GridSection key={category._id}>
+                            <MenuTitle>
+                                {category.categoryTitle}
+                            </MenuTitle>
+                            <Grid>
+                                {menuList?.map((item) => (
+                                    item.category === category.slug
+                                    && < MenuItemCard menuItem={item} key={item._id} />
+                                ))}
+                            </Grid>
+                        </GridSection>
+                    ))}
                 </Wrapper>
             </div>
         </>
@@ -28,22 +41,15 @@ const Menu = ({ menuList, categories }) => {
 
 export default Menu
 
-export const getStaticProps = async () => {
+export const getServerSideProps = async () => {
     const catRes = await axios.get(`${process.env.BASE_URL}/api/category`)
     const menuRes = await axios.get(`${process.env.BASE_URL}/api/menu`)
 
-
-    if (!catRes || !menuRes) {
-        return {
-            notFound: true,
-        }
-    }
 
     return {
         props: {
             menuList: menuRes.data,
             categories: catRes.data,
         },
-        revalidate: 10,
     };
 }

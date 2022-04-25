@@ -1,31 +1,31 @@
 
-import { Grid, GridSection, MenuTitle } from '../styles/menu.styled'
-import MenuItemCard from '../components/MenuItemCard'
+// import { Grid, GridSection, MenuTitle } from '../styles/menu.styled'
+// import MenuItemCard from '../components/MenuItemCard'
 
-import React from 'react'
+// import React from 'react'
 
-const MenuSection = ({ menuList, categories }) => {
+// const MenuSection = ({ menuList, categories }) => {
 
-    return (
-        <>
-            {categories?.map(category => (
-                <GridSection key={category._id}>
-                <MenuTitle>
-                    {category.categoryTitle}
-                </MenuTitle>
-                <Grid>
-                    {menuList?.map((item) => (
-                        item.category === category.slug
-                        && < MenuItemCard menuItem={item} key={item._id} />
-                    ))}
-                </Grid>
-                </GridSection>
-            ))}
-        </>
-    )
-}
+//     return (
+//         <>
+//             {categories?.map(category => (
+//                 <GridSection key={category._id}>
+//                 <MenuTitle>
+//                     {category.categoryTitle}
+//                 </MenuTitle>
+//                 <Grid>
+//                     {menuList?.map((item) => (
+//                         item.category === category.slug
+//                         && < MenuItemCard menuItem={item} key={item._id} />
+//                     ))}
+//                 </Grid>
+//                 </GridSection>
+//             ))}
+//         </>
+//     )
+// }
 
-export default MenuSection
+// export default MenuSection
 
 // export const getStaticProps = async () => {
 //     const catRes = await axios.get(`${process.env.BASE_URL}/api/category`)
