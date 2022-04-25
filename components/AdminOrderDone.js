@@ -1,7 +1,8 @@
 import styled from "styled-components"
 import { ImCheckmark } from 'react-icons/im'
-import { MdOutlineTimelapse } from 'react-icons/md'
-
+import { FaTrashAlt } from "react-icons/fa"
+import { useState } from "react"
+import axios from "axios"
 
 const Table = styled.table`
 width: 100%;
@@ -56,7 +57,29 @@ cursor: pointer;
 
 `
 
+const ButtonDelete = styled.button`
+border: none;
+padding: 0.675rem 0.5rem 0.5rem 0.5rem;
+background-color: var(--warning);
+color: white;
+cursor: pointer;
+border-radius: 0.5rem;
+`
+
+
 const AdminOrder = ({ orders }) => {
+    const [orderList, setOrderList] = useState(orders)
+    console.log(orderList)
+
+    const handleDelete = async (id) => {
+        try {
+            await axios.delete(`${process.env.BASE_URL}/api/orders/${id}`)
+            setOrderList(orderList.filter(item => item._id !== id))
+        } catch (err) {
+            console.log(err)
+        }
+    }
+
     return (
         <>
             <Table>
@@ -71,7 +94,7 @@ const AdminOrder = ({ orders }) => {
                         <th>Done</th>
                     </tr>
                 </thead>
-                {orders.map(order => (
+                {orderList?.map(order => (
                     order.done &&
                     <tbody key={order._id} >
                         <tr>
@@ -82,7 +105,7 @@ const AdminOrder = ({ orders }) => {
                             <td>{order.method}</td>
                             <td>{order.deliveryDate}</td>
                             <td>{order.deliveryTime}</td>
-                            <td><ButtonIcon><ImCheckmark /></ButtonIcon></td>
+                                <td><ButtonIcon><ImCheckmark /> </ButtonIcon><ButtonDelete onClick={() => handleDelete(order._id)}><FaTrashAlt /></ButtonDelete></td>
                             </tr>
                 </tbody>
                 ))}

@@ -19,11 +19,7 @@ const Menu = ({ menuList, categories }) => {
                     <Image src="/img/pans-header.png" width={1000} height={200} alt='' />
                 </PanContainer>
                 <Wrapper bg="var(--light-100)" mqFlex="column" w="100%" m="0" style={{ zIndex: 2, position: "relative", boxShadow: "var(--shadowTop)" }}>
-                    <GridSection>
-                        {categories?.map(category => (
-                            <MenuSection key={category._id} menuList={menuList} category={category} />
-                        ))}
-                    </GridSection>
+                    <MenuSection menuList={menuList} categories={categories} />
                 </Wrapper>
             </div>
         </>
@@ -32,14 +28,14 @@ const Menu = ({ menuList, categories }) => {
 
 export default Menu
 
-export const getServerSideProps = async () => {
-    const [menuRes, catRes] = await Promise.all([
-        axios.get(`${process.env.BASE_URL}/api/menu`),
-        axios.get(`${process.env.BASE_URL}/api/category`)
-    ]);
-    if (!menuRes || !catRes) {
+export const getStaticProps = async () => {
+    const catRes = await axios.get(`${process.env.BASE_URL}/api/category`)
+    const menuRes = await axios.get(`${process.env.BASE_URL}/api/menu`)
+
+
+    if (!catRes || !menuRes) {
         return {
-            notFound: true
+            notFound: true,
         }
     }
 
@@ -48,5 +44,6 @@ export const getServerSideProps = async () => {
             menuList: menuRes.data,
             categories: catRes.data,
         },
+        revalidate: 10,
     };
 }
