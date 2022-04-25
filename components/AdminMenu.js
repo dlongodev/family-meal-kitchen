@@ -81,7 +81,7 @@ const AdminMenu = ({ menu }) => {
 
     return (
         <>
-            <Link href="/admin/add" passHref>
+            <Link href="/admin/menu/add" passHref>
                 <BtnLinkSolid>Add Menu Item</BtnLinkSolid>
             </Link>
             <Table>
@@ -96,7 +96,7 @@ const AdminMenu = ({ menu }) => {
                     </tr>
                     {menuList?.map(item => (
                         <tr key={item._id}>
-                            <td><Link href={`/admin/${item._id}`} passHref>
+                            <td><Link href={`/admin/menu/${item._id}`} passHref>
                                 <ButtonIcon><FaEdit /></ButtonIcon>
                             </Link></td>
                             <td>{item.title}</td>

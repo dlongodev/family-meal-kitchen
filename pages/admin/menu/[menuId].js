@@ -2,9 +2,9 @@ import axios from 'axios'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import React, { useState } from 'react'
-import { BtnLinkOutlined, ButtonSolid } from '../../styles/Button.styled'
-import { Form, Input, InputLabel, TextArea, RadioChoices } from '../../styles/Form.styled'
-import { FlexDiv, TitleText, Wrapper } from '../../styles/Utils.styled'
+import { BtnLinkOutlined, ButtonSolid } from '../../../styles/Button.styled'
+import { Form, Input, InputLabel, TextArea, RadioChoices } from '../../../styles/Form.styled'
+import { FlexDiv, TitleText, Wrapper } from '../../../styles/Utils.styled'
 
 const AdminMenuEdit = ({ menuItem, categoryList }) => {
     const router = useRouter();
