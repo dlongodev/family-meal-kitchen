@@ -28,12 +28,16 @@ export default async function handler(req, res) {
             res.status(500).json(err)
         }
     }
-    // if (method === "DELETE") {
-    //     try {
-
-    //     } catch {
-    //         console.log("Errog deleting order")
-    //         res.status(500).json(err)
-    //     }
-    // }
+    if (method === "DELETE") {
+        if (!token || token !== process.env.TOKEN) {
+            return res.status(401).json("You are not authenticated!")
+        }
+        try {
+            await Order.findByIdAndDelete(id);
+            res.status(200).json("The Order has been deleted!");
+        } catch {
+            console.log("Errog deleting order")
+            res.status(500).json(err)
+        }
+    }
 }

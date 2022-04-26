@@ -48,7 +48,7 @@ const Menu = ({ menuList }) => {
 
 export default Menu
 
-export const getStaticProps = async () => {
+export const getServerSideProps = async () => {
     const res = await axios.get(`${process.env.BASE_URL}/api/menu`)
     return {
         props: {
