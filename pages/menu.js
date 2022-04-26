@@ -6,11 +6,6 @@ import axios from 'axios'
 // import { useState } from 'react'
 
 const Menu = ({ menuList }) => {
-    // const [category, setCategory] = useState({
-    //     poultry: "Poultry",
-    //     beef: "Beef & Pork"
-
-    // })
 
     return (
         <>

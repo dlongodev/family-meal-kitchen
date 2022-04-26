@@ -59,7 +59,6 @@ cursor: pointer;
 
 const AdminOrder = ({ orders }) => {
     const [orderList, setOrderList] = useState(orders)
-    const [orderDone, setOrderDone] = useState(null)
 
     const handleOrderDone = async (id) => {
         try {
@@ -71,7 +70,6 @@ const AdminOrder = ({ orders }) => {
             console.log(err)
         }
     }
-
 
     return (
         <>
