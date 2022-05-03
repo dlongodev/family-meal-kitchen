@@ -51,7 +51,7 @@ const AdminCategoryEdit = ({ category }) => {
 
 
 export const getServerSideProps = async ({ params }) => {
-    const res = await axios.get(`${process.env.PUBLIC_NEXT_VERCEL_URL}/api/category/${params.catId}`)
+    const res = await axios.get(`${process.env.NEXT_PUBLIC_VERCEL_URL}/api/category/${params.catId}`)
     return {
         props: { category: res.data },
     };
