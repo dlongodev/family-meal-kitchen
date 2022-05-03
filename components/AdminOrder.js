@@ -62,7 +62,7 @@ const AdminOrder = ({ orders }) => {
 
     const handleOrderDone = async (id) => {
         try {
-            await axios.put(`${process.env.BASE_URL}/api/orders/${id}`, {
+            await axios.put(`/api/orders/${id}`, {
                 done: true
             })
             setOrderList(orderList.filter(order => order._id !== id))

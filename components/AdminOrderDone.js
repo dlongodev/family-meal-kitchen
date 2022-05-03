@@ -72,7 +72,7 @@ const AdminOrder = ({ orders }) => {
 
     const handleDelete = async (id) => {
         try {
-            await axios.delete(`${process.env.BASE_URL}/api/orders/${id}`)
+            await axios.delete(`/api/orders/${id}`)
             setOrderList(orderList.filter(item => item._id !== id))
         } catch (err) {
             console.log(err)

@@ -17,7 +17,7 @@ const AddCategory = () => {
     const handleSubmit = async (e) => {
         e.preventDefault()
         try {
-            await axios.post(`${process.env.BASE_URL}/api/category`, formData);
+            await axios.post(`/api/category`, formData);
             router.push("/admin?tab=4");
         } catch (err) {
             console.log("Error Creating New Category", err);

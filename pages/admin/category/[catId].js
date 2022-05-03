@@ -19,7 +19,7 @@ const AdminCategoryEdit = ({ category }) => {
     const handleSubmit = async (e) => {
         e.preventDefault()
         try {
-            await axios.put(`${process.env.BASE_URL}/api/category/${category._id}`, formData);
+            await axios.put(`/api/category/${category._id}`, formData);
             router.push("/admin?tab=4");
         } catch (err) {
             console.log("Error Updating Category", err);

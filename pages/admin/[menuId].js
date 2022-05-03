@@ -19,7 +19,7 @@ const AdminMenuEdit = ({ menuItem }) => {
     const handleSubmit = async (e) => {
         e.preventDefault()
         try {
-            await axios.put(`${process.env.BASE_URL}/api/menu/${menuItem._id}`, formData);
+            await axios.put(`/api/menu/${menuItem._id}`, formData);
             router.push("/admin?tab=3");
         } catch (err) {
             console.log("Error Updating Menu Item", err);

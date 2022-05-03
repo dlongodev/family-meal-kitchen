@@ -68,7 +68,7 @@ const AdminCategory = ({ categories }) => {
 
     const handleDelete = async (id) => {
         try {
-            await axios.delete(`${process.env.BASE_URL}/api/category/${id}`)
+            await axios.delete(`/api/category/${id}`)
             setCategoryList(categoryList.filter(item => item._id !== id))
         } catch (err) {
             console.log(err)

@@ -72,7 +72,7 @@ const AdminMenu = ({ menu }) => {
 
     const handleDelete = async (id) => {
         try {
-            const res = await axios.delete(`${process.env.BASE_URL}/api/menu/${id}`)
+            const res = await axios.delete(`/api/menu/${id}`)
             setMenuList(menuList.filter(item => item._id !== id))
         } catch (err) {
             console.log(err)

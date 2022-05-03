@@ -41,10 +41,10 @@ const Cart = () => {
 
   const createOrder = async (data) => {
     try {
-      const res = await axios.post(`${process.env.BASE_URL}/api/orders`, data);
+      const res = await axios.post(`/api/orders`, data);
       if (res.status === 201) {
         dispatch(reset());
-        await router.push(`${process.env.BASE_URL}/orders/${res.data._id}`);
+        await router.push(`/orders/${res.data._id}`);
       }
     } catch (err) {
       console.log("Error with CreateOrder function", err);
