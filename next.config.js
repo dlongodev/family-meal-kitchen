@@ -12,7 +12,7 @@ module.exports = {
   },
   reactStrictMode: true,
   env: {
-    BASE_URL: process.env.BASE_URL,
+    PUBLIC_NEXT_VERCEL_URL: process.env.PUBLIC_NEXT_VERCEL_URL,
   },
 }
 
