@@ -11,9 +11,9 @@ module.exports = {
     styledComponents: true,
   },
   reactStrictMode: true,
-  env: {
-    NEXT_PUBLIC_VERCEL_URL: process.env.NEXT_PUBLIC_VERCEL_URL,
-  },
+  // env: {
+  //   NEXT_PUBLIC_VERCEL_URL: process.env.NEXT_PUBLIC_VERCEL_URL,
+  // },
 }
 
 
