@@ -133,7 +133,7 @@ This is an example of how to list things you need to use the software and how to
 4. Enter your Setup in `.env`
    ```js
     MONGO_URL=MongoDB-server-link-or-local-database
-    NEXT_PUBLIC_VERCEL_URL=http://localhost:3000
+    VERCEL_URL=http://localhost:3000
     ADMIN_USERNAME=AdminUser1
     ADMIN_PASSWORD=AdminPassword
     TOKEN=Create-A-Random-Token-Here

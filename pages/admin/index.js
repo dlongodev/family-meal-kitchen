@@ -23,9 +23,9 @@ export const getServerSideProps = async (ctx) => {
         }
     }
     const [menuRes, orderRes, catRes] = await Promise.all([
-        axios.get(`${process.env.NEXT_PUBLIC_VERCEL_URL}/api/menu`),
-        axios.get(`${process.env.NEXT_PUBLIC_VERCEL_URL}/api/orders`),
-        axios.get(`${process.env.NEXT_PUBLIC_VERCEL_URL}/api/category`)
+        axios.get(`${process.env.VERCEL_URL}/api/menu`),
+        axios.get(`${process.env.VERCEL_URL}/api/orders`),
+        axios.get(`${process.env.VERCEL_URL}/api/category`)
     ]);
     return {
         props: {
