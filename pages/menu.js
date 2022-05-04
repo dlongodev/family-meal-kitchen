@@ -44,7 +44,7 @@ const Menu = ({ menuList }) => {
 export default Menu
 
 export const getServerSideProps = async () => {
-    const res = await axios.get(`https://${process.env.VERCEL_URL}/api/menu`)
+    const res = await axios.get(`https://https://${process.env.VERCEL_URL}/api/menu`)
     console.log("environment menu page ", process.env.VERCEL_URL)
     return {
         props: {

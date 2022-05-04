@@ -79,7 +79,7 @@ const Order = ({ order }) => {
 
 export const getServerSideProps = async ({ params }) => {
   const res = await axios.get(
-    `${process.env.VERCEL_URL}/api/orders/${params.id}`
+    `https://${process.env.VERCEL_URL}/api/orders/${params.id}`
   );
   return {
     props: { order: res.data },
