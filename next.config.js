@@ -11,9 +11,6 @@ module.exports = {
     styledComponents: true,
   },
   reactStrictMode: true,
-  // env: {
-  //   VERCEL_URL: process.env.VERCEL_URL,
-  // },
 }
 
 

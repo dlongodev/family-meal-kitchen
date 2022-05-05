@@ -82,7 +82,7 @@ const AdminMenuEdit = ({ menuItem }) => {
 
 
 export const getServerSideProps = async ({ params }) => {
-    const res = await axios.get(`https://${process.env.VERCEL_URL}/api/menu/${params.menuId}`)
+    const res = await axios.get(`${process.env.NEXT_PUBLIC_PROTOCOL}${process.env.VERCEL_URL}/api/menu/${params.menuId}`)
     return {
         props: { menuItem: res.data },
     };
