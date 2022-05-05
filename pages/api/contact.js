@@ -22,7 +22,7 @@ export default async function email(req, res) {
             `
 
             const data = {
-                to: "chefjoe@familymealkitchen.com",
+                to: "dlongodev@gmail.com",
                 from: "hello@familymealkitchen.com",
                 subject: "New Message from Website!",
                 html: message

@@ -68,7 +68,8 @@ border-radius: 0.5rem;
 
 
 const AdminCategory = ({ categories }) => {
-    const [categoryList, setCategoryList] = useState(categories)
+    let sortedCategories = categories.sort((a, b) => (a.order > b.order ? 1 : -1))
+    const [categoryList, setCategoryList] = useState(sortedCategories)
     console.log(categoryList)
 
     const handleDelete = async (id) => {
