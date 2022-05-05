@@ -18,7 +18,7 @@ const Add = ({ categoryList }) => {
     const handleSubmit = async (e) => {
         e.preventDefault()
         try {
-            await axios.post(`${process.env.BASE_URL}/api/menu`, formData);
+            await axios.post(`/api/menu`, formData);
             router.push("/admin?tab=3");
         } catch (err) {
             console.log("Error Creating New Menu Item", err);
@@ -40,7 +40,7 @@ const Add = ({ categoryList }) => {
                     {categoryList?.map(category => (
                         <div key={category._id}>
                             <Input id={category.slug} type="radio" name="category" value={category.slug} onChange={(e) => setFormData({ ...formData, category: e.target.value })} />
-                            <InputLabel htmlFor={category.slug}>{category.categoryTitle}</InputLabel>
+                            <InputLabel htmlFor={category.slug}>{category.title}</InputLabel>
                         </div>
                     ))}
                 </RadioChoices>
@@ -59,7 +59,7 @@ const Add = ({ categoryList }) => {
 export default Add
 
 export const getServerSideProps = async () => {
-    const res = await axios.get(`${process.env.BASE_URL}/api/category`)
+    const res = await axios.get(`${process.env.NEXT_PUBLIC_PROTOCOL}${process.env.VERCEL_URL}/api/category`)
     return {
         props: {
             categoryList: res.data,

@@ -9,7 +9,7 @@ import { FlexDiv, TitleText, Wrapper } from '../../../styles/Utils.styled'
 const AddCategory = () => {
     const router = useRouter();
     const [formData, setFormData] = useState({
-        categoryTitle: "",
+        title: "",
         slug: "",
         order: "",
     })
@@ -17,7 +17,7 @@ const AddCategory = () => {
     const handleSubmit = async (e) => {
         e.preventDefault()
         try {
-            await axios.post(`${process.env.BASE_URL}/api/category`, formData);
+            await axios.post(`/api/category`, formData);
             router.push("/admin?tab=4");
         } catch (err) {
             console.log("Error Creating New Category", err);
@@ -28,8 +28,8 @@ const AddCategory = () => {
         <Wrapper mqFlex="column">
             <TitleText>Add New Category</TitleText>
             <Form onSubmit={handleSubmit}>
-                <InputLabel htmlFor='categoryTitle'>Title:</InputLabel>
-                <Input required id='categoryTitle' name='categoryTitle' type="text" onChange={(e) => setFormData({ ...formData, categoryTitle: e.target.value })} />
+                <InputLabel htmlFor='title'>Title:</InputLabel>
+                <Input required id='title' name='title' type="text" onChange={(e) => setFormData({ ...formData, title: e.target.value })} />
                 <InputLabel htmlFor='slug'>Slug:</InputLabel>
                 <Input id='slug' name='slug' type="text" onChange={(e) => setFormData({ ...formData, slug: e.target.value })} />
                 <InputLabel htmlFor='order'>Order: </InputLabel>

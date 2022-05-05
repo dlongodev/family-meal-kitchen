@@ -11,7 +11,7 @@ const AdminCategoryEdit = ({ category }) => {
     const router = useRouter();
 
     const [formData, setFormData] = useState({
-        categoryTitle: category.categoryTitle,
+        title: category.title,
         slug: category.slug,
         order: category.order
     })
@@ -19,7 +19,7 @@ const AdminCategoryEdit = ({ category }) => {
     const handleSubmit = async (e) => {
         e.preventDefault()
         try {
-            await axios.put(`${process.env.BASE_URL}/api/category/${category._id}`, formData);
+            await axios.put(`/api/category/${category._id}`, formData);
             router.push("/admin?tab=4");
         } catch (err) {
             console.log("Error Updating Category", err);
@@ -31,8 +31,8 @@ const AdminCategoryEdit = ({ category }) => {
         <Wrapper mqFlex="column">
             <TitleText>Edit Category</TitleText>
             <Form onSubmit={handleSubmit}>
-                <InputLabel htmlFor='categoryTitle'>Title:</InputLabel>
-                <Input required id='categoryTitle' name='categoryTitle' type="text" value={formData.categoryTitle} onChange={(e) => setFormData({ ...formData, categoryTitle: e.target.value })} />
+                <InputLabel htmlFor='title'>Title:</InputLabel>
+                <Input required id='title' name='title' type="text" value={formData.title} onChange={(e) => setFormData({ ...formData, title: e.target.value })} />
                 <InputLabel htmlFor='slug'>Slug:</InputLabel>
                 <Input id='slug' name='slug' type="text" value={formData.slug} onChange={(e) => setFormData({ ...formData, slug: e.target.value })} />
                 <InputLabel htmlFor='order'>Order: </InputLabel>
@@ -51,7 +51,7 @@ const AdminCategoryEdit = ({ category }) => {
 
 
 export const getServerSideProps = async ({ params }) => {
-    const res = await axios.get(`${process.env.BASE_URL}/api/category/${params.catId}`)
+    const res = await axios.get(`${process.env.NEXT_PUBLIC_PROTOCOL}${process.env.VERCEL_URL}/api/category/${params.catId}`)
     return {
         props: { category: res.data },
     };

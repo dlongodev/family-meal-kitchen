@@ -73,7 +73,7 @@ const AdminCategory = ({ categories }) => {
 
     const handleDelete = async (id) => {
         try {
-            await axios.delete(`${process.env.BASE_URL}/api/category/${id}`)
+            await axios.delete(`/api/category/${id}`)
             setCategoryList(categoryList.filter(item => item._id !== id))
         } catch (err) {
             console.log(err)
@@ -99,7 +99,7 @@ const AdminCategory = ({ categories }) => {
                             <td><Link href={`/admin/category/${item._id}`} passHref>
                                 <ButtonIcon><FaEdit /></ButtonIcon>
                             </Link></td>
-                            <td>{item.categoryTitle}</td>
+                            <td>{item.title}</td>
                             <td>{item.slug}</td>
                             <td>{item.order}</td>
                             <td><ButtonDelete onClick={() => handleDelete(item._id)}><FaTrashAlt /></ButtonDelete></td>

@@ -22,7 +22,7 @@ const Menu = ({ menuList, categories }) => {
                     {categories?.map(category => (
                         <GridSection key={category._id}>
                             <MenuTitle>
-                                {category.categoryTitle}
+                                {category.title}
                             </MenuTitle>
                             <Grid>
                                 {menuList?.map((item) => (
@@ -42,8 +42,8 @@ const Menu = ({ menuList, categories }) => {
 
 export const getServerSideProps = async () => {
     const [menuRes, catRes] = await Promise.all([
-        axios.get(`${process.env.BASE_URL}/api/menu`),
-        axios.get(`${process.env.BASE_URL}/api/category`)
+        axios.get(`${process.env.NEXT_PUBLIC_PROTOCOL}${process.env.VERCEL_URL}/api/menu`),
+        axios.get(`${process.env.NEXT_PUBLIC_PROTOCOL}${process.env.VERCEL_URL}/api/category`)
     ]);
 
     return {
