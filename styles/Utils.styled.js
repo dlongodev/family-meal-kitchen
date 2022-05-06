@@ -63,6 +63,7 @@ justify-content: ${({ justify }) => justify || "center"};
 align-items: ${({ align }) => align || "center"};
 flex-basis: content;
 margin:${({ m }) => m || "0.5rem"};
+gap: ${({ gap }) => gap || "0"};
 @media screen and (max-width: 800px) {
     flex-direction: ${({ mqFlex }) => mqFlex || "column"};
     justify-content: ${({ mqJustify }) => mqJustify || "center"};align-items: ${({ mqAlign }) => mqAlign || "center"};

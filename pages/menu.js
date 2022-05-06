@@ -7,7 +7,7 @@ import MenuItemCard from '../components/MenuItemCard'
 
 const Menu = ({ menuList, categories }) => {
 
-    let sortedCategories = categories.sort((a, b) => (a.order > b.order ? 1 : -1))
+    let sortedCategories = categories?.sort((a, b) => (a.order > b.order ? 1 : -1))
 
     return (
         <>

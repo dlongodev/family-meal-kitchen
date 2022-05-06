@@ -15,7 +15,7 @@ import { useRouter } from "next/router";
 import { reset, removeMenuItem } from "../redux/cartSlice";
 import OrderDetail from "../components/OrderDetail";
 import Link from "next/link";
-import { BtnLinkOutlined } from "../styles/Button.styled";
+import { BtnLinkOutlined, ButtonSolid } from "../styles/Button.styled";
 
 const ButtonDelete = styled.button`
   border: none;
@@ -104,10 +104,14 @@ const Cart = () => {
                   <CartTotalText>Total:</CartTotalText>
                   <CartTotalText>${cart.total}</CartTotalText>
                 </CartTotalWrapper>
-
-                <CartTotalBtn onClick={() => setCheckout(true)}>
-                  Checkout Now!
-                </CartTotalBtn>
+                <FlexDiv gap="2rem">
+                  <Link href="/menu" passHref>
+                    <BtnLinkOutlined w="15rem">Add More Items</BtnLinkOutlined>
+                  </Link>
+                  <ButtonSolid w="15rem" onClick={() => setCheckout(true)}>
+                    Checkout Now!
+                  </ButtonSolid>
+                </FlexDiv>
               </FlexDiv>
             )}
           </FlexDiv>

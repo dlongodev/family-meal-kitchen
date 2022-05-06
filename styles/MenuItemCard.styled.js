@@ -18,7 +18,7 @@ margin-bottom: 1rem;
 }
 
 // add condition for added to cart
-background-color: ${({ itemAdded }) => itemAdded};
+/* background-color: ${(itemAdded) => itemAdded ? "var(--light-100)" : "var(--light-200)"}; */
 `
 export const ItemTitle = styled.h3`
 font-size: 1rem;
@@ -47,25 +47,41 @@ display: flex;
 align-items: center;
 margin: 0;
 align-items: center;
-justify-content: flex-end;
+/* justify-content: space-between; */
 `
-export const Quantity = styled.input`
-font-size: 1rem;
-height: 35px;
-border: 1px solid var(--brand-300);
-padding: 0.3rem 0.6rem;
-background-color: var(--light-100);
+// export const Quantity = styled.input`
+// font-size: 1rem;
+// height: 35px;
+// border: 1px solid var(--brand-300);
+// padding: 0.3rem 0.6rem;
+// background-color: var(--light-100);
+// `
+
+export const Quantity = styled.div`
+padding: 0.5rem;
+border: 1px solid var(--brand-main);
+border-radius: 5px;
+span {
+    padding: 1rem;
+}
+
 `
+
 export const CartBtnAdd = styled.button`
 color: var(--light-100);
 background-color: var(--brand-main);
 border: none;
+border-radius: 5px;
 font-size: 0.7rem;
 text-transform: uppercase;
 font-weight: 700;
-height: 35px;
-padding: 0 0.6rem;
+padding: 1rem;
+margin: 0 1rem;
 cursor: pointer;
+
+&:hover {
+    background-color: var(--brand-500);
+}
 `
 export const QtyBtn = styled.button`
 color: var(--brand-main);
