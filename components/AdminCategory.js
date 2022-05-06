@@ -67,13 +67,15 @@ border-radius: 0.5rem;
 `
 
 
-const AdminMenu = ({ menu }) => {
-    const [menuList, setMenuList] = useState(menu)
+const AdminCategory = ({ categories }) => {
+    let sortedCategories = categories.sort((a, b) => (a.order > b.order ? 1 : -1))
+    const [categoryList, setCategoryList] = useState(sortedCategories)
+    console.log(categoryList)
 
     const handleDelete = async (id) => {
         try {
-            const res = await axios.delete(`/api/menu/${id}`)
-            setMenuList(menuList.filter(item => item._id !== id))
+            await axios.delete(`/api/category/${id}`)
+            setCategoryList(categoryList.filter(item => item._id !== id))
         } catch (err) {
             console.log(err)
         }
@@ -81,28 +83,26 @@ const AdminMenu = ({ menu }) => {
 
     return (
         <>
-            <Link href="/admin/menu/add" passHref>
-                <BtnLinkSolid>Add Menu Item</BtnLinkSolid>
+            <Link href="/admin/category/add" passHref>
+                <BtnLinkSolid>Add Category</BtnLinkSolid>
             </Link>
             <Table>
                 <tbody>
                     <tr>
                         <th>Edit</th>
                         <th>Title</th>
-                        <th>Description</th>
-                        <th>Price</th>
-                        <th>Category</th>
+                        <th>Slug</th>
+                        <th>Order</th>
                         <th>Delete</th>
                     </tr>
-                    {menuList?.map(item => (
+                    {categoryList?.map(item => (
                         <tr key={item._id}>
-                            <td><Link href={`/admin/menu/${item._id}`} passHref>
+                            <td><Link href={`/admin/category/${item._id}`} passHref>
                                 <ButtonIcon><FaEdit /></ButtonIcon>
                             </Link></td>
                             <td>{item.title}</td>
-                            <td>{item.desc}</td>
-                            <td>${item.price}</td>
-                            <td>{item.category}</td>
+                            <td>{item.slug}</td>
+                            <td>{item.order}</td>
                             <td><ButtonDelete onClick={() => handleDelete(item._id)}><FaTrashAlt /></ButtonDelete></td>
                         </tr>
                     ))}
@@ -112,4 +112,4 @@ const AdminMenu = ({ menu }) => {
     )
 }
 
-export default AdminMenu
+export default AdminCategory

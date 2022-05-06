@@ -8,13 +8,21 @@ const Icon = styled.div`
 width: 6rem;
 height: 6rem;
 font-size: 3rem;
-margin: 2rem 0;
+margin-top: 2rem;
 background-color: var(--brand-400);
 border-radius: 50%;
 color: white;
 display: flex;
 align-items: center;
 justify-content: center;
+
+@media screen and (max-width: 700px) {
+    width: 4.5rem;
+    height: 4.5rem;
+    font-size: 2rem;
+    margin-top: 1rem;
+}
+
 `
 
 const ThankYou = () => {

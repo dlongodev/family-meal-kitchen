@@ -15,7 +15,7 @@ import { useRouter } from "next/router";
 import { reset, removeMenuItem } from "../redux/cartSlice";
 import OrderDetail from "../components/OrderDetail";
 import Link from "next/link";
-import { BtnLinkOutlined } from "../styles/Button.styled";
+import { BtnLinkOutlined, ButtonSolid } from "../styles/Button.styled";
 
 const ButtonDelete = styled.button`
   border: none;
@@ -41,10 +41,10 @@ const Cart = () => {
 
   const createOrder = async (data) => {
     try {
-      const res = await axios.post(`${process.env.BASE_URL}/api/orders`, data);
+      const res = await axios.post(`/api/orders`, data);
       if (res.status === 201) {
         dispatch(reset());
-        await router.push(`${process.env.BASE_URL}/orders/${res.data._id}`);
+        await router.push(`/orders/${res.data._id}`);
       }
     } catch (err) {
       console.log("Error with CreateOrder function", err);
@@ -104,10 +104,14 @@ const Cart = () => {
                   <CartTotalText>Total:</CartTotalText>
                   <CartTotalText>${cart.total}</CartTotalText>
                 </CartTotalWrapper>
-
-                <CartTotalBtn onClick={() => setCheckout(true)}>
-                  Checkout Now!
-                </CartTotalBtn>
+                <FlexDiv gap="2rem">
+                  <Link href="/menu" passHref>
+                    <BtnLinkOutlined w="15rem">Add More Items</BtnLinkOutlined>
+                  </Link>
+                  <ButtonSolid w="15rem" onClick={() => setCheckout(true)}>
+                    Checkout Now!
+                  </ButtonSolid>
+                </FlexDiv>
               </FlexDiv>
             )}
           </FlexDiv>

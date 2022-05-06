@@ -5,10 +5,11 @@ import { PanelBody, Tab, TabBody, TabContainer, TabHead } from "../styles/Admin.
 import AdminOrder from "./AdminOrder.js"
 import AdminOrderDone from "./AdminOrderDone"
 import AdminMenu from "./AdminMenu"
+import AdminCategory from "./AdminCategory"
 
 // tutorial: https://medium.com/backticks-tildes/creating-a-tabs-component-with-next-js-9c88bdc0e29e
 
-const Tabs = ({ router, orders, menu, handleOrderDone }) => {
+const Tabs = ({ router, orders, menu, handleOrderDone, categories }) => {
     const {
         query: { tab }
     } = router
@@ -16,6 +17,9 @@ const Tabs = ({ router, orders, menu, handleOrderDone }) => {
     const isTabOne = tab === "1" || tab == null
     const isTabTwo = tab === "2"
     const isTabThree = tab === "3"
+    const isTabFour = tab === "4"
+
+    // console.log(categories)
     return (
         <PanelBody>
             <TabContainer>
@@ -35,11 +39,17 @@ const Tabs = ({ router, orders, menu, handleOrderDone }) => {
                             <a>Menu Items</a>
                         </Link>
                     </Tab>
+                    <Tab selected={isTabFour}>
+                        <Link href={{ pathname: "/admin", query: { tab: "4" } }}>
+                            <a>Menu Categories</a>
+                        </Link>
+                    </Tab>
                 </TabHead>
                 <TabBody>
                     {isTabOne && <AdminOrder orders={orders} handleOrderDone={handleOrderDone} />}
                     {isTabTwo && <AdminOrderDone orders={orders} />}
                     {isTabThree && <AdminMenu menu={menu} />}
+                    {isTabFour && <AdminCategory categories={categories} />}
                 </TabBody>
             </TabContainer>
         </PanelBody>
@@ -47,3 +57,4 @@ const Tabs = ({ router, orders, menu, handleOrderDone }) => {
 }
 
 export default withRouter(Tabs)
+

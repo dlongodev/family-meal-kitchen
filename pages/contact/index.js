@@ -38,8 +38,8 @@ const Contact = () => {
             if (!field.name) return
             formData[field.name] = field.value
         })
-        await axios.post('api/contact', formData)
-        await router.push(`${process.env.BASE_URL}/contact/thank-you`)
+        await axios.post('/api/contact', formData)
+        await router.push(`/contact/thank-you`)
     }
 
     return (
