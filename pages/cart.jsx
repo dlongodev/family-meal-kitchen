@@ -20,7 +20,6 @@ const Cart = () => {
   const [checkout, setCheckout] = useState(false);
   const [cartEmpty, setCartEmpty] = useState(false);
   const router = useRouter();
-  const dispatch = useDispatch();
 
   const createOrder = async (data) => {
     try {
