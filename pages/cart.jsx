@@ -1,6 +1,7 @@
 import {
-  CartTable,
-  CartTotalBtn,
+  Quantity,
+  QtyBtn,
+  ButtonDelete,
   CartTotalText,
   CartTotalWrapper,
   GridTable,
@@ -8,48 +9,35 @@ import {
 } from "../styles/cart.styled";
 import styled from "styled-components";
 import { FlexDiv, Paragraph, TitleText, Wrapper } from "../styles/Utils.styled";
-import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { useRouter } from "next/router";
-import { reset, removeMenuItem } from "../redux/cartSlice";
 import OrderDetail from "../components/OrderDetail";
 import Link from "next/link";
 import { BtnLinkOutlined, ButtonSolid } from "../styles/Button.styled";
-
-const ButtonDelete = styled.button`
-  border: none;
-  padding: 0.5rem;
-  background-color: var(--warning);
-  color: white;
-  cursor: pointer;
-  border-radius: 0.5rem;
-`;
 
 const Cart = () => {
   const [checkout, setCheckout] = useState(false);
   const [cartEmpty, setCartEmpty] = useState(false);
   const router = useRouter();
   const dispatch = useDispatch();
-  const cart = useSelector((state) => state.cart);
-  const quantity = useSelector((state) => state.quantity);
-  const totalPrice = useSelector((state) => state.total);
-
-  useEffect(() => {
-    if (cart.total === 0) setCartEmpty(true);
-  }, [cart]);
 
   const createOrder = async (data) => {
     try {
       const res = await axios.post(`/api/orders`, data);
       if (res.status === 201) {
-        dispatch(reset());
         await router.push(`/orders/${res.data._id}`);
       }
     } catch (err) {
       console.log("Error with CreateOrder function", err);
     }
   };
+
+  const handleDelete = (item) => {
+    console.log(item);
+  };
+
+  const handleSubtract = () => {};
 
   return (
     <>
@@ -87,15 +75,13 @@ const Cart = () => {
                 {cart?.menuItems.map((item, i) => (
                   <GridTable key={i}>
                     <div>{item.title}</div>
-                    <div>qty. {item.quantity}</div>
+                    <Quantity>
+                      <QtyBtn onClick={handleSubtract}>-</QtyBtn>
+                      <span>{item.quantity}</span>
+                      <QtyBtn>+</QtyBtn>
+                    </Quantity>
                     <div>${item.price * item.quantity}</div>
-                    <ButtonDelete
-                      onClick={() =>
-                        dispatch(
-                          removeMenuItem({ ...item, quantity, totalPrice })
-                        )
-                      }
-                    >
+                    <ButtonDelete onClick={() => handleDelete(item)}>
                       delete
                     </ButtonDelete>
                   </GridTable>

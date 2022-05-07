@@ -3,18 +3,16 @@ import styles from "../styles/Navbar.module.css"
 import { useState } from "react";
 import { useRouter } from "next/router";
 import Link from "next/link";
-import { useSelector } from "react-redux";
+import { useSnipcart } from "use-snipcart";
 
 const NavBar = () => {
-  const quantity = useSelector((state) => state.cart.quantity);
+  const { cart = {} } = useSnipcart();
   const router = useRouter();
-
   const [isActive, setActive] = useState(false);
 
   const handleToggle = () => {
     setActive(!isActive);
   };
-
   return (
     <>
       <nav
@@ -97,19 +95,10 @@ const NavBar = () => {
             </Link>
           </div>
         )}
-        <div className={styles.cart}>
-          <Link href="/cart">
-            <a>
-              <Image
-                src="/img/icon-cart.svg"
-                alt=""
-                width="30px"
-                height="30px"
-              />
-              <div className={styles.counter}>{quantity}</div>
-            </a>
-          </Link>
-        </div>
+        <button className={styles.cart + " snipcart-checkout"}>
+          <Image src="/img/icon-cart.svg" alt="" width="30px" height="30px" />
+          <div className={styles.counter}>{cart.items?.count}</div>
+        </button>
       </nav>
     </>
   );
