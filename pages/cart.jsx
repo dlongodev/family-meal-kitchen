@@ -35,10 +35,6 @@ const Cart = () => {
   const quantity = useSelector((state) => state.quantity);
   const totalPrice = useSelector((state) => state.total);
 
-  useEffect(() => {
-    if (cart.total === 0) setCartEmpty(true);
-  }, [cart]);
-
   const createOrder = async (data) => {
     try {
       const res = await axios.post(`/api/orders`, data);
