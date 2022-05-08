@@ -16,7 +16,8 @@
 --brand-main-50: hsla(84, 97%, 24%, 0.5);
 --brand-main-80: hsla(84, 97%, 24%, 0.8);
 --brand-main-90: hsla(84, 97%, 24%, 0.9);
---warning: hsl(36, 94%, 42%);
+--warning: hsl(33, 100%, 43%);
+--warning-10: hsla(36, 99%, 49%, 0.1);
 
 --text-size-0: 0.5rem;
 --text-size-1: 0.85rem;
@@ -63,4 +64,72 @@ h1 {
 }
 .snipcart-modal__container {
   z-index: 9999
+}
+.snipcart-button-primary {
+  background-color: var(--brand-main);
+}
+
+.snipcart-button-primary:hover {
+  background-color: var(--brand-main);
+}
+
+.snipcart-button-link {
+  color: var(--brand-main);
+}
+
+.snipcart-cart-header .snipcart-modal__close-icon,
+.snipcart-cart-header__icon {
+  color: var(--brand-400);
+}
+
+.snipcart-modal,
+.snipcart-cart__content,
+/* .snipcart-item-line, */
+.snipcart-featured-payment-methods__title {
+  background-color: var(--light-100);
+}
+
+.snipcart-cart-header {
+  background-color: var(--light-100);
+}
+
+.snipcart-cart__secondary-header {
+  background-color: var(--brand-main);
+  color: white;
+}
+
+.snipcart-button-icon.is-secondary {
+  color: var(--brand-main);
+  background-color: var(--brand-200);
+}
+
+.snipcart-button-icon.is-secondary:hover {
+  color: var(--brand-main);
+  background-color: var(--brand-200);
+}
+
+.snipcart-item-line--cart-edit {
+  border-color: var(--brand-200);
+}
+
+.snipcart-item-line__info {
+  padding: 0px;
+}
+
+.snipcart-item-line--cart-edit .snipcart-item-line__title {
+  padding-left: 0px;
+}
+
+.snipcart-button-secondary {
+  background-color: var(--brand-main);
+  color: white;
+}
+
+.snipcart-button-secondary:hover {
+  background-color: var(--brand-400);
+  color: white;
+}
+
+.snipcart-empty-cart {
+  color: var(--brand-text);
 }
