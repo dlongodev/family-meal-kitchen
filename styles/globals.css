@@ -16,7 +16,13 @@
 --brand-main-50: hsla(84, 97%, 24%, 0.5);
 --brand-main-80: hsla(84, 97%, 24%, 0.8);
 --brand-main-90: hsla(84, 97%, 24%, 0.9);
---warning: hsl(36, 94%, 42%);
+--warning: hsl(33, 100%, 43%);
+--warning-10: hsla(36, 99%, 49%, 0.1);
+--color-badge: hsl(84, 97%, 24%);
+--color-icon: hsl(84, 97%, 24%);
+--borderColor-input-focus: hsl(84, 41%, 44%);
+--color-inputIcon-focus: hsl(84, 97%, 24%);
+--shadow-input-focus: 0 5px 10px -3px rgba(84, 121, 27, 0.3);
 
 --text-size-0: 0.5rem;
 --text-size-1: 0.85rem;
@@ -60,4 +66,107 @@ h1 {
 
 .mt-2{
   margin-top: 2rem
+}
+.snipcart-modal__container {
+  z-index: 9999
+}
+.snipcart-button-primary {
+  background-color: var(--brand-main);
+}
+
+.snipcart-button-primary:hover {
+  background-color: var(--brand-main);
+}
+
+.snipcart-button-link {
+  color: var(--brand-main);
+}
+
+.snipcart-button-link:hover {
+  color: var(--brand-500);
+}
+.snipcart-cart-header .snipcart-modal__close-icon,
+.snipcart-cart-header__icon {
+  color: var(--brand-400);
+}
+
+.snipcart-modal,
+.snipcart-cart__content,
+/* .snipcart-item-line, */
+.snipcart-featured-payment-methods__title,
+.snipcart-cart-header {
+  background-color: var(--light-100);
+}
+
+.snipcart-cart__secondary-header,
+.snipcart__box--badge {
+  background-color: var(--brand-main);
+  color: white;
+}
+
+.snipcart-button-icon.is-secondary {
+  color: var(--brand-main);
+  background-color: var(--brand-200);
+}
+
+.snipcart-button-icon.is-secondary:hover {
+  color: var(--brand-main);
+  background-color: var(--brand-200);
+}
+
+.snipcart-item-line--cart-edit {
+  border-color: var(--brand-200);
+}
+
+.snipcart-item-line__info {
+  padding: 0px;
+}
+
+.snipcart-item-line--cart-edit .snipcart-item-line__title {
+  padding-left: 0px;
+}
+
+.snipcart-button-secondary {
+  background-color: var(--brand-main);
+  color: white;
+}
+
+.snipcart-button-secondary:hover {
+  background-color: var(--brand-400);
+  color: white;
+}
+
+.snipcart-empty-cart {
+  color: var(--brand-text);
+}
+.snipcart-cart-summary {
+  background-color: var(--light-20);
+}
+
+.snipcart-modal__container {
+  background-color: var(--light-100);
+  }
+  
+  .snipcart__box--badge-highlight {
+  background-color: var(--brand-200);
+  color: var(--brand-main);
+  }
+  
+  .snipcart__box--badge-disabled {
+    border-color: var(--brand-200);
+    background-color: white;
+    color: var(--brand-300)
+  }
+  
+  .snipcart__box--gray {
+    background-color: white;
+  }
+  
+  .snipcart-form__cell--tidy2 {
+    width: 100%;
+  }
+  
+  .snipcart-input:hover,
+  .snipcart-form__select:hover {
+    border-color: var(--brand-300);
 }

@@ -83,6 +83,8 @@ cursor: pointer;
 export const GridTable = styled.div`
 display: grid;
 grid-template-columns: 3fr 1fr 1fr 0.5fr;
+align-items: center;
+text-align: center;
 gap: 0.5rem;
 width: min(30rem, 90%);
 margin: 0 auto;
@@ -90,6 +92,7 @@ padding: 2rem 0 1rem 0;
 
 div:first-child{
     font-weight: 700;
+    text-align: left;
 }
 @media screen and (max-width: 600px) {
     grid-template-columns: repeat(3, 1fr);
@@ -99,3 +102,28 @@ div:first-child{
 }
 
 `
+
+export const ButtonDelete = styled.button`
+  border: none;
+  padding: 0.5rem;
+  background-color: var(--warning);
+  color: white;
+  cursor: pointer;
+  border-radius: 0.5rem;
+`;
+
+export const Quantity = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border: 1px solid var(--brand-main);
+  border-radius: 5px;
+`;
+export const QtyBtn = styled.button`
+  color: var(--brand-main);
+  background-color: transparent;
+  border: none;
+  font-size: 1.3rem;
+  padding: 0 0.8rem;
+  cursor: pointer;
+`;

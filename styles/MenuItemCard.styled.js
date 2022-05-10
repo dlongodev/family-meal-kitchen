@@ -76,7 +76,7 @@ font-size: 0.7rem;
 text-transform: uppercase;
 font-weight: 700;
 padding: 1rem;
-margin: 0 1rem;
+/* margin: 0 1rem; */
 cursor: pointer;
 
 &:hover {

@@ -16,6 +16,7 @@ flex: 1 0 auto;
 `
 const Layout = ({ children }) => {
     return (
+        <>
         <Container>
             <Content>
             <NavBar />
@@ -23,6 +24,7 @@ const Layout = ({ children }) => {
             </Content>
             <Footer />
         </Container>
+        </>
     )
 }
 
