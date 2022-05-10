@@ -12,7 +12,7 @@ const MenuItemCard = ({ menuItem }) => {
                 <CartBtnAdd className="snipcart-add-item"
                     data-item-id={menuItem._id}
                     data-item-price={menuItem.price}
-                    data-item-url="/menu"
+                    data-item-url="/"
                     data-item-name={menuItem.title}
                 >Add to Cart</CartBtnAdd>
             </Cart>
