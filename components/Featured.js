@@ -16,9 +16,9 @@ const Featured = () => {
                 <h1>WEBSITE UNDER CONSTRUCTION</h1>
                 <h2><strong>In the meantime, to place an order text Chef Joe:</strong></h2>
                 <div className={styles.btn_wrapper} >
-                    {/* <Link href="/contact" passHref> */}
+                    <Link href="sms:+17542646268" passHref>
                         <BtnLinkSolid m="1rem" w="inherit">(754) 264-6268</BtnLinkSolid>
-                    {/* </Link> */}
+                    </Link>
                 </div>
             </div>
         </header>
