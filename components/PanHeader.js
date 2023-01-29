@@ -7,6 +7,7 @@ import { Paragraph, TitleText, Wrapper, PanContainer, Pans } from '../styles/Uti
 const PanHeader = () => {
 
     return (
+        <>
         <div style={{ position: "relative" }}>
             <PanContainer>
                 <Image src="/img/pans-header.png" width={1000} height={200} alt='' />
@@ -16,9 +17,11 @@ const PanHeader = () => {
                 <Paragraph align="center" m="0">One Pan Feeds 6 to 8 People. <br />
                     Chef Joe has counteless other dishes and ethnic cuisines and we will make any special request!
                 </Paragraph>
-                <Link href={"/menu"} passHref><ButtonSolid m="2rem 0">See Our Menu</ButtonSolid></Link>
             </Wrapper>
         </div>
+            <Wrapper bg="var(--light-200)" mqFlex="column" w="100%" m="0" >
+            <Image src="/img/menu-img-OrderByThePanMenu.jpg" width={1000} height={1294}  alt='' />
+            </Wrapper></>
     )
 }
 
