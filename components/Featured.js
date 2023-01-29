@@ -7,18 +7,18 @@ import Link from 'next/link'
 const Featured = () => {
 
     return (
-        <header className={`${styles.header} ${styles.shadow}`}>
-            <div className={styles.photos}>
+        <header className={`${styles.header}`}>
+            {/* <div className={styles.photos}>
                 <Image className={styles.photo} src="/img/hdr-img_mobile.png" layout="fill" objectFit="cover" alt='' />
 
-            </div>
+            </div> */}
             <div className={styles.hdr_text}>
-                <h1>Family Style Italian <br /> American Cooking</h1>
-                <h2>Now booking Chef’s  Tables, Corporate Events and Consultations</h2>
+                <h1>WEBSITE UNDER CONSTRUCTION</h1>
+                <h2><strong>In the meantime, to place an order text Chef Joe:</strong></h2>
                 <div className={styles.btn_wrapper} >
-                    <Link href="/contact" passHref>
-                        <BtnLinkSolid m="1rem 0" w="inherit">Plan Your Event</BtnLinkSolid>
-                    </Link>
+                    {/* <Link href="/contact" passHref> */}
+                        <BtnLinkSolid m="1rem" w="inherit">(754) 264-6268</BtnLinkSolid>
+                    {/* </Link> */}
                 </div>
             </div>
         </header>

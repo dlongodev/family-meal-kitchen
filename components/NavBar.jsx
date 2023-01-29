@@ -1,5 +1,5 @@
-import Image from "next/image"
-import styles from "../styles/Navbar.module.css"
+import Image from "next/image";
+import styles from "../styles/Navbar.module.css";
 import { useState } from "react";
 import { useRouter } from "next/router";
 import Link from "next/link";
@@ -15,14 +15,8 @@ const NavBar = () => {
   };
   return (
     <>
-      <nav
-        className={
-          router?.asPath === "/"
-            ? styles.container
-            : `${styles.container} ${styles.shadow}`
-        }
-      >
-        <div
+      <nav>
+        {/* <div
           aria-controls="sidebar"
           id="toggle"
           className={
@@ -81,27 +75,27 @@ const NavBar = () => {
               </a>
             </Link>
           </div>
-        ) : (
-          <div className={styles.logo}>
-            <Link href="/">
-              <a>
-                <Image
-                  src="/img/logo.png"
-                  width="95px"
-                  height="95px"
-                  alt="Family Meal Kithchen Logo"
-                />
-              </a>
-            </Link>
-          </div>
-        )}
-        <button className={styles.cart + " snipcart-checkout"}>
-          <Image src="/img/icon-cart.svg" alt="" width="30px" height="30px" />
-          <div className={styles.counter}>{cart.items?.count}</div>
-        </button>
+        ) : ( */}
+        <div className={styles.logo}>
+          <Link href="/">
+            <a>
+              <Image
+                src="/img/logo.png"
+                width="95px"
+                height="95px"
+                alt="Family Meal Kithchen Logo"
+              />
+            </a>
+          </Link>
+        </div>
+        {/* // )}
+        // <button className={styles.cart + " snipcart-checkout"}>
+        //   <Image src="/img/icon-cart.svg" alt="" width="30px" height="30px" />
+        //   <div className={styles.counter}>{cart.items?.count}</div>
+        // </button> */}
       </nav>
     </>
   );
 };
 
-export default NavBar
+export default NavBar;
