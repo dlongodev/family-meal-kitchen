@@ -12,7 +12,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { useRouter } from "next/router";
-import { reset, removeMenuItem } from "../redux/cartSlice";
+import { reset, removeMenuItem, decreaseQuantity, addMenuItem } from "../redux/cartSlice";
 import OrderDetail from "../components/OrderDetail";
 import Link from "next/link";
 import { BtnLinkOutlined } from "../styles/Button.styled";
@@ -32,7 +32,7 @@ const Cart = () => {
   const router = useRouter();
   const dispatch = useDispatch();
   const cart = useSelector((state) => state.cart);
-  const totalPrice = useSelector((state) => state.cart.total);
+
 
   useEffect(() => {
     if (cart.total === 0) setCartEmpty(true);
@@ -83,18 +83,18 @@ const Cart = () => {
                 <TitleText m="1rem" fw="300">
                   Your Order
                 </TitleText>
-                {cart?.menuItems.map((item, i) => (
-                  <GridTable key={i}>
+                {cart?.menuItems.map((item, index) => (
+                  <GridTable key={item._id}>
                     <div>{item.title}</div>
-                    <div>qty. {item.quantity}</div>
-                    <div>${item.price * item.quantity}</div>
+                    <div><button onClick={() => dispatch(addMenuItem({ ...item, quantity: 1, price: item.price }))}>+</button> qty. {item.quantity} <button onClick={() => dispatch(decreaseQuantity(item._id))}>-</button> </div>
+                    <div>${item.price * item.quantity} </div>
                     <ButtonDelete
                       onClick={() =>
                         dispatch(
                           removeMenuItem({
-                            ...item,
+                            index,
                             quantity: item.quantity,
-                            totalPrice,
+                            total: item.price * item.quantity,
                           })
                         )
                       }

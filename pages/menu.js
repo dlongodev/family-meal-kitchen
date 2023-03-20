@@ -1,11 +1,13 @@
 import Image from 'next/image'
 import { Paragraph, TitleText, Wrapper, PanContainer } from '../styles/Utils.styled'
 import MenuItemCard from '../components/MenuItemCard'
-import { Grid, MenuTitle } from '../styles/menu.styled'
+import { Grid, GridSection, MenuTitle } from '../styles/menu.styled'
 import axios from 'axios'
 // import { useState } from 'react'
 
-const Menu = ({ menuList }) => {
+const Menu = ({ menuList, categories }) => {
+    
+    let sortedCategories = categories?.sort((a, b) => (a.order > b.order ? 1 : -1))
 
     return (
         <>
@@ -19,22 +21,19 @@ const Menu = ({ menuList }) => {
                     <Image src="/img/pans-header.png" width={1000} height={200} alt='' />
                 </PanContainer>
                 <Wrapper bg="var(--light-100)" mqFlex="column" w="100%" m="0" style={{ zIndex: 2, position: "relative", boxShadow: "var(--shadowTop)" }}>
-                    <Grid>
-                        <div>
-                            <MenuTitle>Poultry</MenuTitle>
-                            {menuList.map((item) => (
-                                item.category === "poultry"
-                                && < MenuItemCard menuItem={item} key={item._id} />
-                            ))}
-                        </div>
-                        <div>
-                            <MenuTitle>Beef & Pork</MenuTitle>
-                            {menuList.map((item) => (
-                                item.category === "beef"
-                                && < MenuItemCard menuItem={item} key={item._id} />
-                            ))}
-                        </div>
-                    </Grid>
+                    {sortedCategories?.map(category => (
+                        <GridSection key={category._id}>
+                            <MenuTitle>
+                                {category.title}
+                            </MenuTitle>
+                            <Grid>
+                                {menuList?.map((item) => (
+                                    item.category === category.slug &&
+                                        < MenuItemCard menuItem={item} key={item._id} />
+                                ))}
+                            </Grid>
+                        </GridSection>
+                    ))}
                 </Wrapper>
             </div>
         </>
@@ -44,11 +43,15 @@ const Menu = ({ menuList }) => {
 export default Menu
 
 export const getServerSideProps = async () => {
-    const res = await axios.get(`${process.env.NEXT_PUBLIC_PROTOCOL}${process.env.VERCEL_URL}/api/menu`)
-    // console.log("environment menu page ", process.env.VERCEL_URL)
+    const [menuRes, catRes] = await Promise.all([
+        axios.get(`${process.env.NEXT_PUBLIC_PROTOCOL}${process.env.VERCEL_URL}/api/menu`),
+        axios.get(`${process.env.NEXT_PUBLIC_PROTOCOL}${process.env.VERCEL_URL}/api/category`)
+    ]);
+
     return {
         props: {
-            menuList: res.data,
+            menuList: menuRes.data,
+            categories: catRes.data,
         },
-    }
+    };
 }
