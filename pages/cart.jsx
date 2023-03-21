@@ -12,10 +12,19 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { useRouter } from "next/router";
-import { reset, removeMenuItem, decreaseQuantity, addMenuItem } from "../redux/cartSlice";
+import {
+  reset,
+  removeMenuItem,
+  decreaseQuantity,
+  addMenuItem,
+  setCartInitialState,
+} from "../redux/cartSlice";
 import OrderDetail from "../components/OrderDetail";
 import Link from "next/link";
 import { BtnLinkOutlined } from "../styles/Button.styled";
+import { FiMinusCircle, FiPlusCircle } from 'react-icons/fi';
+import { parseCookies } from "./api/parseCookies";
+import cookie from "js-cookie"
 
 const ButtonDelete = styled.button`
   border: none;
@@ -26,17 +35,30 @@ const ButtonDelete = styled.button`
   border-radius: 0.5rem;
 `;
 
-const Cart = () => {
+const IconButton = styled.button`
+`
+
+const Cart = ({initialCartValues}) => {
   const [checkout, setCheckout] = useState(false);
   const [cartEmpty, setCartEmpty] = useState(false);
   const router = useRouter();
   const dispatch = useDispatch();
   const cart = useSelector((state) => state.cart);
 
-
+  
   useEffect(() => {
-    if (cart.total === 0) setCartEmpty(true);
+    console.log({initialCartValues: JSON.parse(initialCartValues), cart})
+    if (cart.total === 0) {
+      setCartEmpty(true)
+    } else {
+      setCartEmpty(false)
+    }
+    console.log({cartEmpty})
   }, [cart]);
+  
+  useEffect(() => {
+    dispatch(setCartInitialState(JSON.parse(initialCartValues)))
+  }, []);
 
   const createOrder = async (data) => {
     try {
@@ -85,8 +107,20 @@ const Cart = () => {
                 </TitleText>
                 {cart?.menuItems.map((item, index) => (
                   <GridTable key={item._id}>
-                    <div>{item.title}</div>
-                    <div><button onClick={() => dispatch(addMenuItem({ ...item, quantity: 1, price: item.price }))}>+</button> qty. {item.quantity} <button onClick={() => dispatch(decreaseQuantity(item._id))}>-</button> </div>
+                    <div><strong>{item.title}</strong></div>
+                    <div>
+                      <FiPlusCircle className="" onClick={() =>
+                          dispatch(
+                            addMenuItem({
+                              ...item,
+                              quantity: 1,
+                              price: item.price,
+                            })
+                          )
+                        } />
+                       {" "}{item.quantity}{" "}
+                       <FiMinusCircle className="" onClick={() => dispatch(decreaseQuantity(item._id))}/>
+                    </div>
                     <div>${item.price * item.quantity} </div>
                     <ButtonDelete
                       onClick={() =>
@@ -119,5 +153,18 @@ const Cart = () => {
     </>
   );
 };
+
+Cart.getInitialProps = ({ req }) => {
+  const cookies = parseCookies(req);
+  let initialState = {
+    menuItems: [],
+    quantity: 0,
+    total: 0,
+  }
+  return {
+    initialCartValues: cookies.cart ? cookies.cart : initialState
+  };
+};
+
 
 export default Cart;

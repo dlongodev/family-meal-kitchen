@@ -1,33 +1,20 @@
 import { createSlice } from "@reduxjs/toolkit";
+import cookie from "js-cookie"
 
-const items =
-  typeof window !== "undefined" && localStorage.getItem("cartItems") !== null
-    ? JSON.parse(localStorage.getItem("cartItems"))
-    : [];
-const totalQuantity =
-  typeof window !== "undefined" &&
-  localStorage.getItem("totalQuantity") !== null
-    ? JSON.parse(localStorage.getItem("totalQuantity"))
-    : 0;
-const totalAmount =
-  typeof window !== "undefined" && localStorage.getItem("totalAmount") !== null
-    ? JSON.parse(localStorage.getItem("totalAmount"))
-    : 0;
-
-const updateCartStorage = (item, totalQty, totalAmt) => {
-  if (typeof window !== "undefined") {
-    localStorage.setItem("cartItems", JSON.stringify(item));
-    localStorage.setItem("totalQuantity", JSON.stringify(totalQty));
-    localStorage.setItem("totalAmount", JSON.stringify(totalAmt));
-  }
-};
+const saveCartToCookies = (state) => {
+    cookie.set("cart", JSON.stringify({
+        menuItems: state.menuItems,
+        quantity: state.quantity,
+        total:  state.total,
+    })); 
+}
 
 const cartSlice = createSlice({
   name: "cart",
   initialState: {
-    menuItems: items,
-    quantity: totalQuantity,
-    total: totalAmount,
+    menuItems: [],
+    quantity: 0,
+    total: 0,
   },
   reducers: {
     addMenuItem: (state, action) => {
@@ -47,17 +34,13 @@ const cartSlice = createSlice({
           }
         });
       }
-      updateCartStorage(
-        state.menuItems.map((item) => item),
-        state.quantity,
-        state.total
-      );
+      saveCartToCookies(state)
     },
     reset: (state) => {
       state.menuItems = [];
       state.quantity = 0;
       state.total = 0;
-      updateCartStorage([], 0, 0);
+      saveCartToCookies(state)
     },
     decreaseQuantity: (state, action) => {
       const itemId = action.payload;
@@ -77,27 +60,23 @@ const cartSlice = createSlice({
         (total, item) => total + Number(item.price) * Number(item.quantity),
         0
       );
-
-      updateCartStorage(
-        state.menuItems.map((item) => item),
-        state.quantity,
-        state.total
-      );
+      saveCartToCookies(state)
     },
     removeMenuItem: (state, action) => {
       state.quantity -= action.payload.quantity;
       state.total -= action.payload.total;
       state.menuItems.splice(action.payload.index, 1);
-      updateCartStorage(
-        state.menuItems.map((item) => item),
-        state.quantity,
-        state.total
-      );
-      console.log(action.payload, state.total);
+      saveCartToCookies(state)
     },
+    setCartInitialState: (state, action) => {
+        console.log({ACTION: action.payload})
+        state.menuItems = action.payload.menuItems
+        state.quantity = action.payload.quantity
+        state.total = action.payload.total
+    }
   },
 });
 
-export const { addMenuItem, reset, removeMenuItem, decreaseQuantity } =
+export const { addMenuItem, reset, removeMenuItem, decreaseQuantity, setCartInitialState } =
   cartSlice.actions;
 export default cartSlice.reducer;
