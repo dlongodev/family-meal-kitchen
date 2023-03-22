@@ -24,7 +24,6 @@ import Link from "next/link";
 import { BtnLinkOutlined } from "../styles/Button.styled";
 import { FiMinusCircle, FiPlusCircle } from 'react-icons/fi';
 import { parseCookies } from "./api/parseCookies";
-import cookie from "js-cookie"
 
 const ButtonDelete = styled.button`
   border: none;
@@ -47,13 +46,11 @@ const Cart = ({initialCartValues}) => {
 
   
   useEffect(() => {
-    console.log({initialCartValues: JSON.parse(initialCartValues), cart})
     if (cart.total === 0) {
       setCartEmpty(true)
     } else {
       setCartEmpty(false)
     }
-    console.log({cartEmpty})
   }, [cart]);
   
   useEffect(() => {

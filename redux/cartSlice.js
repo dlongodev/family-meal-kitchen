@@ -44,10 +44,12 @@ const cartSlice = createSlice({
     },
     decreaseQuantity: (state, action) => {
       const itemId = action.payload;
-      console.log({ itemId });
       const existingItem = state.menuItems.find((item) => item._id === itemId);
+
+      // decrease total quantity 
       state.quantity--;
       
+      // decrease total item quantity
       if (existingItem.quantity === 1) {
         state.menuItems = state.menuItems.filter((item) => item._id !== itemId);
       } else {
@@ -55,6 +57,7 @@ const cartSlice = createSlice({
         existingItem.total =
           Number(existingItem.total) - Number(existingItem.price);
       }
+      // update total
       state.total = state.menuItems.reduce(
         (total, item) => total + Number(item.price) * Number(item.quantity),
         0
@@ -68,7 +71,6 @@ const cartSlice = createSlice({
       saveCartToCookies(state)
     },
     setCartInitialState: (state, action) => {
-        console.log({ACTION: action.payload})
         state.menuItems = action.payload.menuItems
         state.quantity = action.payload.quantity
         state.total = action.payload.total
