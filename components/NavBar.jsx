@@ -3,10 +3,10 @@ import styles from "../styles/Navbar.module.css";
 import { useState } from "react";
 import { useRouter } from "next/router";
 import Link from "next/link";
-import { useSnipcart } from "use-snipcart";
+// import { useSnipcart } from "use-snipcart";
 
 const NavBar = () => {
-  const { cart = {} } = useSnipcart();
+  // const { cart = {} } = useSnipcart();
   const router = useRouter();
   const [isActive, setActive] = useState(false);
 

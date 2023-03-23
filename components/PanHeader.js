@@ -20,7 +20,7 @@ const PanHeader = () => {
             </Wrapper>
         </div>
             <Wrapper bg="var(--light-200)" mqFlex="column" w="100%" m="0" >
-            <Image src="/img/menu-img-OrderByThePanMenu.jpg" width={1000} height={1294}  alt='' />
+            <Image src="/img/menu-img-OrderByThePanMenu.webp" width={1000} height={1294}  alt='' />
             </Wrapper></>
     )
 }

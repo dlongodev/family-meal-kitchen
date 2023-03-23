@@ -1,14 +1,14 @@
 import Layout from '../components/Layout'
 import '../styles/globals.css'
-import { SnipcartProvider } from "use-snipcart"
+// import { SnipcartProvider } from "use-snipcart"
 
 function MyApp({ Component, pageProps }) {
   return (
-    <SnipcartProvider>
+    // <SnipcartProvider>
     <Layout>
       <Component {...pageProps} />
     </Layout>
-    </SnipcartProvider>
+    // </SnipcartProvider>
   )
 }
 
