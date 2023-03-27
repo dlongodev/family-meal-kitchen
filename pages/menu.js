@@ -42,7 +42,7 @@ const Menu = ({ menuList, categories }) => {
 
 export default Menu
 
-export const getServerSideProps = async () => {
+export const getStaticProps = async () => {
     const [menuRes, catRes] = await Promise.all([
         axios.get(`${process.env.NEXT_PUBLIC_PROTOCOL}${process.env.VERCEL_URL}/api/menu`),
         axios.get(`${process.env.NEXT_PUBLIC_PROTOCOL}${process.env.VERCEL_URL}/api/category`)
@@ -53,5 +53,6 @@ export const getServerSideProps = async () => {
             menuList: menuRes.data,
             categories: catRes.data,
         },
+        revalidate: 1000, // In seconds
     };
 }
