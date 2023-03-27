@@ -1,7 +1,6 @@
 import axios from "axios";
 import React from "react";
 import styled from "styled-components";
-import moment from "moment";
 
 import { SectionContainer } from "../../styles/cart.styled";
 import {
@@ -25,8 +24,7 @@ const ParagraphText = styled.p`
 `;
 
 const Order = ({ order }) => {
-  const time = moment(order.deliverytime).format("h:mm A");
-  const date = moment(order.deliveryDate).format("MM-DD-YYYY");
+
   return (
     <>
       <div>
@@ -62,7 +60,7 @@ const Order = ({ order }) => {
             <ParagraphText>
               Your delivery is confirmed for: <br />
               <span>
-                {date} at {time}
+                {order.deliveryDate} at {order.deliveryTime}
               </span>
             </ParagraphText>
             <Paragraph align="center"></Paragraph>
