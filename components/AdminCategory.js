@@ -10,7 +10,6 @@ width: 100%;
 border-spacing: 0;
 text-align: left;
 font-size: 0.8rem;
-
 th{
     /* background-color: var(--light-200); */
     border-bottom: 2px solid var(--brand-300);
@@ -21,7 +20,6 @@ td{
     padding: 1rem;
     border-bottom: 1px dotted var(--brand-300);
 }
-
 td:nth-child(2){
     font-weight: 700;
     color: var(--brand-dark);
@@ -34,7 +32,6 @@ td:last-child{
     flex-direction: column;
     justify-content: center;
     align-items: center;
-
     tr:first-child{
         display: none;
     }
@@ -46,7 +43,6 @@ td:last-child{
         content: "Order ID: ";
         font-weight: 700;
     }
-
 }
 `
 const ButtonIcon = styled.a`
@@ -67,45 +63,41 @@ border-radius: 0.5rem;
 `
 
 
-const AdminMenu = ({ menu }) => {
-    const [menuList, setMenuList] = useState(menu)
+const AdminCategory = ({ categories }) => {
+    const [categoryList, setCategoryList] = useState(categories)
 
     const handleDelete = async (id) => {
         try {
-            const res = await axios.delete(`/api/menu/${id}`)
-            setMenuList(menuList.filter(item => item._id !== id))
+            await axios.delete(`/api/category/${id}`)
+            setCategoryList(categoryList.filter(item => item._id !== id))
         } catch (err) {
             console.log(err)
         }
     }
 
-    const handleEdit = () => { }
-
     return (
         <>
-            <Link href="/admin/add" passHref>
-                <BtnLinkSolid>Add Menu Item</BtnLinkSolid>
+            <Link href="/admin/category/add" passHref>
+                <BtnLinkSolid>Add Category</BtnLinkSolid>
             </Link>
             <Table>
                 <tbody>
                     <tr>
                         <th>Edit</th>
                         <th>Title</th>
-                        <th>Description</th>
-                        <th>Price</th>
-                        <th>Category</th>
+                        <th>Slug</th>
+                        <th>Order</th>
                         <th>Delete</th>
                     </tr>
-                    {menuList?.map(item => (
-                        <tr key={item._id}>
-                            <td><Link href={`/admin/${item._id}`} passHref>
+                    {categoryList?.map(category => (
+                        <tr key={category._id}>
+                            <td><Link href={`/admin/category/${category._id}`} passHref>
                                 <ButtonIcon><FaEdit /></ButtonIcon>
                             </Link></td>
-                            <td>{item.title}</td>
-                            <td>{item.desc}</td>
-                            <td>${item.price}</td>
-                            <td>{item.category}</td>
-                            <td><ButtonDelete onClick={() => handleDelete(item._id)}><FaTrashAlt /></ButtonDelete></td>
+                            <td>{category.title}</td>
+                            <td>{category.slug}</td>
+                            <td>{category.order}</td>
+                            <td><ButtonDelete onClick={() => handleDelete(category._id)}><FaTrashAlt /></ButtonDelete></td>
                         </tr>
                     ))}
                 </tbody>
@@ -114,4 +106,4 @@ const AdminMenu = ({ menu }) => {
     )
 }
 
-export default AdminMenu
+export default AdminCategory

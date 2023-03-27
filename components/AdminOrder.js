@@ -59,11 +59,10 @@ cursor: pointer;
 
 const AdminOrder = ({ orders }) => {
     const [orderList, setOrderList] = useState(orders)
-    const [orderDone, setOrderDone] = useState(null)
 
     const handleOrderDone = async (id) => {
         try {
-            await axios.put(`${process.env.BASE_URL}/api/orders/${id}`, {
+            await axios.put(`/api/orders/${id}`, {
                 done: true
             })
             setOrderList(orderList.filter(order => order._id !== id))
@@ -71,7 +70,6 @@ const AdminOrder = ({ orders }) => {
             console.log(err)
         }
     }
-
 
     return (
         <>

@@ -88,9 +88,6 @@ width: min(30rem, 90%);
 margin: 0 auto;
 padding: 2rem 0 1rem 0;
 
-div:first-child{
-    font-weight: 700;
-}
 @media screen and (max-width: 600px) {
     grid-template-columns: repeat(3, 1fr);
     div:first-child {

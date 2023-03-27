@@ -12,10 +12,18 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { useRouter } from "next/router";
-import { reset, removeMenuItem } from "../redux/cartSlice";
+import {
+  reset,
+  removeMenuItem,
+  decreaseQuantity,
+  addMenuItem,
+  setCartInitialState,
+} from "../redux/cartSlice";
 import OrderDetail from "../components/OrderDetail";
 import Link from "next/link";
 import { BtnLinkOutlined } from "../styles/Button.styled";
+import { FiMinusCircle, FiPlusCircle } from 'react-icons/fi';
+import { parseCookies } from "./api/parseCookies";
 
 const ButtonDelete = styled.button`
   border: none;
@@ -26,25 +34,35 @@ const ButtonDelete = styled.button`
   border-radius: 0.5rem;
 `;
 
-const Cart = () => {
+const IconButton = styled.button`
+`
+
+const Cart = ({initialCartValues}) => {
   const [checkout, setCheckout] = useState(false);
   const [cartEmpty, setCartEmpty] = useState(false);
   const router = useRouter();
   const dispatch = useDispatch();
   const cart = useSelector((state) => state.cart);
-  const quantity = useSelector((state) => state.quantity);
-  const totalPrice = useSelector((state) => state.total);
 
+  
   useEffect(() => {
-    if (cart.total === 0) setCartEmpty(true);
+    if (cart.total === 0) {
+      setCartEmpty(true)
+    } else {
+      setCartEmpty(false)
+    }
   }, [cart]);
+  
+  useEffect(() => {
+    dispatch(setCartInitialState(JSON.parse(initialCartValues)))
+  }, []);
 
   const createOrder = async (data) => {
     try {
-      const res = await axios.post(`${process.env.BASE_URL}/api/orders`, data);
+      const res = await axios.post(`/api/orders`, data);
       if (res.status === 201) {
         dispatch(reset());
-        await router.push(`${process.env.BASE_URL}/orders/${res.data._id}`);
+        await router.push(`/orders/${res.data._id}`);
       }
     } catch (err) {
       console.log("Error with CreateOrder function", err);
@@ -84,15 +102,31 @@ const Cart = () => {
                 <TitleText m="1rem" fw="300">
                   Your Order
                 </TitleText>
-                {cart?.menuItems.map((item, i) => (
-                  <GridTable key={i}>
-                    <div>{item.title}</div>
-                    <div>qty. {item.quantity}</div>
-                    <div>${item.price * item.quantity}</div>
+                {cart?.menuItems.map((item, index) => (
+                  <GridTable key={item._id}>
+                    <div><strong>{item.title}</strong></div>
+                    <div>
+                      <FiPlusCircle className="" onClick={() =>
+                          dispatch(
+                            addMenuItem({
+                              ...item,
+                              quantity: 1,
+                              price: item.price,
+                            })
+                          )
+                        } />
+                       {" "}{item.quantity}{" "}
+                       <FiMinusCircle className="" onClick={() => dispatch(decreaseQuantity(item._id))}/>
+                    </div>
+                    <div>${item.price * item.quantity} </div>
                     <ButtonDelete
                       onClick={() =>
                         dispatch(
-                          removeMenuItem({ ...item, quantity, totalPrice })
+                          removeMenuItem({
+                            index,
+                            quantity: item.quantity,
+                            total: item.price * item.quantity,
+                          })
                         )
                       }
                     >
@@ -116,5 +150,18 @@ const Cart = () => {
     </>
   );
 };
+
+Cart.getInitialProps = ({ req }) => {
+  const cookies = parseCookies(req);
+  let initialState = {
+    menuItems: [],
+    quantity: 0,
+    total: 0,
+  }
+  return {
+    initialCartValues: cookies.cart ? cookies.cart : initialState
+  };
+};
+
 
 export default Cart;

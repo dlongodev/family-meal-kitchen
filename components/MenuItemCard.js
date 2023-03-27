@@ -9,7 +9,7 @@ const MenuItemCard = ({ menuItem }) => {
     const [price, setPrice] = useState(menuItem.price)
     const dispatch = useDispatch()
 
-    const handleClick = () => {
+    const handleAddItem = () => {
         dispatch(addMenuItem({ ...menuItem, quantity, price }))
     }
 
@@ -23,7 +23,7 @@ const MenuItemCard = ({ menuItem }) => {
             <ItemDesc>{menuItem.desc}</ItemDesc>
             <Cart>
                 <Quantity type="number" min="0" max="10" step="1" value={quantity} onChange={handleQuantity} />
-                <CartBtnAdd onClick={handleClick}>Add to Cart</CartBtnAdd>
+                <CartBtnAdd onClick={handleAddItem}>Add to Cart</CartBtnAdd>
             </Cart>
 
         </MenuItemContainer>
