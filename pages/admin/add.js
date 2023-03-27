@@ -6,7 +6,11 @@ import { BtnLinkOutlined, ButtonSolid } from '../../styles/Button.styled'
 import { Form, Input, InputLabel, TextArea, RadioChoices } from '../../styles/Form.styled'
 import { FlexDiv, TitleText, Wrapper } from '../../styles/Utils.styled'
 
-const Add = ({ menuItem }) => {
+const Add = ({ categories }) => {
+    
+    let sortedCategories = categories?.sort((a, b) => (a.order > b.order ? 1 : -1))
+    console.log({sortedCategories})
+
     const router = useRouter();
     const [formData, setFormData] = useState({
         title: "",
@@ -37,34 +41,12 @@ const Add = ({ menuItem }) => {
                 <Input required id='price' name='price' type="text" onChange={(e) => setFormData({ ...formData, price: e.target.value })} />
                 <RadioChoices>
                     <legend>Category:</legend>
-                    <div>
-                        <Input id='poultry' type="radio" name="category" value="poultry" onChange={(e) => setFormData({ ...formData, category: e.target.value })} />
-                        <InputLabel htmlFor='poultry'>Poultry</InputLabel>
+                    {sortedCategories?.map(category => (
+                    <div key={category._id}>
+                        <Input id={category.slug} type="radio" name="category" value={category.slug} onChange={(e) => setFormData({ ...formData, category: e.target.value })} />
+                        <InputLabel htmlFor={category.slug}>{category.title}</InputLabel>
                     </div>
-                    <div>
-                        <Input id='beef' type="radio" name="category" value="beef" onChange={(e) => setFormData({ ...formData, category: e.target.value })} />
-                        <InputLabel htmlFor='beef'>Beef & Pork</InputLabel>
-                    </div>
-                    <div>
-                        <Input id='pasta' type="radio" name="category" value="pasta" onChange={(e) => setFormData({ ...formData, category: e.target.value })} />
-                        <InputLabel htmlFor='pasta'>Pasta & More</InputLabel>
-                    </div>
-                    <div>
-                        <Input id='shrimp' type="radio" name="category" value="shrimp" onChange={(e) => setFormData({ ...formData, category: e.target.value })} />
-                        <InputLabel htmlFor='shrimp'>Shrimp Our Way</InputLabel>
-                    </div>
-                    <div>
-                        <Input id='salad' type="radio" name="category" value="salad" onChange={(e) => setFormData({ ...formData, category: e.target.value })} />
-                        <InputLabel htmlFor='salad'>Simple Salads</InputLabel>
-                    </div>
-                    <div>
-                        <Input id='sides' type="radio" name="category" value="sides" onChange={(e) => setFormData({ ...formData, category: e.target.value })} />
-                        <InputLabel htmlFor='sides'>Family Size Sides</InputLabel>
-                    </div>
-                    <div>
-                        <Input id='quart' type="radio" name="category" value="quart" onChange={(e) => setFormData({ ...formData, category: e.target.value })} />
-                        <InputLabel htmlFor='quart'>Dressing or Sauces by the Quart</InputLabel>
-                    </div>
+                    ))}
                 </RadioChoices>
                 <FlexDiv justify="space-between">
                     <ButtonSolid m="0" type='submit'>Add Menu Item</ButtonSolid>
@@ -78,4 +60,13 @@ const Add = ({ menuItem }) => {
     )
 }
 
+export const getServerSideProps = async () => {
+    const catRes = await axios.get(`${process.env.NEXT_PUBLIC_PROTOCOL}${process.env.VERCEL_URL}/api/category`);
+
+    return {
+        props: {
+            categories: catRes.data,
+        },
+    };
+}
 export default Add

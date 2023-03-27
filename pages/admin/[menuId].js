@@ -6,7 +6,10 @@ import { BtnLinkOutlined, ButtonSolid } from '../../styles/Button.styled'
 import { Form, Input, InputLabel, TextArea, RadioChoices } from '../../styles/Form.styled'
 import { FlexDiv, TitleText, Wrapper } from '../../styles/Utils.styled'
 
-const AdminMenuEdit = ({ menuItem }) => {
+const AdminMenuEdit = ({ menuItem, categories }) => {
+    let sortedCategories = categories?.sort((a, b) => (a.order > b.order ? 1 : -1))
+    console.log({sortedCategories})
+
     const router = useRouter();
 
     const [formData, setFormData] = useState({
@@ -39,34 +42,12 @@ const AdminMenuEdit = ({ menuItem }) => {
                 <Input required id='price' name='price' type="text" value={formData.price} onChange={(e) => setFormData({ ...formData, price: e.target.value })} />
                 <RadioChoices>
                     <legend>Category:</legend>
-                    <div>
-                        <Input id='poultry' type="radio" name="category" value="poultry" checked={"poultry" === formData.category} onChange={(e) => setFormData({ ...formData, category: e.target.value })} />
-                        <InputLabel htmlFor='poultry'>Poultry</InputLabel>
+                    {sortedCategories?.map(category => (
+                    <div key={category._id}>
+                        <Input id={category.slug} type="radio" name="category" value={category.slug} checked={category.slug === formData.category} onChange={(e) => setFormData({ ...formData, category: e.target.value })} />
+                        <InputLabel htmlFor={category.slug}>{category.title}</InputLabel>
                     </div>
-                    <div>
-                        <Input id='beef' type="radio" name="category" value="beef" checked={"beef" === formData.category} onChange={(e) => setFormData({ ...formData, category: e.target.value })} />
-                        <InputLabel htmlFor='beef'>Beef & Pork</InputLabel>
-                    </div>
-                    <div>
-                        <Input id='pasta' type="radio" name="category" value="pasta" checked={"pasta" === formData.category} onChange={(e) => setFormData({ ...formData, category: e.target.value })} />
-                        <InputLabel htmlFor='pasta'>Pasta & More</InputLabel>
-                    </div>
-                    <div>
-                        <Input id='shrimp' type="radio" name="category" value="shrimp" checked={"shrimp" === formData.category} onChange={(e) => setFormData({ ...formData, category: e.target.value })} />
-                        <InputLabel htmlFor='shrimp'>Shrimp Our Way</InputLabel>
-                    </div>
-                    <div>
-                        <Input id='salad' type="radio" name="category" value="salad" checked={"salad" === formData.category} onChange={(e) => setFormData({ ...formData, category: e.target.value })} />
-                        <InputLabel htmlFor='salad'>Simple Salads</InputLabel>
-                    </div>
-                    <div>
-                        <Input id='sides' type="radio" name="category" value="sides" checked={"sides" === formData.category} onChange={(e) => setFormData({ ...formData, category: e.target.value })} />
-                        <InputLabel htmlFor='sides'>Family Size Sides</InputLabel>
-                    </div>
-                    <div>
-                        <Input id='quart' type="radio" name="category" value="quart" checked={"quart" === formData.category} onChange={(e) => setFormData({ ...formData, category: e.target.value })} />
-                        <InputLabel htmlFor='quart'>Dressing or Sauces by the Quart</InputLabel>
-                    </div>
+                    ))}
                 </RadioChoices>
                 <FlexDiv justify="space-between">
                     <ButtonSolid m="0" type='submit'>Edit Menu Item</ButtonSolid>
@@ -82,9 +63,15 @@ const AdminMenuEdit = ({ menuItem }) => {
 
 
 export const getServerSideProps = async ({ params }) => {
-    const res = await axios.get(`${process.env.NEXT_PUBLIC_PROTOCOL}${process.env.VERCEL_URL}/api/menu/${params.menuId}`)
+    const [menuItemRes, catRes] = await Promise.all([ 
+        axios.get(`${process.env.NEXT_PUBLIC_PROTOCOL}${process.env.VERCEL_URL}/api/menu/${params.menuId}`),
+        axios.get(`${process.env.NEXT_PUBLIC_PROTOCOL}${process.env.VERCEL_URL}/api/category`)
+    ])
     return {
-        props: { menuItem: res.data },
+        props: { 
+            menuItem: menuItemRes.data,
+            categories: catRes.data,
+         },
     };
 };
 
