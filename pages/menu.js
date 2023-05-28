@@ -12,7 +12,7 @@ const Menu = ({ menuList, categories }) => {
 
     return (
         <>
-        <CartModal />
+        {/* <CartModal /> */}
             <Wrapper mqFlex="column" >
                 <TitleText>Order by the Pan Menu </TitleText>
                 <Paragraph align="center" m="0" >All of our pans serve 6 to 8 people.Half pans available on request. Free delivery throughout Martin County and $100 minimum order for delivery to Palm Beach and St.Lucie Counties. Orders must be placed at least a day prior to delivery. Please call us for any special request at <span>754-264-6268</span>

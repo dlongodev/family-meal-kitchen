@@ -22,28 +22,7 @@ gap: 1rem;
 } */
 `
 
-export const CartTable = styled.table`
-width: 100%;
-border-spacing: 0;
-text-align: left;
 
-th{
-    background-color: var(--brand-200);
-    padding: 1rem;
-}
-td{
-    text-align: left;
-    padding: 1rem;
-    border-bottom: 1px dotted var(--brand-300);
-}
-td:nth-child(2), th:nth-child(2){
-    text-align: center;
-}
-td:first-child{
-    font-weight: 700;
-    color: var(--brand-dark);
-}
-`
 export const CartTotalText = styled.p`
 font-weight: 700;
 `
@@ -80,19 +59,39 @@ cursor: pointer;
     cursor: not-allowed;
 }
 `
-export const GridTable = styled.div`
-display: grid;
-grid-template-columns: 3fr 1fr 1fr 0.5fr;
+export const CartItem = styled.div`
+display: flex;
+justify-content: space-between;
+align-items: center;
 gap: 0.5rem;
 width: min(30rem, 90%);
 margin: 0 auto;
 padding: 2rem 0 1rem 0;
 
 @media screen and (max-width: 600px) {
-    grid-template-columns: repeat(3, 1fr);
-    div:first-child {
-        grid-column: span 4;
-    }
+    flex-direction: column;
+    align-items: start;
 }
-
 `
+export const CartQtyContainer = styled.div`
+display: flex;
+align-items: center;
+justify-content: space-between;
+gap: 1rem;
+width: 100%;
+
+@media screen and (max-width: 600px) {
+    justify-content: flex-end;
+}
+`
+
+export const ButtonDelete = styled.button`
+  color: var(--warning);
+  background-color: var(--light-100);
+  width: 20px;
+  height: 20px;
+  box-sizing: content-box;
+  padding: 8px;
+  cursor: pointer;
+  border-radius: 100%;
+`;

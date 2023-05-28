@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,500;0,700;1,300;1,500;1,700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,500;0,700;1,300;1,500;1,700&display=swap');
 
 
 :root {
@@ -30,6 +30,7 @@
 
 --shadowTop: rgba(0, 0, 0, 0.07) 0px -1px 1px -5px, rgba(0, 0, 0, 0.07) 0px -2px 2px -5px, rgba(0, 0, 0, 0.07) 0px -4px 4px -5px, rgba(0, 0, 0, 0.07) 0px -8px 8px -5px, rgba(0, 0, 0, 0.07) 0px -16px 16px -5px;
 
+--shadow-input-focus: 0 5px 10px -3px rgba(84,121,27,0.3);
 }
 
 html,
@@ -53,6 +54,9 @@ a {
   text-decoration: none;
 }
 
+button {
+  border: none;
+}
 
 h1 {
   line-height: 1.3em;

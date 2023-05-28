@@ -3,20 +3,25 @@ import styles from "../styles/Navbar.module.css"
 import { useState } from "react";
 import { useRouter } from "next/router";
 import Link from "next/link";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import CartModal from "./CartModal";
 
 const NavBar = () => {
   const quantity = useSelector((state) => state.cart.quantity);
   const router = useRouter();
 
   const [isActive, setActive] = useState(false);
+  const [isCartModalOpen, setIsCartModalOpen] = useState(false);
 
-  const handleToggle = () => {
+  const handleToggleNav = () => {
     setActive(!isActive);
   };
 
   return (
     <>
+    { !isCartModalOpen && 
+    <CartModal isActive={isCartModalOpen} toggleActive={setIsCartModalOpen} />
+    }
       <nav
         className={
           router?.asPath === "/"
@@ -30,7 +35,7 @@ const NavBar = () => {
           className={
             isActive ? `${styles.toggle} ${styles.active}` : `${styles.toggle}`
           }
-          onClick={handleToggle}
+          onClick={handleToggleNav}
         ></div>
         <div
           id="sidebar"
@@ -39,7 +44,7 @@ const NavBar = () => {
               ? `${styles.sidebar} ${styles.active}`
               : `${styles.sidebar}`
           }
-          onClick={handleToggle}
+          onClick={handleToggleNav}
         >
           <ul>
             <li>

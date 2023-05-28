@@ -1,10 +1,11 @@
 import {
-  CartTable,
   CartTotalBtn,
   CartTotalText,
   CartTotalWrapper,
-  GridTable,
+  CartItem,
   SectionContainer,
+  CartQtyContainer,
+  ButtonDelete
 } from "../styles/cart.styled";
 import styled from "styled-components";
 import { FlexDiv, Paragraph, TitleText, Wrapper } from "../styles/Utils.styled";
@@ -22,39 +23,27 @@ import {
 import OrderDetail from "../components/OrderDetail";
 import Link from "next/link";
 import { BtnLinkOutlined } from "../styles/Button.styled";
-import { FiMinusCircle, FiPlusCircle } from 'react-icons/fi';
 import { parseCookies } from "./api/parseCookies";
+import styles from "../styles/CartModal.module.css";
 
-const ButtonDelete = styled.button`
-  border: none;
-  padding: 0.5rem;
-  background-color: var(--warning);
-  color: white;
-  cursor: pointer;
-  border-radius: 0.5rem;
-`;
 
-const IconButton = styled.button`
-`
-
-const Cart = ({initialCartValues}) => {
+const Cart = ({ initialCartValues }) => {
   const [checkout, setCheckout] = useState(false);
   const [cartEmpty, setCartEmpty] = useState(false);
   const router = useRouter();
   const dispatch = useDispatch();
   const cart = useSelector((state) => state.cart);
 
-  
   useEffect(() => {
     if (cart.total === 0) {
-      setCartEmpty(true)
+      setCartEmpty(true);
     } else {
-      setCartEmpty(false)
+      setCartEmpty(false);
     }
   }, [cart]);
-  
+
   useEffect(() => {
-    dispatch(setCartInitialState(JSON.parse(initialCartValues)))
+    dispatch(setCartInitialState(JSON.parse(initialCartValues)));
   }, []);
 
   const createOrder = async (data) => {
@@ -103,36 +92,99 @@ const Cart = ({initialCartValues}) => {
                   Your Order
                 </TitleText>
                 {cart?.menuItems.map((item, index) => (
-                  <GridTable key={item._id}>
-                    <div><strong>{item.title}</strong></div>
-                    <div>
-                      <FiPlusCircle className="" onClick={() =>
+                  <CartItem key={item._id}>
+                    <div style={{width: "100%"}}>
+                      <strong>{item.title}</strong>
+                    </div>
+                    <CartQtyContainer>
+                      <div>
+                        <div className={styles.cart__quantity_price_container}>
+                          <div
+                            className={styles.cart__quantity_display_container}
+                          >
+                            <button
+                              aria-label="Decrement quantity"
+                              title="Decrement quantity"
+                              onClick={() =>
+                                dispatch(decreaseQuantity(item._id))
+                              }
+                            >
+                              <svg
+                                viewBox="0 0 64 64"
+                                fill="none"
+                                xmlns="http://www.w3.org/2000/svg"
+                                alt=""
+                                title=""
+                                className="snipcart__icon"
+                              >
+                                <path
+                                  d="M48 31H16v2.462h32V31z"
+                                  fill="currentColor"
+                                ></path>
+                              </svg>
+                            </button>
+                            <span>{item.quantity}</span>
+                            <button
+                              aria-label="Increment quantity"
+                              title="Increment quantity"
+                              onClick={() =>
+                                dispatch(
+                                  addMenuItem({
+                                    ...item,
+                                    quantity: 1,
+                                    price: item.price,
+                                  })
+                                )
+                              }
+                            >
+                              <svg
+                                viewBox="0 0 64 64"
+                                fill="none"
+                                xmlns="http://www.w3.org/2000/svg"
+                                alt=""
+                                title=""
+                                className="snipcart__icon"
+                              >
+                                <path
+                                  d="M33.23 30.77H48v2.46H33.23V48h-2.46V33.23H16v-2.46h14.77V16h2.46v14.77z"
+                                  fill="currentColor"
+                                ></path>
+                              </svg>
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                      <div className={styles.cart__price}>
+                      ${(item.price * item.quantity).toFixed(2)}
+                      </div>
+                      <ButtonDelete
+                        onClick={() =>
                           dispatch(
-                            addMenuItem({
-                              ...item,
-                              quantity: 1,
-                              price: item.price,
+                            removeMenuItem({
+                              index,
+                              quantity: item.quantity,
+                              total: item.price * item.quantity,
                             })
                           )
-                        } />
-                       {" "}{item.quantity}{" "}
-                       <FiMinusCircle className="" onClick={() => dispatch(decreaseQuantity(item._id))}/>
-                    </div>
-                    <div>${item.price * item.quantity} </div>
-                    <ButtonDelete
-                      onClick={() =>
-                        dispatch(
-                          removeMenuItem({
-                            index,
-                            quantity: item.quantity,
-                            total: item.price * item.quantity,
-                          })
-                        )
-                      }
-                    >
-                      delete
-                    </ButtonDelete>
-                  </GridTable>
+                        }
+                        aria-label="Remove item"
+                        title="Remove item"
+                      >
+                        <svg
+                          viewBox="0 0 64 64"
+                          fill="none"
+                          xmlns="http://www.w3.org/2000/svg"
+                          alt="delete"
+                          title="delete"
+                        >
+                          <path
+                            d="M22 4v6.47H12v3.236h40V10.47H42V4H22zm3.333 6.47V7.235H38.67v3.235H25.333zm20.001 9.707h3.333V59H15.334V20.177h3.333v35.588h26.667V20.177zm-15 29.116V23.412h3.334v25.881h-3.334z"
+                            fill="currentColor"
+                          ></path>
+                        </svg>
+                      </ButtonDelete>
+                    </CartQtyContainer>
+                  </CartItem>
                 ))}
                 <CartTotalWrapper>
                   <CartTotalText>Total:</CartTotalText>
@@ -157,11 +209,10 @@ Cart.getInitialProps = ({ req }) => {
     menuItems: [],
     quantity: 0,
     total: 0,
-  }
+  };
   return {
-    initialCartValues: cookies.cart ? cookies.cart : initialState
+    initialCartValues: cookies.cart ? cookies.cart : initialState,
   };
 };
-
 
 export default Cart;
