@@ -16,11 +16,14 @@ const NavBar = () => {
   const handleToggleNav = () => {
     setActive(!isActive);
   };
+  const handleToggleCartModal = () => {
+      setIsCartModalOpen(!isActive)
+  }
 
   return (
     <>
-    { !isCartModalOpen && 
-    <CartModal isActive={isCartModalOpen} toggleActive={setIsCartModalOpen} />
+    { isCartModalOpen && 
+    <CartModal isCartModalOpen={isCartModalOpen} setIsCartModalOpen={setIsCartModalOpen} />
     }
       <nav
         className={
@@ -103,8 +106,7 @@ const NavBar = () => {
           </div>
         )}
         <div className={styles.cart}>
-          <Link href="/cart">
-            <a>
+          <button aria-label="View Cart" title="View Cart" onClick={() => setIsCartModalOpen(!isCartModalOpen)} >
               <Image
                 src="/img/icon-cart.svg"
                 alt=""
@@ -112,8 +114,7 @@ const NavBar = () => {
                 height="30px"
               />
               <div className={styles.counter}>{quantity}</div>
-            </a>
-          </Link>
+          </button>
         </div>
       </nav>
     </>

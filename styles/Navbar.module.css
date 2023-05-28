@@ -23,6 +23,12 @@
   position: relative;
   cursor: pointer;
 }
+
+.cart button {
+  background-color: transparent;
+  cursor: pointer;
+}
+
 .counter {
   color: var(--brand-main);
   position: absolute;

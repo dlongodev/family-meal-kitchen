@@ -2,24 +2,27 @@
   position: fixed;
   z-index: 9999;
   top: 0;
-  right: 0;
-  width: 35%;
+  right: -550px;
+  width: 50%;
   max-width: 540px;
   min-height: 100%;
   background-color: white;
-  transition: left 0.5s;
   text-align: left;
-  z-index: 9999;
-  font-weight: 700;
   font-size: var(--text-size-2);
   display: flex;
   flex-direction: column;
   font-weight: 500;
   box-shadow: var(--shadow0);
-  transition: right .5s ease-in;
+  transition: all 0.5s;
+
+}
+@media screen and (max-width: 600px){
+.cart__container{
+    width: 100%
+}  
 }
 .cart__active {
-    right: -600px
+    right: 0;
 }
 .cart__header {
     background-color: var(--brand-main);

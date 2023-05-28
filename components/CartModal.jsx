@@ -6,17 +6,25 @@ import {
   decreaseQuantity,
   addMenuItem,
 } from "../redux/cartSlice";
+import { useRouter } from "next/router";
 
 
-const CartModal = ({isActive, handleToggle}) => {
+const CartModal = ({isCartModalOpen, setIsCartModalOpen}) => {
+  const router = useRouter();
   const dispatch = useDispatch();
   const cart = useSelector((state) => state.cart);
-  
+
+  const openCartPage = () => {
+    setIsCartModalOpen(false)
+    router.push("/cart")
+  }
+
+
   return (
-    <div className={!isActive ? `${styles.cart__container}` : `${styles.cart__container} ${styles.cart__active}`}>
+    <div className={isCartModalOpen ? `${styles.cart__container} ${styles.cart__active}` : `${styles.cart__container}`}>
       <div className={styles.cart__header}>
         <h1>Cart Summary</h1>
-        <button>
+        <button onClick={() => setIsCartModalOpen(!isCartModalOpen)}>
           <svg
             viewBox="0 0 64 64"
             fill="none"
@@ -128,7 +136,7 @@ const CartModal = ({isActive, handleToggle}) => {
           </li>
           )}
         </ul>
-        <div className={styles.cart__footer}>footer</div>
+        <div className={styles.cart__footer}><button onClick={openCartPage}>View Detailed Cart</button></div>
       </section>
     </div>
   );
